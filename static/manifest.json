@@ -1,0 +1,22 @@
+{
+  "name": "KisanDwar - Farmer Procurement & Queue Management",
+  "short_name": "KisanDwar",
+  "description": "Government Grain Procurement & Mandi Congestion Reduction System",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#064e3b",
+  "theme_color": "#064e3b",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/2829/2829822.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/2829/2829822.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

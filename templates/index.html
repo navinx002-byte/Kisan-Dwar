@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KisanDwar - Farmer Procurement & Mandi Queue Orchestration</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Chart.js for Graphical Visualizations -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Leaflet GIS Map CSS & JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- HTML5 QR Code Scanner Library (In-Browser Camera) -->
+  <script src="https://unpkg.com/html5-qrcode"></script>
+
+  <!-- QRious Library (QR Code Generator) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+
+  <!-- PWA & Mobile Web App Meta Tags -->
+  <link rel="manifest" href="/static/manifest.json">
+  <meta name="theme-color" content="#064e3b">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="KisanDwar">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/static/css/custom.css">
+</head>
+<body class="bg-slate-100 font-sans text-gray-800 antialiased min-h-screen flex flex-col">
+
+  <!-- ================= TOP APP HEADER & ROLE SWITCHER ================= -->
+  <header class="bg-emerald-950 text-white shadow-lg sticky top-0 z-40 border-b border-emerald-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row justify-between items-center py-3 gap-3">
+        
+        <!-- Branding -->
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-400 flex items-center justify-center text-2xl shadow-inner">
+            🌾
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h1 class="text-xl font-extrabold tracking-tight text-white">KisanDwar</h1>
+              <span class="bg-amber-400/20 text-amber-300 border border-amber-400/30 text-[10px] font-bold px-2 py-0.5 rounded-full">
+                SIH 2026 • PS 26032
+              </span>
+            </div>
+            <p class="text-[11px] text-emerald-300">Ministry of Consumer Affairs, Food & Public Distribution</p>
+          </div>
+        </div>
+
+        <!-- 1-Click Role Switcher (For HOD / Live Jury Demos) -->
+        <div class="flex items-center bg-emerald-900/80 p-1 rounded-xl border border-emerald-700/60 shadow-inner">
+          <button onclick="switchRole('farmer')" data-role="farmer" class="role-tab-btn px-4 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-emerald-700 text-white shadow">
+            👨‍🌾 Farmer Portal
+          </button>
+          <button onclick="switchRole('mandi')" data-role="mandi" class="role-tab-btn px-4 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-gray-100 text-gray-700">
+            🏢 Mandi Operations
+          </button>
+          <button onclick="switchRole('admin')" data-role="admin" class="role-tab-btn px-4 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-gray-100 text-gray-700">
+            🏛️ Minister / Admin
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MASTER APP LAYOUT (SIDEBAR + MAIN CONTENT) ================= -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full flex flex-col md:flex-row gap-6">
+
+    <!-- ================= LEFT SIDEBAR NAVIGATION ================= -->
+    <aside class="w-full md:w-64 bg-white rounded-2xl shadow-sm border border-gray-200 p-4 flex flex-col justify-between shrink-0">
+      
+      <div>
+        <!-- Sidebar Role Title -->
+        <div class="pb-3 mb-3 border-b border-gray-100 flex items-center justify-between">
+          <span id="sidebar-role-badge" class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
+            👨‍🌾 Farmer Navigation
+          </span>
+        </div>
+
+        <!-- 1. FARMER SIDEBAR MENU (Multi-Page Switcher) -->
+        <nav id="nav-farmer-menu" class="space-y-1.5">
+          <button onclick="navigateTo('farmer-summary', this)" class="sidebar-nav-item active w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-bold flex items-center gap-2.5">
+            <span data-i18n="nav_home">🏠 Summary & Overview</span>
+          </button>
+          <button onclick="navigateTo('farmer-analytics', this)" class="sidebar-nav-item w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-medium text-gray-600 flex items-center gap-2.5">
+            <span data-i18n="nav_analytics">📈 Visits & Sales Graph</span>
+          </button>
+          <button onclick="navigateTo('farmer-book', this)" class="sidebar-nav-item w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-medium text-gray-600 flex items-center gap-2.5">
+            <span data-i18n="nav_book">📅 Book Procurement Slot</span>
+          </button>
+          <button onclick="navigateTo('farmer-token', this)" class="sidebar-nav-item w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-medium text-gray-600 flex items-center gap-2.5">
+            <span data-i18n="nav_token">🎟️ Live Queue Tracker</span>
+          </button>
+          <button onclick="navigateTo('farmer-passbook', this)" class="sidebar-nav-item w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-medium text-gray-600 flex items-center gap-2.5">
+            <span data-i18n="nav_passbook">📜 Sales Passbook (e-J-Form)</span>
+          </button>
+          <button onclick="navigateTo('farmer-quota', this)" class="sidebar-nav-item w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-medium text-gray-600 flex items-center gap-2.5">
+            <span data-i18n="nav_profile">👤 Profile & Land Quota</span>
+          </button>
+        </nav>
+
+        <!-- 2. MANDI SIDEBAR MENU (Multi-Page Switcher) -->
+        <nav id="nav-mandi-menu" class="space-y-1.5 hidden">
+          <button onclick="navigateTo('mandi-schedule', this)" class="sidebar-nav-item active w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-bold flex items-center gap-2.5">
+            📋 Today's Master Schedule
+          </button>
+          <button onclick="navigateTo('mandi-scanner', this)" class="sidebar-nav-item w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-medium text-gray-600 flex items-center gap-2.5">
+            📷 Camera Gate QR Scanner
+          </button>
+          <button onclick="navigateTo('mandi-queue', this)" class="sidebar-nav-item w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-medium text-gray-600 flex items-center gap-2.5">
+            🔢 Live Queue Controller
+          </button>
+          <button onclick="navigateTo('mandi-rain', this)" class="sidebar-nav-item w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-medium text-gray-600 flex items-center gap-2.5">
+            ☔ Deploy Tarpaulin Squad
+          </button>
+        </nav>
+
+        <!-- 3. ADMIN SIDEBAR MENU (Multi-Page Switcher) -->
+        <nav id="nav-admin-menu" class="space-y-1.5 hidden">
+          <button onclick="navigateTo('admin-overview', this)" class="sidebar-nav-item active w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-bold flex items-center gap-2.5">
+            📊 Executive KPI Overview
+          </button>
+          <button onclick="navigateTo('admin-ledger', this)" class="sidebar-nav-item w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-medium text-gray-600 flex items-center gap-2.5">
+            💳 Farmer DBT Financial Ledger
+          </button>
+          <button onclick="navigateTo('admin-heatmap', this)" class="sidebar-nav-item w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-medium text-gray-600 flex items-center gap-2.5">
+            🗺️ GIS Mandi Heatmap
+          </button>
+          <button onclick="navigateTo('admin-anomalies', this)" class="sidebar-nav-item w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-medium text-gray-600 flex items-center gap-2.5">
+            ⚠️ Anomaly & Fraud Flags
+          </button>
+          <button onclick="navigateTo('admin-dbt', this)" class="sidebar-nav-item w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-medium text-gray-600 flex items-center gap-2.5">
+            💰 1-Click DBT Approvals
+          </button>
+        </nav>
+      </div>
+
+      <!-- User Card at bottom of sidebar -->
+      <div class="mt-6 pt-4 border-t border-gray-100 bg-gray-50/70 p-3 rounded-xl flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-emerald-700 text-white flex items-center justify-center font-bold text-xs shadow">
+            👨‍🌾
+          </div>
+          <div>
+            <strong id="sidebar-user-name" class="text-xs text-gray-900 block font-bold">Basavaraj Gowda</strong>
+            <span id="sidebar-user-role" class="text-[10px] text-gray-500 font-mono">ID: FARM-KA-8941</span>
+          </div>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- ================= RIGHT MAIN CONTENT AREA ================= -->
+    <main class="flex-1 min-w-0">
+
+      <!-- ================= 1. FARMER PORTAL CONTAINER ================= -->
+      <div id="screen-farmer" class="space-y-6">
+        
+        <!-- Top Multilingual & Audio Bar -->
+        <div class="bg-white rounded-2xl p-4 shadow-sm border border-gray-200 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">🗣️ Select Language:</span>
+            <div class="flex flex-wrap gap-1.5">
+              <button onclick="setFarmerLanguage('kannada')" data-lang="kannada" class="lang-btn bg-emerald-700 text-white text-xs font-bold px-3 py-1 rounded-md border transition">
+                ಕನ್ನಡ
+              </button>
+              <button onclick="setFarmerLanguage('tamil')" data-lang="tamil" class="lang-btn bg-white text-gray-700 text-xs font-bold px-3 py-1 rounded-md border transition hover:bg-gray-50">
+                தமிழ்
+              </button>
+              <button onclick="setFarmerLanguage('telugu')" data-lang="telugu" class="lang-btn bg-white text-gray-700 text-xs font-bold px-3 py-1 rounded-md border transition hover:bg-gray-50">
+                తెలుగు
+              </button>
+              <button onclick="setFarmerLanguage('hindi')" data-lang="hindi" class="lang-btn bg-white text-gray-700 text-xs font-bold px-3 py-1 rounded-md border transition hover:bg-gray-50">
+                हिंदी
+              </button>
+              <button onclick="setFarmerLanguage('english')" data-lang="english" class="lang-btn bg-white text-gray-700 text-xs font-bold px-3 py-1 rounded-md border transition hover:bg-gray-50">
+                English
+              </button>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button onclick="speakText(fullTranslations[currentLanguage].welcome)" class="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-800 border border-emerald-300 font-semibold text-xs px-3 py-1.5 rounded-lg hover:bg-emerald-100 transition">
+              <span data-i18n="btn_voice_readout">🔊 Voice Readout</span>
+            </button>
+            <button onclick="navigateTo('farmer-book')" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-4 py-2 rounded-lg shadow transition flex items-center gap-1.5">
+              <span data-i18n="btn_book_slot">➕ Book Procurement Slot</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- SUB-PAGE 1.1: FARMER SUMMARY & EXECUTIVE STATS (Default) -->
+        <div id="subpage-farmer-summary" class="subpage active space-y-6">
+          
+          <!-- Executive Summary Metric Cards -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="bg-white rounded-2xl p-4 border border-gray-200 shadow-sm">
+              <span data-i18n="summary_sold_title" class="text-[10px] text-gray-400 font-bold uppercase tracking-wider block">Total Sold to Govt</span>
+              <strong class="text-xl font-extrabold text-emerald-800 mt-1 block">55.0 Qtl</strong>
+              <span data-i18n="summary_sold_sub" class="text-[10px] text-emerald-600 font-semibold">110 Gunny Bags Sold</span>
+            </div>
+            <div class="bg-white rounded-2xl p-4 border border-gray-200 shadow-sm">
+              <span data-i18n="summary_earn_title" class="text-[10px] text-gray-400 font-bold uppercase tracking-wider block">Total DBT Earnings</span>
+              <strong class="text-xl font-extrabold text-gray-900 mt-1 block">₹1,27,600</strong>
+              <span data-i18n="summary_earn_sub" class="text-[10px] text-gray-400 font-semibold">100% Direct Bank Transfer</span>
+            </div>
+            <div class="bg-white rounded-2xl p-4 border border-gray-200 shadow-sm">
+              <span data-i18n="summary_quota_title" class="text-[10px] text-gray-400 font-bold uppercase tracking-wider block">Land Quota Balance</span>
+              <strong id="summary-quota-rem" class="text-xl font-extrabold text-amber-600 mt-1 block">47.5 Qtl Left</strong>
+              <span data-i18n="summary_quota_sub" class="text-[10px] text-gray-500 font-semibold">Out of 62.5 Qtl Total</span>
+            </div>
+            <div class="bg-white rounded-2xl p-4 border border-gray-200 shadow-sm">
+              <span data-i18n="summary_quality_title" class="text-[10px] text-gray-400 font-bold uppercase tracking-wider block">Panchayat Quality</span>
+              <strong data-i18n="summary_quality_val" class="text-xl font-extrabold text-emerald-700 mt-1 block">PASSED 🟢</strong>
+              <span data-i18n="summary_quality_sub" class="text-[10px] text-emerald-600 font-semibold">Moisture: 14.2% (FAQ OK)</span>
+            </div>
+          </div>
+
+          <!-- Active Booking Banner -->
+          <div id="farmer-active-booking-container">
+            <!-- Injected via farmer.js -->
+          </div>
+
+        </div>
+
+        <!-- SUB-PAGE 1.2: SINGLE CLEAN VISUAL GRAPH + WORDS SUMMARY BOX -->
+        <div id="subpage-farmer-analytics" class="subpage space-y-6">
+          <div class="space-y-6">
+            
+            <!-- Big Words Summary Box in Chosen Regional Language -->
+            <div class="bg-gradient-to-r from-emerald-900 via-emerald-800 to-teal-900 text-white rounded-2xl p-6 shadow-md border border-emerald-700 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+              <div class="space-y-2">
+                <span data-i18n="analytics_box_title" class="bg-amber-400 text-emerald-950 text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider inline-block">
+                  📢 Official Mandi Visit Summary (ಅಧಿಕೃತ ಭೇಟಿ ಸಾರಾಂಶ)
+                </span>
+                <p id="farmer-visit-word-summary" class="text-sm md:text-base font-bold text-emerald-100 leading-relaxed max-w-3xl">
+                  <!-- Injected dynamically in selected language -->
+                </p>
+              </div>
+              <button onclick="speakText(document.getElementById('farmer-visit-word-summary').innerText)" class="bg-white/10 hover:bg-white/20 border border-white/30 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow shrink-0 flex items-center gap-2">
+                <span data-i18n="btn_listen_summary">🔊 Listen Summary</span>
+              </button>
+            </div>
+
+            <!-- Single High-Impact Season-wise Bar Chart -->
+            <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+              <div class="flex items-center justify-between border-b pb-3 mb-4">
+                <div>
+                  <h3 data-i18n="chart_main_title" class="text-sm font-bold text-gray-900 uppercase tracking-wider">🌾 Mandi Visits & Procurement Volume History</h3>
+                  <span data-i18n="chart_sub_title" class="text-xs text-gray-500">Government MSP Grain Procurement Volumes per Season</span>
+                </div>
+                <span data-i18n="chart_timeline_badge" class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2.5 py-1 rounded-full">
+                  Harvest Timeline
+                </span>
+              </div>
+              <canvas id="farmer-single-visits-chart" class="w-full max-h-72"></canvas>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- SUB-PAGE 1.3: DEDICATED BOOKING WIZARD PAGE (100% TRANSLATED - 5 VISUAL QUESTIONS) -->
+        <div id="subpage-farmer-book" class="subpage space-y-6">
+          <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm max-w-2xl mx-auto">
+            <div class="border-b border-gray-100 pb-4 mb-4 flex justify-between items-center">
+              <div>
+                <span data-i18n="wizard_step_title" class="text-[10px] font-bold uppercase text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
+                  Step-by-Step Verification
+                </span>
+                <h3 data-i18n="wizard_main_title" class="text-lg font-extrabold text-gray-900 mt-1">🌾 Book a New Procurement Slot</h3>
+              </div>
+              <button onclick="speakAllQuestions()" class="text-emerald-700 hover:text-emerald-800 font-bold text-xs bg-emerald-50 border border-emerald-300 px-3 py-1.5 rounded-lg">
+                <span data-i18n="listen_all_qs">🔊 Listen All Questions</span>
+              </button>
+            </div>
+
+            <!-- 5 Visual Questions Form -->
+            <div class="space-y-5 text-xs">
+              
+              <!-- Q1: Harvest Date -->
+              <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                <div class="flex justify-between items-center mb-2">
+                  <strong id="wizard-q1-title" class="text-gray-800 text-sm font-bold">1. When was the crop harvested?</strong>
+                  <button onclick="speakQuestion(1)" class="text-emerald-700 hover:text-emerald-800 font-bold flex items-center gap-1">
+                    <span data-i18n="listen_btn">🔊 Listen</span>
+                  </button>
+                </div>
+                <div class="grid grid-cols-3 gap-2.5">
+                  <label class="border-2 border-emerald-500 p-2.5 rounded-xl bg-white text-center cursor-pointer hover:border-emerald-500 flex flex-col items-center shadow-sm">
+                    <input type="radio" name="wizard-harvest" value="7" checked class="mb-1 text-emerald-600">
+                    <span id="wizard-q1-opt1" class="font-bold">📅 Last 7 Days</span>
+                  </label>
+                  <label class="border-2 border-gray-200 p-2.5 rounded-xl bg-white text-center cursor-pointer hover:border-emerald-500 flex flex-col items-center">
+                    <input type="radio" name="wizard-harvest" value="15" class="mb-1 text-emerald-600">
+                    <span id="wizard-q1-opt2" class="font-bold">📅 1–2 Weeks</span>
+                  </label>
+                  <label class="border-2 border-gray-200 p-2.5 rounded-xl bg-white text-center cursor-pointer hover:border-emerald-500 flex flex-col items-center">
+                    <input type="radio" name="wizard-harvest" value="30" class="mb-1 text-emerald-600">
+                    <span id="wizard-q1-opt3" class="font-bold">📅 1+ Month</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Q2: Sun Drying -->
+              <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                <div class="flex justify-between items-center mb-2">
+                  <strong id="wizard-q2-title" class="text-gray-800 text-sm font-bold">2. How many days was it sun-dried?</strong>
+                  <button onclick="speakQuestion(2)" class="text-emerald-700 hover:text-emerald-800 font-bold flex items-center gap-1">
+                    <span data-i18n="listen_btn">🔊 Listen</span>
+                  </button>
+                </div>
+                <div class="grid grid-cols-3 gap-2.5">
+                  <label class="border-2 border-gray-200 p-2.5 rounded-xl bg-white text-center cursor-pointer hover:border-emerald-500 flex flex-col items-center">
+                    <input type="radio" name="wizard-drying" value="0" class="mb-1 text-emerald-600">
+                    <span id="wizard-q2-opt1" class="font-bold">☀️ 0 Days (Fresh)</span>
+                  </label>
+                  <label class="border-2 border-emerald-500 p-2.5 rounded-xl bg-white text-center cursor-pointer hover:border-emerald-500 flex flex-col items-center shadow-sm">
+                    <input type="radio" name="wizard-drying" value="3" checked class="mb-1 text-emerald-600">
+                    <span id="wizard-q2-opt2" class="font-bold text-emerald-800">☀️ 2–3 Days (Good)</span>
+                  </label>
+                  <label class="border-2 border-gray-200 p-2.5 rounded-xl bg-white text-center cursor-pointer hover:border-emerald-500 flex flex-col items-center">
+                    <input type="radio" name="wizard-drying" value="5" class="mb-1 text-emerald-600">
+                    <span id="wizard-q2-opt3" class="font-bold">☀️ 5+ Days</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Q3: Soil Color -->
+              <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                <div class="flex justify-between items-center mb-2">
+                  <strong id="wizard-q3-title" class="text-gray-800 text-sm font-bold">3. Field Soil Color (Land Record Match):</strong>
+                  <button onclick="speakQuestion(3)" class="text-emerald-700 hover:text-emerald-800 font-bold flex items-center gap-1">
+                    <span data-i18n="listen_btn">🔊 Listen</span>
+                  </button>
+                </div>
+                <div class="grid grid-cols-3 gap-2.5">
+                  <label class="border-2 border-emerald-500 p-2.5 rounded-xl bg-white text-center cursor-pointer hover:border-emerald-500 flex flex-col items-center shadow-sm">
+                    <input type="radio" name="wizard-soil" value="Black Soil" checked class="mb-1 text-emerald-600">
+                    <span id="wizard-q3-opt1" class="font-bold">🟫 Black Soil</span>
+                  </label>
+                  <label class="border-2 border-gray-200 p-2.5 rounded-xl bg-white text-center cursor-pointer hover:border-emerald-500 flex flex-col items-center">
+                    <input type="radio" name="wizard-soil" value="Red Soil" class="mb-1 text-emerald-600">
+                    <span id="wizard-q3-opt2" class="font-bold">🟥 Red Soil</span>
+                  </label>
+                  <label class="border-2 border-gray-200 p-2.5 rounded-xl bg-white text-center cursor-pointer hover:border-emerald-500 flex flex-col items-center">
+                    <input type="radio" name="wizard-soil" value="Alluvial Soil" class="mb-1 text-emerald-600">
+                    <span id="wizard-q3-opt3" class="font-bold">🟨 Alluvial / Clay</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Q4: Moisture / Grain Hardness -->
+              <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                <div class="flex justify-between items-center mb-2">
+                  <strong id="wizard-q4-title" class="text-gray-800 text-sm font-bold">4. Grain Hardness & Moisture Level:</strong>
+                  <button onclick="speakQuestion(4)" class="text-emerald-700 hover:text-emerald-800 font-bold flex items-center gap-1">
+                    <span data-i18n="listen_btn">🔊 Listen</span>
+                  </button>
+                </div>
+                <div class="grid grid-cols-3 gap-2.5">
+                  <label class="border-2 border-emerald-500 p-2.5 rounded-xl bg-white text-center cursor-pointer hover:border-emerald-500 flex flex-col items-center shadow-sm">
+                    <input type="radio" name="wizard-hardness" value="Crisp & Hard" checked class="mb-1 text-emerald-600">
+                    <span id="wizard-q4-opt1" class="font-bold">🌾 Crisp & Hard (&lt;15% FAQ)</span>
+                  </label>
+                  <label class="border-2 border-gray-200 p-2.5 rounded-xl bg-white text-center cursor-pointer hover:border-emerald-500 flex flex-col items-center">
+                    <input type="radio" name="wizard-hardness" value="Moderate" class="mb-1 text-emerald-600">
+                    <span id="wizard-q4-opt2" class="font-bold">🌾 Moderate (16–17%)</span>
+                  </label>
+                  <label class="border-2 border-gray-200 p-2.5 rounded-xl bg-white text-center cursor-pointer hover:border-emerald-500 flex flex-col items-center">
+                    <input type="radio" name="wizard-hardness" value="Soft" class="mb-1 text-emerald-600">
+                    <span id="wizard-q4-opt3" class="font-bold">🌾 Soft / Moisture (&gt;18%)</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Q5: Transport Vehicle Type -->
+              <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                <div class="flex justify-between items-center mb-2">
+                  <strong id="wizard-q5-title" class="text-gray-800 text-sm font-bold">5. Transport Vehicle Type:</strong>
+                  <button onclick="speakQuestion(5)" class="text-emerald-700 hover:text-emerald-800 font-bold flex items-center gap-1">
+                    <span data-i18n="listen_btn">🔊 Listen</span>
+                  </button>
+                </div>
+                <div class="grid grid-cols-3 gap-2.5">
+                  <label class="border-2 border-emerald-500 p-2.5 rounded-xl bg-white text-center cursor-pointer hover:border-emerald-500 flex flex-col items-center shadow-sm">
+                    <input type="radio" name="wizard-vehicle" value="Tractor-Trolley" checked class="mb-1 text-emerald-600">
+                    <span id="wizard-q5-opt1" class="font-bold">🚜 Tractor-Trolley</span>
+                  </label>
+                  <label class="border-2 border-gray-200 p-2.5 rounded-xl bg-white text-center cursor-pointer hover:border-emerald-500 flex flex-col items-center">
+                    <input type="radio" name="wizard-vehicle" value="Small Truck" class="mb-1 text-emerald-600">
+                    <span id="wizard-q5-opt2" class="font-bold">🚚 Small Truck (Tata Ace)</span>
+                  </label>
+                  <label class="border-2 border-gray-200 p-2.5 rounded-xl bg-white text-center cursor-pointer hover:border-emerald-500 flex flex-col items-center">
+                    <input type="radio" name="wizard-vehicle" value="Mini Auto" class="mb-1 text-emerald-600">
+                    <span id="wizard-q5-opt3" class="font-bold">🛺 Auto / Mini Loader</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Mandi, Quantity & Time Slot -->
+              <div class="space-y-3 pt-3 border-t border-gray-200">
+                <div>
+                  <label data-i18n="wizard_mandi_label" class="block font-bold text-gray-800 mb-1">Select Procurement Centre (Mandi):</label>
+                  <select id="wizard-mandi-select" class="w-full bg-white border border-gray-300 rounded-xl p-3 text-xs font-bold text-gray-800">
+                    <!-- Populated via app.js -->
+                  </select>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                  <div>
+                    <label data-i18n="wizard_qty_label" class="block font-bold text-gray-800 mb-1">Quantity to Sell (Quintals):</label>
+                    <input type="number" id="wizard-quantity-input" value="30" max="60" class="w-full border-2 border-emerald-500 rounded-xl p-2.5 text-sm font-extrabold text-emerald-900 bg-emerald-50/30" placeholder="30">
+                  </div>
+                  <div>
+                    <label data-i18n="wizard_time_label" class="block font-bold text-gray-800 mb-1">Arrival Time Window:</label>
+                    <select id="wizard-time-slot" class="w-full bg-white border border-gray-300 rounded-xl p-3 text-xs font-bold">
+                      <option value="09:00 AM - 10:00 AM">09:00 AM - 10:00 AM</option>
+                      <option value="10:00 AM - 11:00 AM" selected>10:00 AM - 11:00 AM</option>
+                      <option value="11:00 AM - 12:00 PM">11:00 AM - 12:00 PM</option>
+                      <option value="02:00 PM - 03:00 PM">02:00 PM - 03:00 PM</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="pt-4 flex justify-end gap-3">
+                <button onclick="navigateTo('farmer-summary')" class="px-5 py-2.5 text-xs font-bold text-gray-500 hover:text-gray-800">
+                  <span data-i18n="btn_cancel">Cancel</span>
+                </button>
+                <button onclick="submitBooking()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-8 py-3 rounded-xl shadow-lg transition">
+                  <span data-i18n="btn_confirm_slot">✅ Confirm & Generate Digital QR Pass</span>
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- SUB-PAGE 1.4: DEDICATED LIVE QUEUE TRACKER PAGE (100% TRANSLATED) -->
+        <div id="subpage-farmer-token" class="subpage space-y-6">
+          <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm max-w-xl mx-auto text-center">
+            <span data-i18n="token_broadcaster_badge" class="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full uppercase tracking-wider border border-emerald-200">
+              Live Mandi Queue Broadcaster
+            </span>
+            <h2 data-i18n="token_yard_pos_title" class="text-xl font-bold text-gray-900 mt-2">Real-Time Yard Position</h2>
+            <p data-i18n="token_yard_pos_sub" class="text-xs text-gray-500">APMC Yard, Raichur • Main Scale Gate 1</p>
+
+            <div class="my-6 p-6 bg-gradient-to-br from-emerald-950 to-slate-900 text-white rounded-2xl border border-emerald-700 shadow-lg">
+              <span data-i18n="token_assigned_label" class="text-xs text-emerald-300 font-bold uppercase tracking-wider block">Your Assigned Token</span>
+              <span class="text-6xl font-black text-amber-400 my-2 block">#42</span>
+              <span id="token-serving-text" data-i18n="token_serving_info" class="text-xs text-emerald-200">Now Weighing at Scale: #40 • 2 Vehicles Ahead</span>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 text-left text-xs mb-6">
+              <div class="bg-gray-50 p-3 rounded-xl border">
+                <span data-i18n="token_wait_time_label" class="text-gray-400 block text-[10px]">Estimated Wait Time</span>
+                <strong data-i18n="token_wait_time_val" class="text-gray-900 text-sm">~15 Minutes</strong>
+              </div>
+              <div class="bg-gray-50 p-3 rounded-xl border">
+                <span data-i18n="token_monsoon_prot_label" class="text-gray-400 block text-[10px]">Monsoon Protection</span>
+                <strong data-i18n="token_monsoon_prot_val" class="text-emerald-700 text-sm">☔ Tarpaulin Secured</strong>
+              </div>
+            </div>
+
+            <button onclick="showQrModal('KISANDWAR:BK-2026-9042:FARM-KA-8941:40QTL', 'BK-2026-9042')" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs py-3 rounded-xl shadow transition">
+              <span data-i18n="token_view_qr_btn">📱 View Gate Entry QR Pass</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- SUB-PAGE 1.5: DEDICATED PROCUREMENT PASSBOOK PAGE -->
+        <div id="subpage-farmer-passbook" class="subpage space-y-6">
+          <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+            <div class="p-5 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
+              <div>
+                <h3 data-i18n="passbook_title" class="text-sm font-bold text-gray-900 uppercase tracking-wider">My Procurement Passbook & Past Sales</h3>
+                <p data-i18n="passbook_sub" class="text-xs text-gray-500">Official Legal Receipts & DBT Audit Logs</p>
+              </div>
+              <span data-i18n="passbook_verified_badge" class="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2.5 py-1 rounded-full">
+                Government Verified Ledger
+              </span>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left">
+                <thead>
+                  <tr class="bg-gray-100/70 border-b border-gray-200 text-gray-600 text-[11px] font-bold uppercase tracking-wider">
+                    <th data-i18n="th_date" class="py-3 px-4">Date</th>
+                    <th data-i18n="th_crop" class="py-3 px-4">Commodity</th>
+                    <th data-i18n="th_weight" class="py-3 px-4">Net Weight</th>
+                    <th data-i18n="th_rate" class="py-3 px-4">MSP Rate</th>
+                    <th data-i18n="th_total" class="py-3 px-4">Total Amount</th>
+                    <th data-i18n="th_status" class="py-3 px-4">Payment Status</th>
+                    <th data-i18n="th_cert" class="py-3 px-4">Certificate</th>
+                  </tr>
+                </thead>
+                <tbody id="farmer-passbook-table">
+                  <!-- Injected via farmer.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUB-PAGE 1.6: DEDICATED PROFILE & LAND QUOTA PAGE -->
+        <div id="subpage-farmer-quota" class="subpage space-y-6">
+          <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm max-w-3xl mx-auto space-y-6">
+            
+            <div class="border-b border-gray-100 pb-4 flex justify-between items-center">
+              <div>
+                <span data-i18n="verified_farmer" class="text-[10px] font-extrabold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
+                  Aadhaar-Seeded Farmer
+                </span>
+                <h3 data-i18n="land_quota_title" class="text-lg font-bold text-gray-900 mt-1">🌾 Verified Land Records & Quota Balance</h3>
+              </div>
+              <span data-i18n="precheck_passed" class="text-xs font-bold text-emerald-700">🟢 Gram Panchayat Pre-Check Passed</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+              <div class="bg-gray-50 p-4 rounded-xl border">
+                <span data-i18n="survey_no" class="text-gray-400 block text-[10px]">Survey Number</span>
+                <strong id="farmer-survey-display" class="text-sm font-mono text-gray-900">SY-142/2A</strong>
+              </div>
+              <div class="bg-gray-50 p-4 rounded-xl border">
+                <span data-i18n="verified_acreage" class="text-gray-400 block text-[10px]">Total Land Acreage</span>
+                <strong id="farmer-acreage-display" class="text-sm text-gray-900">2.5 Acres</strong>
+              </div>
+              <div class="bg-gray-50 p-4 rounded-xl border">
+                <span data-i18n="rem_quota" class="text-gray-400 block text-[10px]">Remaining Seasonal Quota</span>
+                <strong id="farmer-quota-display" class="text-sm text-emerald-800 font-bold">62.5 Quintals</strong>
+              </div>
+            </div>
+
+            <div class="bg-emerald-50/60 p-4 rounded-xl border border-emerald-200">
+              <div class="flex justify-between text-xs font-bold text-emerald-950 mb-2">
+                <span data-i18n="quota_util_label">Seasonal Quota Utilization:</span>
+                <span id="farmer-quota-pct-text" data-i18n="quota_pct_label">24% Quota Used</span>
+              </div>
+              <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                <div id="farmer-quota-bar" class="bg-emerald-600 h-3 rounded-full transition-all duration-500" style="width: 24%"></div>
+              </div>
+              <p data-i18n="quota_formula_text" class="text-[11px] text-emerald-800 mt-2 font-bold">
+                Formula: 2.5 Acres × 25 Qtl/Acre = 62.5 Qtl Max
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ================= 2. MANDI OPERATIONS CONTAINER ================= -->
+      <div id="screen-mandi" class="space-y-6 hidden">
+
+        <!-- Mandi Top Status Bar -->
+        <div class="bg-white rounded-2xl p-5 border border-gray-200 shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+          <div>
+            <span class="text-[10px] font-bold text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-full uppercase tracking-wider">
+              🏛️ Field Operations Portal
+            </span>
+            <h2 id="mandi-name-header" class="text-xl font-bold text-gray-900 mt-1">APMC Yard, Raichur (Main Gate 1)</h2>
+            <p class="text-xs text-gray-500">In-Browser Camera Gate Scanner • Digital Weighbridge • Monsoon Cover Squad</p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2 text-xs font-bold">
+            <span id="mandi-rain-badge" class="bg-red-100 text-red-800 border border-red-300 px-3 py-1.5 rounded-lg flex items-center gap-1 animate-pulse">
+              ☔ Rain Risk: 85%
+            </span>
+            <span id="mandi-tarp-stock" class="bg-blue-50 text-blue-800 border border-blue-200 px-3 py-1.5 rounded-lg">
+              250 Covers Available
+            </span>
+            <span id="mandi-queue-count" class="bg-gray-100 text-gray-800 border border-gray-300 px-3 py-1.5 rounded-lg">
+              8 Vehicles in Yard
+            </span>
+          </div>
+        </div>
+
+        <!-- SUB-PAGE 2.1: TODAY'S MASTER SCHEDULE (Default) -->
+        <div id="subpage-mandi-schedule" class="subpage active space-y-6">
+          <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+            <div class="p-4 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
+              <h3 class="text-xs font-bold text-gray-800 uppercase tracking-wider">Today's Procurement Schedule & Queue Log</h3>
+              <span class="text-xs text-gray-500">Staggered Arrival Verification</span>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left">
+                <thead>
+                  <tr class="bg-gray-100/70 border-b border-gray-200 text-gray-600 text-[11px] font-bold uppercase tracking-wider">
+                    <th class="py-2.5 px-4">Booking Ref</th>
+                    <th class="py-2.5 px-4">Farmer Name</th>
+                    <th class="py-2.5 px-4">Commodity</th>
+                    <th class="py-2.5 px-4">Vehicle No.</th>
+                    <th class="py-2.5 px-4">Time Slot</th>
+                    <th class="py-2.5 px-4">Status & Token</th>
+                    <th class="py-2.5 px-4">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="mandi-schedule-table">
+                  <!-- Injected via mandi.js -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUB-PAGE 2.2: CAMERA GATE QR SCANNER -->
+        <div id="subpage-mandi-scanner" class="subpage space-y-6">
+          <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm max-w-lg mx-auto text-center">
+            <span class="text-[10px] font-bold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-full uppercase border border-emerald-200">
+              100% In-Browser Camera Scanner
+            </span>
+            <h3 class="text-lg font-bold text-gray-900 mt-2">Mandi Gate Entry Scanner</h3>
+            <p class="text-xs text-gray-500 mb-4">Point phone/laptop camera at farmer's booking QR pass for instant check-in.</p>
+
+            <button id="toggle-scanner-btn" onclick="toggleWebCameraScanner()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs py-3 rounded-xl shadow-lg transition flex items-center justify-center gap-2">
+              📷 Open Phone Camera Scanner
+            </button>
+
+            <!-- Camera Live Video Box -->
+            <div id="camera-scanner-container" class="mt-4 bg-gray-50 rounded-xl p-3 border border-emerald-500 shadow-inner hidden">
+              <div id="qr-reader" class="w-full max-w-sm mx-auto overflow-hidden rounded-lg"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUB-PAGE 2.3: LIVE QUEUE CONTROLLER -->
+        <div id="subpage-mandi-queue" class="subpage space-y-6">
+          <div class="bg-gradient-to-br from-gray-900 to-slate-800 text-white rounded-2xl p-6 shadow-lg max-w-xl mx-auto text-center">
+            <span class="text-xs text-emerald-400 font-bold uppercase tracking-wider block">Mandi Yard Queue Controller</span>
+            <div class="my-6">
+              <span class="text-xs text-gray-400 block mb-1">Now Calling Token Number:</span>
+              <span id="live-serving-token-display" class="text-6xl font-black text-amber-400">#42</span>
+            </div>
+
+            <div class="grid grid-cols-3 gap-3 mt-4">
+              <button onclick="performQueueAction('call_next')" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs py-3 rounded-xl shadow transition">
+                ⏩ Call Next
+              </button>
+              <button onclick="performQueueAction('hold')" class="bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs py-3 rounded-xl shadow transition">
+                ⏸️ Hold Token
+              </button>
+              <button onclick="performQueueAction('absent')" class="bg-red-600 hover:bg-red-500 text-white font-bold text-xs py-3 rounded-xl shadow transition">
+                ❌ Mark Absent
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUB-PAGE 2.4: MONSOON TARPAULIN SQUAD MANAGER -->
+        <div id="subpage-mandi-rain" class="subpage space-y-6">
+          <div class="bg-gradient-to-br from-blue-950 to-indigo-900 text-white rounded-2xl p-6 shadow-lg max-w-xl mx-auto space-y-4">
+            <div class="flex justify-between items-center border-b border-blue-800 pb-3">
+              <div>
+                <span class="text-[10px] font-bold text-blue-300 uppercase tracking-wider">Rapid Monsoon Response</span>
+                <h3 class="text-lg font-bold mt-1">☔ Tarpaulin & Labor Cover Squad</h3>
+              </div>
+              <span class="text-3xl">🌧️</span>
+            </div>
+
+            <p class="text-xs text-blue-200 leading-relaxed">
+              When severe rain is detected by weather sensors, dispatch 2–3 dedicated yard laborers equipped with waterproof tarpaulins (tirpal) and tying ropes to secure open tractors and lorries in the yard.
+            </p>
+
+            <div class="bg-blue-900/50 p-4 rounded-xl border border-blue-700/50 text-xs space-y-1.5">
+              <div class="flex justify-between"><span>Rain Probability:</span><strong class="text-amber-300">85% (High Risk)</strong></div>
+              <div class="flex justify-between"><span>Available Tarpaulins:</span><strong>250 Heavy-Duty Covers</strong></div>
+              <div class="flex justify-between"><span>Active Labor Crew:</span><strong>3 Hamals On Standby</strong></div>
+            </div>
+
+            <button onclick="triggerRainSquad()" class="w-full bg-blue-500 hover:bg-blue-400 text-slate-950 font-black text-xs py-3.5 rounded-xl shadow-lg transition flex items-center justify-center gap-2">
+              🌧️ Deploy Tarpaulin Labor Squad (3 Workers)
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ================= 3. MINISTER / DISTRICT ADMIN CONTAINER ================= -->
+      <div id="screen-admin" class="space-y-6 hidden">
+
+        <!-- ADMIN LOGIN GATEWAY (Shown if not logged in) -->
+        <div id="admin-login-view" class="bg-white rounded-2xl p-8 border border-gray-200 shadow-md max-w-md mx-auto text-center space-y-5">
+          <div class="w-12 h-12 bg-emerald-50 text-emerald-700 rounded-full flex items-center justify-center mx-auto text-2xl shadow-inner">
+            🏛️
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-gray-900">Official Government Login</h3>
+            <p class="text-xs text-gray-500">Department of Food & Public Distribution</p>
+          </div>
+
+          <div class="space-y-3 text-left text-xs">
+            <div>
+              <label class="block font-bold text-gray-700 mb-1">Officer Username / SSO ID:</label>
+              <input type="text" id="admin-user-input" value="dso_admin_karnataka" class="w-full border rounded-lg p-2.5 font-mono text-gray-900">
+            </div>
+            <div>
+              <label class="block font-bold text-gray-700 mb-1">Security Password:</label>
+              <input type="password" id="admin-pass-input" value="gov2026pass" class="w-full border rounded-lg p-2.5 font-mono text-gray-900">
+            </div>
+          </div>
+
+          <button onclick="handleAdminLogin()" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs py-3 rounded-xl shadow-lg transition">
+            🔐 Authenticate & Enter Ministry Dashboard
+          </button>
+          <span class="text-[10px] text-gray-400 block">Single-Sign-On Demo Mode Enabled</span>
+        </div>
+
+        <!-- ADMIN DASHBOARD SUB-PAGES (Unlocked on Login) -->
+        <div id="admin-authenticated-view" class="space-y-6 hidden">
+
+          <!-- SUB-PAGE 3.1: EXECUTIVE OVERVIEW (Default) -->
+          <div id="subpage-admin-overview" class="subpage active space-y-6">
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+              <div class="bg-white rounded-2xl p-4 border border-gray-200 shadow-sm">
+                <span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider block">Total Procured</span>
+                <strong id="kpi-procured-tons" class="text-lg font-extrabold text-gray-900 mt-1 block">1,284 MT</strong>
+                <span id="kpi-target-pct" class="text-[10px] text-emerald-600 font-semibold">51.4% of Target</span>
+              </div>
+              <div class="bg-white rounded-2xl p-4 border border-gray-200 shadow-sm">
+                <span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider block">Direct DBT Payout</span>
+                <strong id="kpi-dbt-disbursed" class="text-lg font-extrabold text-emerald-700 mt-1 block">₹2.97 Cr</strong>
+                <span class="text-[10px] text-gray-400">Zero Middlemen</span>
+              </div>
+              <div class="bg-white rounded-2xl p-4 border border-gray-200 shadow-sm">
+                <span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider block">Farmers Benefited</span>
+                <strong id="kpi-farmers-count" class="text-lg font-extrabold text-gray-900 mt-1 block">1,422</strong>
+                <span class="text-[10px] text-emerald-600 font-semibold">100% Aadhaar Verified</span>
+              </div>
+              <div class="bg-white rounded-2xl p-4 border border-gray-200 shadow-sm">
+                <span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider block">Active Mandis</span>
+                <strong id="kpi-mandis-count" class="text-lg font-extrabold text-gray-900 mt-1 block">4 Centres</strong>
+                <span class="text-[10px] text-gray-400">GIS Heatmap Monitored</span>
+              </div>
+              <div class="bg-white rounded-2xl p-4 border border-gray-200 shadow-sm col-span-2 md:col-span-1">
+                <span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider block">Weather Stock</span>
+                <strong class="text-lg font-extrabold text-blue-700 mt-1 block">1,130 Tarpaulins</strong>
+                <span class="text-[10px] text-blue-600 font-semibold">Emergency Reserves OK</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUB-PAGE 3.2: FARMER-WISE DBT FINANCIAL LEDGER (YEARLY & MONTHLY) -->
+          <div id="subpage-admin-ledger" class="subpage space-y-6">
+            
+            <!-- Monthly Disbursement Trend Chart -->
+            <div class="bg-white rounded-2xl p-5 border border-gray-200 shadow-sm">
+              <div class="flex justify-between items-center border-b pb-3 mb-4">
+                <div>
+                  <h3 class="text-xs font-bold text-gray-800 uppercase tracking-wider">📊 State-Wide Monthly Direct Benefit Transfer (DBT) Payouts</h3>
+                  <span class="text-[11px] text-gray-500">Track funds debited directly to farmer bank accounts month-by-month</span>
+                </div>
+                <span class="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2.5 py-1 rounded-full">
+                  PFMS Live Integration
+                </span>
+              </div>
+              <canvas id="admin-dbt-monthly-chart" class="w-full max-h-56"></canvas>
+            </div>
+
+            <!-- Farmer Ledger Table & Search/Filter Controls -->
+            <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+              <div class="p-5 bg-gray-50 border-b border-gray-200 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                  <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider">Individual Farmer DBT History & Bank Ledger</h3>
+                  <p class="text-xs text-gray-500">Audit yearly and monthly funds debited to each farmer</p>
+                </div>
+
+                <!-- Filters -->
+                <div class="flex flex-wrap items-center gap-2 text-xs">
+                  <input type="text" id="ledger-search-input" oninput="filterFarmerDBTLedger()" placeholder="🔍 Search Farmer / ID / Dist..." class="border rounded-xl px-3 py-1.5 text-xs font-medium w-48">
+                  
+                  <select id="ledger-year-select" onchange="filterFarmerDBTLedger()" class="border rounded-xl px-2.5 py-1.5 text-xs font-bold bg-white">
+                    <option value="ALL">Year: All</option>
+                    <option value="2026" selected>Year: 2026</option>
+                    <option value="2025">Year: 2025</option>
+                  </select>
+
+                  <select id="ledger-month-select" onchange="filterFarmerDBTLedger()" class="border rounded-xl px-2.5 py-1.5 text-xs font-bold bg-white">
+                    <option value="ALL" selected>Month: All</option>
+                    <option value="October">October</option>
+                    <option value="September">September</option>
+                    <option value="April">April</option>
+                    <option value="November">November</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                  <thead>
+                    <tr class="bg-gray-100/70 border-b border-gray-200 text-gray-600 text-[11px] font-bold uppercase tracking-wider">
+                      <th class="py-3 px-4">Farmer ID</th>
+                      <th class="py-3 px-4">Farmer Name</th>
+                      <th class="py-3 px-4">District</th>
+                      <th class="py-3 px-4">Bank Account</th>
+                      <th class="py-3 px-4">Commodity</th>
+                      <th class="py-3 px-4">DBT Payout (₹)</th>
+                      <th class="py-3 px-4">Status</th>
+                      <th class="py-3 px-4">PFMS UTR</th>
+                    </tr>
+                  </thead>
+                  <tbody id="admin-farmer-ledger-table">
+                    <!-- Injected via admin.js -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- SUB-PAGE 3.3: DEDICATED FULL-SCREEN GIS HEATMAP -->
+          <div id="subpage-admin-heatmap" class="subpage space-y-6">
+            <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden flex flex-col">
+              <div class="p-4 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
+                <div class="flex items-center gap-2">
+                  <span class="text-lg">🗺️</span>
+                  <h3 class="text-xs font-bold text-gray-800 uppercase tracking-wider">Live State Mandi Congestion & Storm Risk Heatmap</h3>
+                </div>
+                <div class="flex items-center gap-2 text-[10px] font-bold">
+                  <span class="flex items-center gap-1 text-emerald-700"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> Normal</span>
+                  <span class="flex items-center gap-1 text-amber-700"><span class="w-2 h-2 rounded-full bg-amber-500"></span> Busy</span>
+                  <span class="flex items-center gap-1 text-red-700"><span class="w-2 h-2 rounded-full bg-red-500"></span> Choked</span>
+                </div>
+              </div>
+              <div id="admin-leaflet-map" class="w-full h-96 flex-1"></div>
+            </div>
+          </div>
+
+          <!-- SUB-PAGE 3.4: DEDICATED ANOMALIES PAGE -->
+          <div id="subpage-admin-anomalies" class="subpage space-y-6">
+            <div class="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm max-w-2xl mx-auto space-y-4">
+              <div class="flex items-center justify-between border-b pb-3">
+                <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider flex items-center gap-2">
+                  <span>⚠️</span> AI & Quota Anomaly Flags
+                </h3>
+                <span class="text-[10px] bg-red-100 text-red-800 font-bold px-2.5 py-1 rounded-full">Live Sentinel</span>
+              </div>
+              <div id="admin-anomaly-container" class="space-y-3">
+                <!-- Injected via admin.js -->
+              </div>
+            </div>
+          </div>
+
+          <!-- SUB-PAGE 3.5: DEDICATED 1-CLICK DBT APPROVALS PAGE -->
+          <div id="subpage-admin-dbt" class="subpage space-y-6">
+            <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+              <div class="p-5 bg-gray-50 border-b border-gray-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                <div>
+                  <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider">Pending DBT Direct Bank Settlement Batches</h3>
+                  <span id="pending-dbt-count" class="text-xs text-amber-700 font-semibold">1 Batch Pending Approval</span>
+                </div>
+                <button id="bulk-approve-btn" onclick="bulkApproveDBT()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-6 py-3 rounded-xl shadow-lg transition flex items-center gap-2">
+                  ✅ 1-Click Bulk Approve & Release DBT (PFMS)
+                </button>
+              </div>
+              <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                  <thead>
+                    <tr class="bg-gray-100/70 border-b border-gray-200 text-gray-600 text-[11px] font-bold uppercase tracking-wider">
+                      <th class="py-3 px-4">Batch ID</th>
+                      <th class="py-3 px-4">Procurement Centre</th>
+                      <th class="py-3 px-4">Farmers Count</th>
+                      <th class="py-3 px-4">Total Payout Amount</th>
+                      <th class="py-3 px-4">Submission Time</th>
+                    </tr>
+                  </thead>
+                  <tbody id="admin-dbt-table">
+                    <!-- Injected via admin.js -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- ================= MODAL 1: DIGITAL QR CODE PASS ================= -->
+  <div id="qr-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-gray-200 text-center">
+      <span data-i18n="qr_modal_badge" class="text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
+        Official Gate Entry Pass
+      </span>
+      <h3 data-i18n="qr_modal_title" class="text-base font-extrabold text-gray-900 mt-2">Mandi Procurement QR</h3>
+      <p id="qr-modal-ref" class="text-xs font-mono text-gray-500">BK-2026-9042</p>
+
+      <div class="my-5 flex justify-center">
+        <canvas id="qr-canvas" class="border-4 border-emerald-100 rounded-xl p-2 bg-white shadow"></canvas>
+      </div>
+
+      <p id="qr-modal-data" class="text-[10px] font-mono text-gray-400 break-all px-2"></p>
+      <p data-i18n="qr_modal_tip" class="text-xs text-gray-600 mt-2">Show this QR code to the mandi gate camera on arrival for instant token activation.</p>
+
+      <button onclick="closeQrModal()" class="mt-4 w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs py-2.5 rounded-lg shadow transition">
+        <span data-i18n="qr_modal_done">Done</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= MODAL 2: DIGITAL E-J-FORM ================= -->
+  <div id="ejform-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-gray-200">
+      
+      <div id="printable-j-form" class="border-2 border-emerald-800 p-5 rounded-xl bg-amber-50/20">
+        <div class="text-center border-b border-emerald-800/40 pb-3 mb-3">
+          <h2 data-i18n="ejform_gov_title" class="text-base font-extrabold text-emerald-950 uppercase tracking-wider">Government of India • Ministry of Consumer Affairs</h2>
+          <p data-i18n="ejform_sub_title" class="text-[11px] font-bold text-emerald-800">Department of Food & Public Distribution • Digital e-J-Form</p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 text-xs mb-3">
+          <div>
+            <span class="text-gray-500 block text-[10px]">Booking Ref:</span>
+            <strong id="ejform-ref" class="text-gray-900 font-mono">BK-2026-1088</strong>
+          </div>
+          <div>
+            <span class="text-gray-500 block text-[10px]">Procurement Date:</span>
+            <strong id="ejform-date" class="text-gray-900">15 Oct 2026</strong>
+          </div>
+          <div>
+            <span class="text-gray-500 block text-[10px]">Commodity & Grade:</span>
+            <strong id="ejform-crop" class="text-gray-900">Paddy (Grade A)</strong>
+          </div>
+          <div>
+            <span class="text-gray-500 block text-[10px]">Net Weighed Quantity:</span>
+            <strong id="ejform-weight" class="text-emerald-800 font-bold">15.0 Qtl (30 Bags)</strong>
+          </div>
+          <div>
+            <span class="text-gray-500 block text-[10px]">Government MSP Rate:</span>
+            <strong id="ejform-rate" class="text-gray-900">₹2,320 / Qtl</strong>
+          </div>
+          <div>
+            <span class="text-gray-500 block text-[10px]">Total DBT Amount:</span>
+            <strong id="ejform-total" class="text-emerald-900 font-extrabold text-sm">₹34,800</strong>
+          </div>
+        </div>
+
+        <div class="bg-emerald-50 border border-emerald-200 p-2.5 rounded text-[11px] text-emerald-900 mt-2">
+          <strong>PFMS Bank Reference (DBT):</strong> <span id="ejform-utr" class="font-mono">PFMS-RBI-908234112</span><br>
+          <span class="text-[10px] text-emerald-700">Funds credited directly to registered Aadhaar-seeded bank account.</span>
+        </div>
+      </div>
+
+      <div class="mt-5 flex justify-end gap-2">
+        <button onclick="window.print()" class="bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs px-4 py-2 rounded-lg shadow">
+          <span data-i18n="ejform_print">🖨️ Print Receipt</span>
+        </button>
+        <button onclick="closeEJFormModal()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-4 py-2 rounded-lg shadow">
+          <span data-i18n="ejform_close">Close</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= MODAL 3: MANDI WEIGHBRIDGE & SENSOR ================= -->
+  <div id="weighbridge-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-gray-200">
+      
+      <div class="flex justify-between items-center border-b border-gray-100 pb-3 mb-4">
+        <div>
+          <span class="text-[10px] font-bold uppercase text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+            Digital Scale Logging
+          </span>
+          <h3 class="text-base font-extrabold text-gray-900 mt-1">⚖️ Weighbridge & Quality Audit</h3>
+        </div>
+        <button onclick="closeWeighbridgeModal()" class="text-gray-400 hover:text-gray-600 font-bold">✕</button>
+      </div>
+
+      <input type="hidden" id="weigh-booking-id">
+      <p id="weigh-ref-display" class="text-xs text-gray-500 font-medium mb-3"></p>
+
+      <div class="space-y-3 text-xs">
+        
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-gray-700 mb-1">Gross Weight (Qtl):</label>
+            <input type="number" id="weigh-gross-input" oninput="calculateNetWeight()" class="w-full border border-gray-300 rounded-lg p-2 font-bold text-gray-900" value="80.0">
+          </div>
+          <div>
+            <label class="block font-bold text-gray-700 mb-1">Tare (Truck Empty):</label>
+            <input type="number" id="weigh-tare-input" oninput="calculateNetWeight()" class="w-full border border-gray-300 rounded-lg p-2 font-bold text-gray-900" value="40.0">
+          </div>
+        </div>
+
+        <div class="bg-emerald-50 border border-emerald-200 p-3 rounded-xl flex justify-between items-center">
+          <div>
+            <span class="text-[10px] text-emerald-800 block font-bold uppercase">Computed Net Weight</span>
+            <strong id="weigh-net-display" class="text-base font-extrabold text-emerald-950">40.0 Quintals</strong>
+          </div>
+          <div class="text-right">
+            <span class="text-[10px] text-emerald-800 block font-bold uppercase">Total Farmer Payout</span>
+            <strong id="weigh-total-display" class="text-base font-extrabold text-emerald-700">₹92,800</strong>
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold text-gray-700 mb-1">Digital Moisture Sensor Reading (%):</label>
+          <input type="number" id="weigh-moisture-input" step="0.1" value="14.2" class="w-full border border-gray-300 rounded-lg p-2 font-bold text-emerald-800">
+          <span class="text-[10px] text-gray-400">Must be under 17.0% for Fair Average Quality (FAQ) standard</span>
+        </div>
+
+        <div class="bg-gray-50 border border-dashed border-gray-300 p-3 rounded-xl text-center">
+          <span class="text-xs text-gray-600 block mb-1">📸 Scale Display / Slip Photo Proof</span>
+          <span class="text-[10px] text-emerald-700 font-semibold bg-emerald-100 px-2 py-0.5 rounded">
+            Scale Photo Attached (Audit Trail Verified)
+          </span>
+        </div>
+
+      </div>
+
+      <div class="mt-6 flex justify-end gap-2">
+        <button onclick="closeWeighbridgeModal()" class="px-4 py-2 text-xs font-bold text-gray-500">Cancel</button>
+        <button onclick="submitWeighbridgeLog()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-5 py-2.5 rounded-lg shadow transition">
+          ✅ Finalize Weight & Submit DBT Batch
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= FLOATING TOAST NOTIFICATION ================= -->
+  <div id="toast-notification" class="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-slate-900 text-white px-5 py-3.5 rounded-xl shadow-2xl border border-slate-700 transition-all duration-300 transform translate-y-4 opacity-0 pointer-events-none">
+    <span id="toast-icon" class="text-lg">ℹ️</span>
+    <span id="toast-message" class="text-xs font-medium">Notification message</span>
+  </div>
+
+  <!-- ================= SCRIPTS ================= -->
+  <script src="/static/js/farmer.js"></script>
+  <script src="/static/js/mandi.js"></script>
+  <script src="/static/js/admin.js"></script>
+  <script src="/static/js/app.js"></script>
+
+</body>
+</html>
