@@ -48,9 +48,6 @@
           <div>
             <div class="flex items-center gap-2">
               <h1 class="text-xl font-extrabold tracking-tight text-white">KisanDwar</h1>
-              <a href="/docs" target="_blank" title="Click to view SIH 2026 Master Architecture, Frontend/Backend Specs & Flowcharts" class="inline-flex items-center gap-1.5 bg-amber-400/20 hover:bg-amber-400 text-amber-300 hover:text-emerald-950 border border-amber-400/40 text-[10.5px] font-extrabold px-2.5 py-0.5 rounded-full transition shadow-xs">
-                <span>🇮🇳</span> <span>SIH 2026 • PS 26032</span> <span class="text-[9px]">↗</span>
-              </a>
             </div>
             <p class="text-[11px] text-emerald-300">Ministry of Consumer Affairs, Food & Public Distribution</p>
           </div>
@@ -59,10 +56,12 @@
         <!-- Right: Actions, Role Switcher, SMS Bell & PWA Status -->
         <div class="flex items-center gap-2.5 flex-wrap justify-center">
           
-          <!-- SIH Tech Docs & Flowchart Button -->
-          <a href="/docs" target="_blank" title="Open complete SIH 2026 Architecture, Tech Stack & Flowcharts" class="inline-flex items-center gap-1.5 bg-amber-400/20 hover:bg-amber-400 text-amber-300 hover:text-emerald-950 border border-amber-400/40 text-xs font-bold px-3 py-1.5 rounded-xl transition shadow-xs">
-            <span>📘</span> <span>SIH Architecture & Flowcharts</span>
-          </a>
+          <!-- Kisan Setu Multilingual Voice Assistant Button -->
+          <button onclick="openVoiceAssistantModal()" title="Open Kisan Setu Multilingual Voice Assistant (5 Languages)" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white border border-emerald-400/50 text-xs font-bold px-3.5 py-1.5 rounded-xl transition shadow-md">
+            <span class="text-base animate-pulse">🎙️</span>
+            <span>Voice Assistant</span>
+            <span class="text-[10px] bg-emerald-950 text-emerald-200 px-1.5 py-0.5 rounded font-mono font-bold">5 Lang</span>
+          </button>
           
           <!-- Offline Mode / Remote Village PWA Status Badge -->
           <div class="hidden lg:flex items-center gap-1.5 bg-emerald-900/60 border border-emerald-600/40 text-emerald-300 text-[11px] font-semibold px-3 py-1.5 rounded-xl shadow-inner">
@@ -259,7 +258,10 @@
             </div>
           </div>
 
-          <div class="flex items-center gap-2">
+          <div class="flex items-center gap-2 flex-wrap">
+            <button onclick="openVoiceAssistantModal()" class="inline-flex items-center gap-2 bg-emerald-800 hover:bg-emerald-700 text-white font-bold text-xs px-3.5 py-2 rounded-xl shadow transition border border-emerald-600">
+              <span class="text-base animate-pulse">🎙️</span> <span>Kisan Setu Voice Assistant (5 Languages)</span>
+            </button>
             <button onclick="speakLandingIntroduction()" class="inline-flex items-center gap-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs px-4 py-2 rounded-xl shadow transition">
               <span>🔊</span> <span data-i18n="landing_btn_audio_intro">Listen Audio Overview</span>
             </button>
@@ -274,10 +276,9 @@
           <div class="absolute -right-12 -bottom-12 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
           <div class="relative z-10 max-w-4xl space-y-4">
             
-            <a href="/docs" target="_blank" title="Click to open SIH 2026 Master Technical Architecture, Flowcharts & Tech Stack" class="inline-flex items-center gap-2 bg-amber-400/20 hover:bg-amber-400 text-amber-300 hover:text-emerald-950 border border-amber-400/40 hover:border-amber-400 px-3.5 py-1.5 rounded-full text-xs font-black uppercase tracking-wider backdrop-blur-xs transition shadow-sm group">
-              <span>🇮🇳</span> <span data-i18n="landing_badge">Smart India Hackathon 2026 • PS ID: 26032</span>
-              <span class="text-[10px] bg-amber-400/30 group-hover:bg-emerald-950 group-hover:text-amber-300 px-2 py-0.5 rounded-full font-bold ml-1">📘 View Tech Specs & Flowcharts ➔</span>
-            </a>
+            <div class="inline-flex items-center gap-2 bg-white/10 text-emerald-300 border border-white/20 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider backdrop-blur-xs">
+              <span>🇮🇳</span> <span data-i18n="landing_badge">Unified Smart MSP Grain Procurement & Automated Queue Management</span>
+            </div>
 
             <h1 class="text-2xl md:text-4xl font-black tracking-tight text-white leading-tight">
               <span data-i18n="landing_hero_title">KisanDwar: Unified Smart MSP Grain Procurement & Automated Queue Management</span>
@@ -294,9 +295,7 @@
               <span class="inline-flex items-center gap-1 text-[11px] font-bold bg-white/10 px-3 py-1.5 rounded-lg border border-white/20">
                 🌾 Food Corporation of India (FCI) & State DPCs
               </span>
-              <a href="/docs" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-black bg-amber-400 hover:bg-amber-300 text-emerald-950 px-3.5 py-1.5 rounded-lg shadow transition">
-                <span>📘</span> <span>Open Full SIH Architecture, Tech Stack & Flowcharts ➔</span>
-              </a>
+
             </div>
 
           </div>
@@ -2279,6 +2278,13 @@
   <script src="/static/js/mandi.js"></script>
   <script src="/static/js/admin.js"></script>
   <script src="/static/js/app.js"></script>
+
+  <!-- ================= FLOATING MULTILINGUAL VOICE ASSISTANT LAUNCHER ================= -->
+  <button onclick="openVoiceAssistantModal()" title="Open Kisan Setu Multilingual Voice Assistant (5 Languages)" class="fixed bottom-6 right-6 z-40 bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-500 hover:to-teal-600 text-white shadow-2xl px-4 py-3 rounded-full flex items-center gap-2.5 border-2 border-white/50 transform hover:scale-105 active:scale-95 transition-all">
+    <span class="text-xl animate-pulse">🎙️</span>
+    <span class="text-xs font-black tracking-wide">Kisan Setu Voice</span>
+    <span class="text-[10px] bg-emerald-950/80 text-emerald-200 px-2 py-0.5 rounded-full font-mono font-bold">5 Lang</span>
+  </button>
 
 </body>
 </html>
