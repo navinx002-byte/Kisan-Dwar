@@ -148,11 +148,14 @@ def create_booking():
     mandi_id = data.get("mandi_id")
     crop_type = data.get("crop_type", "Paddy (Grade A)")
     quantity = float(data.get("quantity_quintals", 0))
-    booking_date = data.get("booking_date", "Tomorrow")
+    booking_date = data.get("booking_date", datetime.now().strftime("%Y-%m-%d"))
     time_slot = data.get("time_slot", "10:00 AM - 11:00 AM")
     vehicle_type = data.get("vehicle_type", "Tractor-Trolley")
     vehicle_number = data.get("vehicle_number", "KA-36-TR-4021")
     soil_color = data.get("soil_color_answered", "Black Soil")
+    growth_duration = data.get("growth_duration_answered", "90–120 Days")
+    grain_hardness = data.get("grain_hardness_answered", "Crisp & Hard (<15% FAQ)")
+    fertilizer_used = data.get("fertilizer_used_answered", "Organic / Compost")
     drying_days = int(data.get("drying_days_answered", 3))
 
     conn = get_db()
@@ -619,6 +622,83 @@ def toggle_mandi_freeze():
         "message": f"Emergency override: {mandi['name']} is now {status_str}."
     })
 
+@app.route("/api/admin/warehouse-stock", methods=["GET"])
+def get_warehouse_stock():
+    warehouses = [
+        {
+            "id": "WH-KA-01",
+            "name": "Central Warehousing Corp (CWC) Raichur",
+            "district": "Raichur, Karnataka",
+            "total_capacity_qtl": 40000,
+            "total_stored_qtl": 31500,
+            "utilization_pct": 78.8,
+            "moisture_level": "13.1% (Optimal)",
+            "safety_status": "Fumigated & Pest-Free 🟢",
+            "crops": [
+                {"crop": "Paddy (Grade A)", "stored_qtl": 22000, "bag_count": 44000},
+                {"crop": "Sorghum (Jowar)", "stored_qtl": 9500, "bag_count": 19000}
+            ]
+        },
+        {
+            "id": "WH-KA-02",
+            "name": "State Warehousing Corp (SWC) Dharwad Godown",
+            "district": "Dharwad, Karnataka",
+            "total_capacity_qtl": 35000,
+            "total_stored_qtl": 24800,
+            "utilization_pct": 70.9,
+            "moisture_level": "13.4% (Safe)",
+            "safety_status": "Fumigated & Pest-Free 🟢",
+            "crops": [
+                {"crop": "Paddy (Grade A)", "stored_qtl": 14500, "bag_count": 29000},
+                {"crop": "Maize", "stored_qtl": 5000, "bag_count": 10000},
+                {"crop": "Sorghum (Jowar)", "stored_qtl": 5300, "bag_count": 10600}
+            ]
+        },
+        {
+            "id": "WH-TN-01",
+            "name": "FCI Modern Grain Silo Complex",
+            "district": "Thanjavur, Tamil Nadu",
+            "total_capacity_qtl": 45000,
+            "total_stored_qtl": 32900,
+            "utilization_pct": 73.1,
+            "moisture_level": "12.8% (Excellent)",
+            "safety_status": "Automated Aeration Active 🟢",
+            "crops": [
+                {"crop": "Paddy (Common & Grade A)", "stored_qtl": 32900, "bag_count": 65800}
+            ]
+        },
+        {
+            "id": "WH-HR-01",
+            "name": "CWC Modern Wheat Buffer Godown",
+            "district": "Karnal, Haryana",
+            "total_capacity_qtl": 30000,
+            "total_stored_qtl": 19250,
+            "utilization_pct": 64.2,
+            "moisture_level": "11.9% (Dry & FAQ Safe)",
+            "safety_status": "Fumigated & Pest-Free 🟢",
+            "crops": [
+                {"crop": "Wheat (FAQ)", "stored_qtl": 19250, "bag_count": 38500}
+            ]
+        }
+    ]
+
+    summary = {
+        "total_warehouses": len(warehouses),
+        "total_capacity_qtl": 150000,
+        "total_stored_qtl": 108450,
+        "overall_utilization_pct": 72.3,
+        "crop_totals": {
+            "Paddy": 69400,
+            "Wheat": 19250,
+            "Sorghum (Jowar)": 14800,
+            "Maize": 5000
+        }
+    }
+
+    return jsonify({"summary": summary, "warehouses": warehouses})
+
 if __name__ == "__main__":
-    print("🚀 KisanDwar Backend running on http://127.0.0.1:5000")
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    print(f"[KisanDwar] Backend running on http://127.0.0.1:{port}")
+    app.run(host="0.0.0.0", port=port, debug=False)
+

@@ -1,3 +1,8 @@
+/* Guarantee hidden elements are always hidden regardless of CDN */
+.hidden {
+  display: none !important;
+}
+
 @keyframes pulse-ring {
   0% { transform: scale(0.95); opacity: 0.8; }
   50% { transform: scale(1.1); opacity: 0.3; }
@@ -6,6 +11,18 @@
 
 .pulse-radar {
   animation: pulse-ring 2s infinite ease-in-out;
+}
+
+/* Wizard Radio Selection Cards */
+.wizard-radio-label {
+  transition: all 0.15s ease-in-out;
+}
+
+.wizard-radio-label:has(input:checked),
+.wizard-radio-label.is-selected {
+  border-color: #059669 !important;
+  background-color: #ecfdf5 !important;
+  box-shadow: 0 2px 4px -1px rgba(5, 150, 105, 0.15) !important;
 }
 
 /* Custom Scrollbar */
@@ -70,18 +87,52 @@
   border: 2px solid white;
 }
 
-/* Print Styles for Digital e-J-Form */
+/* Print Styles for Digital e-J-Form & QR Gate Pass (Feature 2) */
 @media print {
+  @page {
+    size: auto;
+    margin: 12mm;
+  }
+  
+  body {
+    background: #ffffff !important;
+  }
+
   body * {
-    visibility: hidden;
+    visibility: hidden !important;
   }
-  #printable-j-form, #printable-j-form * {
-    visibility: visible;
+
+  /* Make either active receipt visible */
+  #printable-j-form,
+  #printable-j-form *,
+  #printable-qr-pass,
+  #printable-qr-pass * {
+    visibility: visible !important;
   }
+
   #printable-j-form {
     position: absolute;
     left: 0;
     top: 0;
-    width: 100%;
+    width: 100% !important;
+    max-width: 700px !important;
+    border: 2px solid #064e3b !important;
+    background: #ffffff !important;
+    padding: 24px !important;
+    border-radius: 12px !important;
+  }
+
+  #printable-qr-pass {
+    position: absolute;
+    left: 50%;
+    top: 50px;
+    transform: translateX(-50%);
+    width: 380px !important;
+    border: 2px solid #047857 !important;
+    background: #ffffff !important;
+    padding: 20px !important;
+    text-align: center !important;
+    border-radius: 12px !important;
   }
 }
+

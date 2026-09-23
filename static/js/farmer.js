@@ -9,6 +9,65 @@ let farmerVisitsChartInstance = null;
 // Complete 100% Native Translations Dictionary
 const fullTranslations = {
   kannada: {
+    nav_landing: "🏠 ಮುಖಪುಟ / ಪರಿಚಯ",
+    nav_farmer_portal: "👨‍🌾 ರೈತ ಪೋರ್ಟಲ್",
+    nav_mandi_portal: "🏢 ಖರೀದಿ ಕೇಂದ್ರ",
+    nav_admin_portal: "🏛️ ಸಚಿವಾಲಯ / ಆಡಳಿತ",
+    landing_lang_label: "ಭಾಷೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ:",
+    landing_btn_audio_intro: "ಧ್ವನಿ ಪರಿಚಯ ಆಲಿಸಿ",
+    landing_btn_sms_demo: "ಎಸ್ಎಂಎಸ್ / ವಾಟ್ಸಾಪ್ ಸಂದೇಶಗಳು",
+    landing_badge: "ಸ್ಮಾರ್ಟ್ ಇಂಡಿಯಾ ಹ್ಯಾಕಥಾನ್ 2026 • ಪಿಎಸ್ ಐಡಿ: 26032",
+    landing_hero_title: "ಕಿಸಾನ್ ದ್ವಾರ: ಏಕೀಕೃತ ಸ್ಮಾರ್ಟ್ ಎಂಎಸ್‌ಪಿ ಧಾನ್ಯ ಖರೀದಿ ಮತ್ತು ಸ್ವಯಂಚಾಲಿತ ಕ್ಯೂ ನಿರ್ವಹಣೆ",
+    landing_hero_desc: "ರೈತರಿಗೆ ಪೂರ್ವ-ನಿಗದಿಪಡಿಸಿದ ಡಿಜಿಟಲ್ ಸ್ಲಾಟ್‌ಗಳು, ಕ್ಯಾಮೆರಾ QR ಗೇಟ್ ಪ್ರವೇಶ, ಭೂಮಿ ಭೂದಾಖಲೆ ಕೋಟಾ ಪರಿಶೀಲನೆ, ಅಕಾಲಿಕ ಮಳೆ ರಕ್ಷಣೆ ಮತ್ತು ಆಧಾರ್ ಲಿಂಕ್ ಬ್ಯಾಂಕ್ ಖಾತೆಗೆ ನೇರ ನಗದು ವರ್ಗಾವಣೆ (DBT).",
+    landing_stat_mandis_label: "ಸಂಪರ್ಕಿತ ಮಂಡಿಗಳು / ಡಿಪಿಸಿಗಳು",
+    landing_stat_mandis_sub: "ಕರ್ನಾಟಕ, ತಮಿಳುನಾಡು, ಆಂಧ್ರ, ಮಧ್ಯಪ್ರದೇಶ",
+    landing_stat_farmers_label: "ನೋಂದಾಯಿತ ಎಂಎಸ್‌ಪಿ ರೈತರು",
+    landing_stat_farmers_sub: "ಭೂಮಿ ಮತ್ತು ಆಧಾರ್ ಪರಿಶೀಲಿತ",
+    landing_stat_procured_label: "ಖರೀದಿಸಿದ ಧಾನ್ಯ",
+    landing_stat_procured_sub: "ಭತ್ತ, ಗೋಧಿ, ಹತ್ತಿ, ಜೋಳ",
+    landing_stat_dbt_label: "ನೇರ ಡಿಬಿಟಿ ಪಾವತಿ",
+    landing_stat_dbt_sub: "ಶೂನ್ಯ ಮಧ್ಯವರ್ತಿಗಳ ಹಾವಳಿ",
+    landing_stat_spoilage_label: "ಮಳೆಯಿಂದ ಹಾಳಾದ ಪ್ರಮಾಣ",
+    landing_stat_spoilage_sub: "ಟಾರ್ಪಾಲಿನ್ ಕವಚದಿಂದ ರಕ್ಷಣೆ",
+    landing_gateways_title: "ಪ್ರಾರಂಭಿಸಲು ಪೋರ್ಟಲ್ ಗೇಟ್‌ವೇ ಆಯ್ಕೆಮಾಡಿ",
+    landing_gateways_sub: "1-ಕ್ಲಿಕ್ ಲೈವ್ ಇಂಟರ್ಯಾಕ್ಟಿವ್ ಪ್ರೊಟೊಟೈಪ್‌ಗಳು",
+    card_farmer_title: "ರೈತ ಪೋರ್ಟಲ್",
+    card_farmer_tag: "ಸ್ಲಾಟ್ ಬುಕಿಂಗ್ ಮತ್ತು ಲೈವ್ ಕ್ಯೂ",
+    card_farmer_desc: "5 ಸ್ಥಳೀಯ ಭಾಷೆಗಳಲ್ಲಿ ಸ್ಲಾಟ್ ಬುಕ್ ಮಾಡಿ, QR ಗೇಟ್ ಪಾಸ್ ಪಡೆಯಿರಿ, ನೈಜ ಸಮಯದ ಟೋಕನ್ ಟ್ರ್ಯಾಕ್ ಮಾಡಿ, ಭೂಮಿ ಕೋಟಾ ಮತ್ತು ಡಿಬಿಟಿ ಇ-ಜೆ-ಫಾರ್ಮ್ ವೀಕ್ಷಿಸಿ.",
+    card_farmer_btn: "ರೈತ ಪೋರ್ಟಲ್ ತೆರೆಯಿರಿ ➔",
+    card_mandi_title: "ಧಾನ್ಯ ಖರೀದಿ ಕೇಂದ್ರ",
+    card_mandi_tag: "ಗೇಟ್ ಕ್ಯಾಮೆರಾ ಮತ್ತು ತೂಕದ ಯಂತ್ರ",
+    card_mandi_desc: "ಗೇಟ್ ಕ್ಯಾಮೆರಾ ಮೂಲಕ QR ಸ್ಕ್ಯಾನ್ ಮಾಡಿ, ಲೌಡ್‌ಸ್ಪೀಕರ್ ಧ್ವನಿ ಪ್ರಕಟಣೆ ಮೂಲಕ ಕ್ಯೂ ಕರೆ ಮಾಡಿ, IoT ವೇಬ್ರಿಡ್ಜ್ ಸಿಂಕ್ ಮತ್ತು ಮಳೆ ಅಪಾಯ ನಿಯಂತ್ರಿಸಿ.",
+    card_mandi_btn: "ಖರೀದಿ ಕೇಂದ್ರ ತೆರೆಯಿರಿ ➔",
+    card_admin_title: "ಸಚಿವಾಲಯ ಮತ್ತು ಆಡಳಿತ",
+    card_admin_tag: "ರಾಷ್ಟ್ರೀಯ ಹೀಟ್‌ಮ್ಯಾಪ್ ಮತ್ತು ಡಿಬಿಟಿ ಆಡಿಟ್",
+    card_admin_desc: "ಜಿಲ್ಲಾವಾರು ಖರೀದಿ ಹೀಟ್‌ಮ್ಯಾಪ್, ಗೋದಾಮು ದಾಸ್ತಾನು ಮಟ್ಟ, ಮಂಡಿ ಕಾರ್ಯಕ್ಷಮತೆ ವೀಕ್ಷಿಸಿ ಮತ್ತು 1-ಕ್ಲಿಕ್ ಮೂಲಕ ರೈತರ ಡಿಬಿಟಿ ಪಾವತಿಗೆ ಅನುಮೋದನೆ ನೀಡಿ.",
+    card_admin_btn: "ಸಚಿವಾಲಯ ಪೋರ್ಟಲ್ ತೆರೆಯಿರಿ ➔",
+    workflow_badge: "ಸಮಗ್ರ ಡಿಜಿಟಲ್ ಜೀವನಚಕ್ರ",
+    workflow_title: "ಕಿಸಾನ್ ದ್ವಾರ ಹೇಗೆ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತದೆ",
+    workflow_subtitle: "ರೈತನ ಹೊಲದಿಂದ ನೇರ ಬ್ಯಾಂಕ್ ಖಾತೆಯವರೆಗೆ ಪಾರದರ್ಶಕ ಖರೀದಿ ಪ್ರಕ್ರಿಯೆ",
+    step1_title: "📅 ಸ್ಲಾಟ್ ಮತ್ತು ಭೂಮಿ ಕೋಟಾ",
+    step1_desc: "ಬೆಳೆ ಮತ್ತು ಸಮಯವನ್ನು ಆಯ್ಕೆಮಾಡಿ. ಭೂಮಿ ಭೂದಾಖಲೆಗಳು ಕೃಷಿ ಕೋಟಾವನ್ನು (ಎಕರೆಗೆ 25 ಕ್ವಿಂಟಾಲ್) ಪರಿಶೀಲಿಸಿ ಮಧ್ಯವರ್ತಿಗಳನ್ನು ತಡೆಯುತ್ತವೆ.",
+    step2_title: "🎟️ ಡಿಜಿಟಲ್ QR ಮತ್ತು SMS ಪಾಸ್",
+    step2_desc: "ರೈತರಿಗೆ ತಕ್ಷಣ QR ಪಾಸ್ ಮತ್ತು SMS ಲಭಿಸುತ್ತದೆ. ಗೇಟ್ ಕ್ಯಾಮೆರಾ QR ಸ್ಕ್ಯಾನ್ ಮಾಡಿ ಸರತಿ ಸಾಲಿನಲ್ಲಿ ನಿಲ್ಲದೆ ಸ್ವಯಂ ಟೋಕನ್ ನೀಡುತ್ತದೆ.",
+    step3_title: "⚖️ ತೂಕ ಮತ್ತು ಮಳೆ ರಕ್ಷಣೆ",
+    step3_desc: "ಡಿಜಿಟಲ್ ತೂಕದ ಯಂತ್ರ ಮತ್ತು ತೇವಾಂಶ ಸಂವೇದಕದಿಂದ ಪರೀಕ್ಷೆ. ಮಳೆ ಮುನ್ಸೂಚನೆ ಬಂದಾಗ ಟಾರ್ಪಾಲಿನ್ ಹೊದಿಕೆ ಎಚ್ಚರಿಕೆ ರವಾನೆಯಾಗುತ್ತದೆ.",
+    step4_title: "💳 ನೇರ ಡಿಬಿಟಿ ಮತ್ತು ಇ-ಜೆ-ಫಾರ್ಮ್",
+    step4_desc: "ಡಿಜಿಟಲ್ ಸಹಿ ಮಾಡಿದ ಇ-ಜೆ-ಫಾರ್ಮ್ ತಕ್ಷಣ ಬಿಡುಗಡೆ. PFMS DBT ಮೂಲಕ ಹಣವು ರೈತರ ಆಧಾರ್ ಲಿಂಕ್ ಬ್ಯಾಂಕ್ ಖಾತೆಗೆ ನೇರವಾಗಿ ಜಮೆಯಾಗುತ್ತದೆ.",
+    inno1_title: "ಭೂಮಿ ಅಕ್ರಮ-ತಡೆ ಕೋಟಾ",
+    inno1_desc: "ರೈತರ ಹೆಸರಿನಲ್ಲಿ ಕಳ್ಳಸಂತೆ ವ್ಯಾಪಾರಿಗಳು ಧಾನ್ಯ ಮಾರಾಟ ಮಾಡುವುದನ್ನು ತಡೆಯುತ್ತದೆ.",
+    inno2_title: "ಅಕಾಲಿಕ ಮಳೆ ರಕ್ಷಕ",
+    inno2_desc: "ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ ಪರಿಶೀಲಿಸಿ ಧಾನ್ಯ ಮಳೆಯಲ್ಲಿ ನೆನೆಯದಂತೆ ರಕ್ಷಿಸುತ್ತದೆ.",
+    inno3_title: "5-ಭಾಷೆಗಳ ಆಡಿಯೋ ಮತ್ತು ಧ್ವನಿವರ್ಧಕ",
+    inno3_desc: "ಗ್ರಾಮೀಣ ರೈತರಿಗಾಗಿ ಕನ್ನಡ, ತಮಿಳು, ತೆಲುಗು, ಹಿಂದಿ, ಇಂಗ್ಲಿಷ್‌ನಲ್ಲಿ ಧ್ವನಿ ಪ್ರಕಟಣೆ.",
+    inno4_title: "ಇಂಟರ್ನೆಟ್ ರಹಿತ ಆಫ್‌ಲೈನ್ PWA",
+    inno4_desc: "ನೆಟ್‌ವರ್ಕ್ ಇಲ್ಲದ ಹಳ್ಳಿಗಳಲ್ಲೂ ಸರಾಗವಾಗಿ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತದೆ.",
+    bhoomi_widget_title: "ಭೂಮಿ ಕೋಟಾ ಕಾವಲುಗಾರ (ಅಕ್ರಮ-ತಡೆ ಪರಿಶೀಲನೆ)",
+    btn_print_pass: "ಪಾಸ್ ಮುದ್ರಿಸಿ",
+    sms_modal_title: "ರೈತರ ಮೊಬೈಲ್ ಎಚ್ಚರಿಕೆ ಸಂದೇಶಗಳು",
+    sms_modal_sub: "ನೇರ SMS ಮತ್ತು ಅಧಿಕೃತ WhatsApp ಸಂದೇಶ ಗೇಟ್‌ವೇ",
+    landing_audio_speech: "ಸ್ಮಾರ್ಟ್ ಇಂಡಿಯಾ ಹ್ಯಾಕಥಾನ್ 2026 ರ ಕಿಸಾನ್ ದ್ವಾರ ಪೋರ್ಟಲ್‌ಗೆ ಸುಸ್ವಾಗತ. ರೈತರಿಗೆ ಪೂರ್ವ-ನಿಗದಿಪಡಿಸಿದ ಸ್ಲಾಟ್‌ಗಳು, QR ಗೇಟ್ ಪ್ರವೇಶ, ಭೂಮಿ ಕೋಟಾ ಪರಿಶೀಲನೆ, ಮಳೆ ರಕ್ಷಣೆ ಮತ್ತು ನೇರ ನಗದು ವರ್ಗಾವಣೆಯೊಂದಿಗೆ ಸುಗಮ ಖರೀದಿ ವ್ಯವಸ್ಥೆ ಕಲ್ಪಿಸಲಾಗಿದೆ.",
+
     voice_lang: "kn-IN",
     welcome: "ಕಿಸಾನ್ ದ್ವಾರ ರೈತ ಪೋರ್ಟಲ್‌ಗೆ ಸುಸ್ವಾಗತ",
     nav_home: "🏠 ಮುಖಪುಟ / ಸಾರಾಂಶ",
@@ -18,6 +77,7 @@ const fullTranslations = {
     nav_passbook: "📜 ಮಾರಾಟ ಪಾಸ್‌ಬುಕ್",
     nav_profile: "👤 ಪ್ರೊಫೈಲ್ ಮತ್ತು ಭೂಮಿ ಕೋಟಾ",
     btn_voice_readout: "🔊 ಧ್ವನಿ ಓದುವಿಕೆ",
+    btn_voice_assistant: "🎙️ ಕಿಸಾನ್ ಸೇತು ಧ್ವನಿ",
     btn_book_slot: "➕ ಹೊಸ ಸ್ಲಾಟ್ ಬುಕ್ ಮಾಡಿ",
 
     // Summary Cards
@@ -47,29 +107,29 @@ const fullTranslations = {
     listen_all_qs: "🔊 ಎಲ್ಲಾ 5 ಪ್ರಶ್ನೆಗಳನ್ನು ಆಲಿಸಿ",
     listen_btn: "🔊 ಆಲಿಸಿ",
     
-    q1_title: "1. ಬೆಳೆಯನ್ನು ಯಾವಾಗ ಕಟಾವು ಮಾಡಲಾಯಿತು?",
-    q1_opt1: "📅 ಕಳೆದ 7 ದಿನಗಳಲ್ಲಿ",
-    q1_opt2: "📅 1–2 ವಾರಗಳ ಹಿಂದೆ",
-    q1_opt3: "📅 1+ ತಿಂಗಳ ಹಿಂದೆ",
-    q1_audio: "ಪ್ರಶ್ನೆ ಒಂದು: ಬೆಳೆಯನ್ನು ಯಾವಾಗ ಕಟಾವು ಮಾಡಲಾಯಿತು? ಕಳೆದ ಏಳು ದಿನಗಳಲ್ಲಿ, ಒಂದು ಅಥವಾ ಎರಡು ವಾರಗಳ ಹಿಂದೆ, ಅಥವಾ ಒಂದು ತಿಂಗಳ ಹಿಂದೆ?",
+    q1_title: "1. ನಿಮ್ಮ ಹೊಲದ ಮಣ್ಣಿನ ಬಣ್ಣ ಯಾವುದು? (ಭೂಲೇಖ್ ದಾಖಲೆ):",
+    q1_opt1: "🟫 ಕಪ್ಪು ಮಣ್ಣು",
+    q1_opt2: "🟥 ಕೆಂಪು ಮಣ್ಣು",
+    q1_opt3: "🟨 ಮರಳು / ಜೇಡಿ ಮಣ್ಣು",
+    q1_audio: "ಪ್ರಶ್ನೆ ಒಂದು: ನಿಮ್ಮ ಹೊಲದ ಮಣ್ಣಿನ ಬಣ್ಣ ಯಾವುದು? ಕಪ್ಪು ಮಣ್ಣು, ಕೆಂಪು ಮಣ್ಣು, ಅಥವಾ ಜೇಡಿ ಮಣ್ಣು?",
 
-    q2_title: "2. ಬೆಳೆಯನ್ನು ಎಷ್ಟು ದಿನ ಬಿಸಿಲಿನಲ್ಲಿ ಒಣಗಿಸಿದ್ದೀರಿ?",
-    q2_opt1: "☀️ 0 ದಿನ (ಹಸಿ ಬೆಳೆ)",
-    q2_opt2: "☀️ 2–3 ದಿನ (ಉತ್ತಮ)",
-    q2_opt3: "☀️ 5+ ದಿನಗಳು",
-    q2_audio: "ಪ್ರಶ್ನೆ ಎರಡು: ಬೆಳೆಯನ್ನು ಎಷ್ಟು ದಿನ ಬಿಸಿಲಿನಲ್ಲಿ ಒಣಗಿಸಿದ್ದೀರಿ? ಶೂನ್ಯ ದಿನ, ಎರಡು ಅಥವಾ ಮೂರು ದಿನಗಳು, ಅಥವಾ ಐದು ದಿನಗಳಿಗಿಂತ ಹೆಚ್ಚು?",
+    q2_title: "2. ಈ ಬೆಳೆಯನ್ನು ಬೆಳೆಯಲು ಎಷ್ಟು ಸಮಯ ತೆಗೆದುಕೊಂಡಿತು?",
+    q2_opt1: "⏱️ ಎ) 2–4 ತಿಂಗಳುಗಳು",
+    q2_opt2: "⏱️ ಬಿ) 5–6 ತಿಂಗಳುಗಳು",
+    q2_opt3: "⏱️ ಸಿ) 6 ತಿಂಗಳು – 1 ವರ್ಷ",
+    q2_audio: "ಪ್ರಶ್ನೆ ಎರಡು: ಈ ಬೆಳೆಯನ್ನು ಬೆಳೆಯಲು ಎಷ್ಟು ಸಮಯ ತೆಗೆದುಕೊಂಡಿತು? ಎರಡು ರಿಂದ ನಾಲ್ಕು ತಿಂಗಳುಗಳು, ಐದು ರಿಂದ ಆರು ತಿಂಗಳುಗಳು, ಅಥವಾ ಆರು ತಿಂಗಳಿಂದ ಒಂದು ವರ್ಷ?",
 
-    q3_title: "3. ನಿಮ್ಮ ಹೊಲದ ಮಣ್ಣಿನ ಬಣ್ಣ ಯಾವುದು? (ಭೂಲೇಖ್ ದಾಖಲೆ):",
-    q3_opt1: "🟫 ಕಪ್ಪು ಮಣ್ಣು",
-    q3_opt2: "🟥 ಕೆಂಪು ಮಣ್ಣು",
-    q3_opt3: "🟨 ಮರಳು / ಜೇಡಿ ಮಣ್ಣು",
-    q3_audio: "ಪ್ರಶ್ನೆ ಮೂರು: ನಿಮ್ಮ ಹೊಲದ ಮಣ್ಣಿನ ಬಣ್ಣ ಯಾವುದು? ಕಪ್ಪು ಮಣ್ಣು, ಕೆಂಪು ಮಣ್ಣು, ಅಥವಾ ಜೇಡಿ ಮಣ್ಣು?",
+    q3_title: "3. ಧಾನ್ಯದ ಗಡಸುತನ ಮತ್ತು ತೇವಾಂಶ ಮಟ್ಟ:",
+    q3_opt1: "🌾 ಗರಿಗರಿ / ಗಟ್ಟಿ (<15% FAQ)",
+    q3_opt2: "🌾 ಸಾಧಾರಣ (16–17%)",
+    q3_opt3: "🌾 ಮೆದು / ಹಸಿ (>18%)",
+    q3_audio: "ಪ್ರಶ್ನೆ ಮೂರು: ಧಾನ್ಯದ ಗಡಸುತನ ಮತ್ತು ತೇವಾಂಶ ಮಟ್ಟ ಹೇಗಿದೆ? ಗರಿಗರಿ ಗಟ್ಟಿ, ಸಾಧಾರಣ, ಅಥವಾ ಮೆದು ತೇವಾಂಶ?",
 
-    q4_title: "4. ಧಾನ್ಯದ ಗಡಸುತನ ಮತ್ತು ತೇವಾಂಶ ಮಟ್ಟ:",
-    q4_opt1: "🌾 ಗರಿಗರಿ / ಗಟ್ಟಿ (<15% FAQ)",
-    q4_opt2: "🌾 ಸಾಧಾರಣ (16–17%)",
-    q4_opt3: "🌾 ಮೆದು / ಹಸಿ (>18%)",
-    q4_audio: "ಪ್ರಶ್ನೆ ನಾಲ್ಕು: ಧಾನ್ಯದ ಗಡಸುತನ ಮತ್ತು ತೇವಾಂಶ ಮಟ್ಟ ಹೇಗಿದೆ? ಗರಿಗರಿ ಗಟ್ಟಿ, ಸಾಧಾರಣ, ಅಥವಾ ಮೆದು ತೇವಾಂಶ?",
+    q4_title: "4. ನೀವು ಯಾವ ಗೊಬ್ಬರವನ್ನು ಬಳಸಿದ್ದೀರಿ?",
+    q4_opt1: "🌱 ಸಾವಯವ / ಕಾಂಪೋಸ್ಟ್",
+    q4_opt2: "🧪 ರಾಸಾಯನಿಕ / NPK",
+    q4_opt3: "🌿 ಮಿಶ್ರ ಜೈವಿಕ ಪೋಷಕಾಂಶಗಳು",
+    q4_audio: "ಪ್ರಶ್ನೆ ನಾಲ್ಕು: ನೀವು ಯಾವ ಗೊಬ್ಬರವನ್ನು ಬಳಸಿದ್ದೀರಿ? ಸಾವಯವ ಕಾಂಪೋಸ್ಟ್, ರಾಸಾಯನಿಕ ಗೊಬ್ಬರ, ಅಥವಾ ಮಿಶ್ರ ಜೈವಿಕ ಪೋಷಕಾಂಶ?",
 
     q5_title: "5. ಧಾನ್ಯ ತರುವ ಸಾರಿಗೆ ವಾಹನ ಯಾವುದು?",
     q5_opt1: "🚜 ಟ್ರ್ಯಾಕ್ಟರ್-ಟ್ರಾಲಿ",
@@ -142,10 +202,100 @@ const fullTranslations = {
     ejform_gov_title: "ಭಾರತ ಸರ್ಕಾರ • ಗ್ರಾಹಕ ವ್ಯವಹಾರಗಳ ಸಚಿವಾಲಯ",
     ejform_sub_title: "ಆಹಾರ ಮತ್ತು ಸಾರ್ವಜನಿಕ ವಿತರಣಾ ಇಲಾಖೆ • ಡಿಜಿಟಲ್ e-J-Form",
     ejform_print: "🖨️ ರಸೀದಿ ಪ್ರಿಂಟ್ ಮಾಡಿ",
-    ejform_close: "ಮುಚ್ಚಿ"
+    ejform_close: "ಮುಚ್ಚಿ",
+
+    weather_widget_title: "⚡ ಹವಾಮಾನ ಮತ್ತು ಮಳೆ ಎಚ್ಚರಿಕೆ",
+    weather_risk_level: "ಮಳೆ ಅಪಾಯ: 85% (ಹೆಚ್ಚು)",
+    weather_risk_desc: "ಮಧ್ಯಾಹ್ನ 2:30 ಕ್ಕೆ ಭಾರಿ ಮಳೆ ಮುನ್ಸೂಚನೆ. ಧಾನ್ಯದ ಟ್ರಾಲಿಗಳಿಗೆ ಟಾರ್ಪಾಲಿನ್ ಹೊದಿಸಿ!",
+    weather_squad_status: "ಮಳೆ ಪಡೆ ಸಕ್ರಿಯವಾಗಿದೆ ☔",
+    weather_details_btn: "ವಿವರಗಳು →",
+
+    nav_dbt: "💳 ಲೈವ್ ಡಿಬಿಟಿ ಪಾವತಿ ಸ್ಥಿತಿ",
+    dbt_tracker_badge: "ಪಿಎಫ್‌ಎಮ್‌ಎಸ್ ಲೈವ್ ನೇರ ಲಾಭ ವರ್ಗಾವಣೆ (DBT)",
+    dbt_tracker_title: "💳 ಸಚಿವಾಲಯದ ಪಾವತಿ ಮತ್ತು ಬ್ಯಾಂಕ್ ಜಮೆ ಸ್ಥಿತಿ",
+    dbt_aadhaar_seeded: "● 100% ಆಧಾರ್ ಲಿಂಕ್ ಆಗಿದೆ",
+    dbt_bank_label: "ಆಧಾರ್ ಲಿಂಕ್ ಆದ ಬ್ಯಾಂಕ್ ಖಾತೆ",
+    dbt_bank_info: "ಸ್ಟೇಟ್ ಬ್ಯಾಂಕ್ ಆಫ್ ಇಂಡಿಯಾ • ಖಾತೆ XXXXXX4512",
+    dbt_bank_ifsc: "IFSC: SBIN0001244 • ರಾಯಚೂರು ಮುಖ್ಯ ಶಾಖೆ • NPCI ಸ್ಥಿತಿ: ಸಕ್ರಿಯ 🟢",
+    dbt_total_received_label: "ಒಟ್ಟು ಜಮೆಯಾದ ಡಿಬಿಟಿ ಹಣ",
+    dbt_current_batch_title: "ಪ್ರಸ್ತುತ ಪಾವತಿ ಬ್ಯಾಚ್ ಸ್ಥಿತಿ (#DBT-2026-9082)",
+    dbt_status_credited: "ಸ್ಥಿತಿ: ಹಣ ಜಮೆಯಾಗಿದೆ 🟢",
+    dbt_step1_title: "1. ಧಾನ್ಯ ತೂಕ ಮಾಡಲಾಗಿದೆ ✅",
+    dbt_step1_sub: "ನಿವ್ವಳ 40 ಕ್ವಿಂಟಾಲ್ ತೂಕ",
+    dbt_step2_title: "2. e-J-Form ನೀಡಲಾಗಿದೆ ✅",
+    dbt_step2_sub: "ಗ್ರೇಡ್ A ಎಂಎಸ್‌ಪಿ ದೃಢೀಕರಿಸಲಾಗಿದೆ",
+    dbt_step3_title: "3. ಸಚಿವಾಲಯ ಅನುಮೋದನೆ ✅",
+    dbt_step3_sub: "ಸರ್ಕಾರದ ನೇರ ಅನುಮೋದನೆ",
+    dbt_step4_title: "4. ಬ್ಯಾಂಕ್‌ಗೆ ಜಮೆ ಮಾಡಲಾಗಿದೆ 🟢",
+    dbt_step4_sub: "₹92,800 ಜಮೆಯಾಗಿದೆ",
+    dbt_audit_log_title: "ಅಧಿಕೃತ ಸರ್ಕಾರಿ ಡಿಬಿಟಿ ಲೆಡ್ಜರ್ ಇತಿಹಾಸ",
+    dbt_th_date: "ದಿನಾಂಕ",
+    dbt_th_crop: "ಬೆಳೆ ಮತ್ತು ಪ್ರಮಾಣ",
+    dbt_th_amount: "ಡಿಬಿಟಿ ಮೊತ್ತ",
+    dbt_th_status: "PFMS ಸ್ಥಿತಿ",
+    dbt_th_utr: "ಯುಟಿಆರ್ (UTR) ಸಂಖ್ಯೆ"
   },
 
   tamil: {
+    nav_landing: "🏠 முகப்பு / அறிமுகம்",
+    nav_farmer_portal: "👨‍🌾 உழவர் தளம்",
+    nav_mandi_portal: "🏢 கொள்முதல் மையம்",
+    nav_admin_portal: "🏛️ அமைச்சகம் / நிர்வாகம்",
+    landing_lang_label: "மொழியைத் தேர்வு செய்க:",
+    landing_btn_audio_intro: "குரல் விளக்கம் கேட்க",
+    landing_btn_sms_demo: "எஸ்எம்எஸ் / வாட்ஸ்அப் அறிவிப்புகள்",
+    landing_badge: "ஸ்மார்ட் இந்தியா ஹேக்கத்தான் 2026 • பிஎஸ் ஐடி: 26032",
+    landing_hero_title: "கிசான் த்வார்: ஒருங்கிணைந்த தானிய கொள்முதல் மற்றும் வரிசை மேலாண்மை",
+    landing_hero_desc: "விவசாயிகளுக்கு முன்பதிவு செய்த டிஜிட்டல் நேரம், கேமரா QR வாயில் நுழைவு, பூமி நில உரிமை சரிபார்ப்பு, மழைக்கால தார்ப்பாய் பாதுகாப்பு மற்றும் நேரடி வங்கி பரிமாற்றம் (DBT).",
+    landing_stat_mandis_label: "இணைக்கப்பட்ட மண்டிகள்",
+    landing_stat_mandis_sub: "கர்நாடகா, தமிழ்நாடு, ஆந்திரா, மத்திய பிரதேசம்",
+    landing_stat_farmers_label: "பதிவுசெய்த உழவர்கள்",
+    landing_stat_farmers_sub: "பூமி மற்றும் ஆதார் சரிபார்க்கப்பட்டது",
+    landing_stat_procured_label: "கொள்முதல் செய்யப்பட்ட தானியம்",
+    landing_stat_procured_sub: "நெல், கோதுமை, பருத்தி, மக்காச்சோளம்",
+    landing_stat_dbt_label: "நேரடி வங்கி பரிமாற்றம்",
+    landing_stat_dbt_sub: "இடைத்தரகர்கள் இல்லாத பணம்",
+    landing_stat_spoilage_label: "மழை சேத விகிதம்",
+    landing_stat_spoilage_sub: "தார்ப்பாய் பாதுகாப்பு கவசம்",
+    landing_gateways_title: "பயன்படுத்த விரும்பும் தளத்தை தேர்வு செய்க",
+    landing_gateways_sub: "1-கிளிக் நேரடி செயல்திட்டம்",
+    card_farmer_title: "உழவர் தளம்",
+    card_farmer_tag: "நேர ஒதுக்கீடு & நேரலை வரிசை",
+    card_farmer_desc: "5 உள்ளூர் மொழிகளில் நேர ஒதுக்கீடு, QR வாயில் பாஸ், நில உரிமை ஒதுக்கீடு மற்றும் இ-ஜே-படிவம் காண்க.",
+    card_farmer_btn: "உழவர் தளம் திறக்க ➔",
+    card_mandi_title: "கொள்முதல் மையம்",
+    card_mandi_tag: "வாயில் கேமரா & எடை மேடை",
+    card_mandi_desc: "கேமரா மூலம் QR பாஸ் சரிபார்த்தல், ஒலிபெருக்கி வரிசை அறிவிப்பு, எடை மேடை ஒத்திசைவு மற்றும் மழை முன்னறிவிப்பு.",
+    card_mandi_btn: "கொள்முதல் மையம் திறக்க ➔",
+    card_admin_title: "அமைச்சகம் & நிர்வாகம்",
+    card_admin_tag: "தேசிய வரைபடம் & தணிக்கை",
+    card_admin_desc: "மாவட்ட கொள்முதல் வரைபடம், கிடங்கு சேமிப்பு மற்றும் உழவர் வங்கி பரிவர்த்தனை ஒப்புதல்.",
+    card_admin_btn: "அமைச்சக தளம் திறக்க ➔",
+    workflow_badge: "முழுமையான டிஜிட்டல் முறை",
+    workflow_title: "கிசான் த்வார் எவ்வாறு செயல்படுகிறது",
+    workflow_subtitle: "வயலில் இருந்து வங்கி கணக்கு வரை வெளிப்படையான கொள்முதல் முறை",
+    step1_title: "📅 நேர ஒதுக்கீடு & நில உரிமை",
+    step1_desc: "தானியம் மற்றும் நேரத்தை தேர்ந்தெடுக்கவும். பூமி நிலப்பதிவு இடைத்தரகர்களை தடுக்கிறது.",
+    step2_title: "🎟️ டிஜிட்டல் QR & SMS பாஸ்",
+    step2_desc: "உடனடி QR பாஸ் மற்றும் எஸ்எம்எஸ் பெறவும். வரிசையில் நிற்காமல் கேமரா மூலம் நுழையலாம்.",
+    step3_title: "⚖️ எடை & மழை பாதுகாப்பு",
+    step3_desc: "டிஜிட்டல் எடையிடுதல் மற்றும் ஈரப்பதம் சோதனை. மழை வந்தால் தார்ப்பாய் எச்சரிக்கை விடுக்கப்படும்.",
+    step4_title: "💳 நேரடி DBT & இ-ஜே-படிவம்",
+    step4_desc: "உடனடி இ-ஜே-படிவம். ஆதார் இணைக்கப்பட்ட வங்கிக் கணக்கிற்கு தாமதமின்றி பணம் சென்றடையும்.",
+    inno1_title: "பூமி நில உரிமை பாதுகாப்பு",
+    inno1_desc: "போலி வணிகர்கள் உழவர் பெயரில் தானியங்களை விற்பனை செய்வதைத் தடுக்கிறது.",
+    inno2_title: "பருவமழை பாதுகாப்பு எச்சரிக்கை",
+    inno2_desc: "மழை முன்னறிவிப்பு மூலம் தானியங்கள் மழையில் நனையாமல் காக்கிறது.",
+    inno3_title: "5 மொழிகளில் ஒலிபெருக்கி அறிவிப்பு",
+    inno3_desc: "கிராமப்புற உழவர்களுக்காக தமிழ், கன்னடம், தெலுங்கு, இந்தி, ஆங்கிலத்தில் குரல் உதவி.",
+    inno4_title: "இணையமில்லா ஆஃப்லைன் PWA",
+    inno4_desc: "இணைய இணைப்பு இல்லாத தொலைதூர கிராமங்களிலும் தடையின்றி இயங்கும்.",
+    bhoomi_widget_title: "பூமி நில ஒதுக்கீடு கண்காணிப்பு",
+    btn_print_pass: "பாஸ் அச்சிடுக",
+    sms_modal_title: "உழவர் மொபைல் அறிவிப்புகள்",
+    sms_modal_sub: "நேரடி SMS மற்றும் அதிகாரப்பூர்வ WhatsApp தளம்",
+    landing_audio_speech: "ஸ்மார்ட் இந்தியா ஹேக்கத்தான் 2026 கிசான் த்வார் தளத்திற்கு உங்களை வரவேற்கிறோம். உழவர்களுக்கு டிஜிட்டல் நேர ஒதுக்கீடு, QR வாயில் பாஸ், மழை பாதுகாப்பு மற்றும் நேரடி வங்கி வரவு வழங்கப்படுகிறது.",
+
     voice_lang: "ta-IN",
     welcome: "கிசான் துவார் விவசாய போர்ட்டலுக்கு வரவேற்கிறோம்",
     nav_home: "🏠 முகப்பு / சுருக்கம்",
@@ -155,6 +305,7 @@ const fullTranslations = {
     nav_passbook: "📜 விற்பனை பாஸ்புக்",
     nav_profile: "👤 சுயவிவரம் & நில ஒதுக்கீடு",
     btn_voice_readout: "🔊 குரல் வாசிப்பு",
+    btn_voice_assistant: "🎙️ கிசான் சேது குரல்",
     btn_book_slot: "➕ புதிய முன்பதிவு",
 
     summary_sold_title: "அரசுக்கு விற்ற மொத்த தானியம்",
@@ -181,29 +332,29 @@ const fullTranslations = {
     listen_all_qs: "🔊 அனைத்து 5 கேள்விகளையும் கேளுங்கள்",
     listen_btn: "🔊 கேள்",
 
-    q1_title: "1. பயிர் எப்போது அறுவடை செய்யப்பட்டது?",
-    q1_opt1: "📅 கடந்த 7 நாட்களில்",
-    q1_opt2: "📅 1–2 வாரங்களுக்கு முன்",
-    q1_opt3: "📅 1+ மாதத்திற்கு முன்",
-    q1_audio: "கேள்வி ஒன்று: பயிர் எப்போது அறுவடை செய்யப்பட்டது? கடந்த ஏழு நாட்களில், ஒன்று அல்லது இரண்டு வாரங்களுக்கு முன், அல்லது ஒரு மாதத்திற்கு முன்?",
+    q1_title: "1. உங்கள் நிலத்தின் மண் நிறம் என்ன? (நில வருவாய் பதிவு):",
+    q1_opt1: "🟫 கரிசல் மண்",
+    q1_opt2: "🟥 செம்மண்",
+    q1_opt3: "🟨 வண்டல் / களிமண்",
+    q1_audio: "கேள்வி ஒன்று: உங்கள் நிலத்தின் மண் நிறம் என்ன? கரிசல் மண், செம்மண், அல்லது வண்டல் மண்?",
 
-    q2_title: "2. பயிரை எத்தனை நாட்கள் வெயிலில் காயவைத்தீர்கள்?",
-    q2_opt1: "☀️ 0 நாள் (பச்சை பயிர்)",
-    q2_opt2: "☀️ 2–3 நாட்கள் (நல்லது)",
-    q2_opt3: "☀️ 5+ நாட்கள்",
-    q2_audio: "கேள்வி இரண்டு: பயிரை எத்தனை நாட்கள் வெயிலில் காயவைத்தீர்கள்? பூஜ்ஜிய நாள், இரண்டு முதல் மூன்று நாட்கள், அல்லது ஐந்து நாட்களுக்கு மேல்?",
+    q2_title: "2. இந்த பயிர் வளர எவ்வளவு காலம் எடுத்தது?",
+    q2_opt1: "⏱️ அ) 2–4 மாதங்கள்",
+    q2_opt2: "⏱️ ஆ) 5–6 மாதங்கள்",
+    q2_opt3: "⏱️ இ) 6 மாதங்கள் – 1 வருடம்",
+    q2_audio: "கேள்வி இரண்டு: இந்த பயிர் வளர எவ்வளவு காலம் எடுத்தது? இரண்டு முதல் நான்கு மாதங்கள், ஐந்து முதல் ஆறு மாதங்கள், அல்லது ஆறு மாதம் முதல் ஒரு வருடம்?",
 
-    q3_title: "3. உங்கள் நிலத்தின் மண் நிறம் என்ன? (நில வருவாய் பதிவு):",
-    q3_opt1: "🟫 கரிசல் மண்",
-    q3_opt2: "🟥 செம்மண்",
-    q3_opt3: "🟨 வண்டல் / களிமண்",
-    q3_audio: "கேள்வி மூன்று: உங்கள் நிலத்தின் மண் நிறம் என்ன? கரிசல் மண், செம்மண், அல்லது வண்டல் மண்?",
+    q3_title: "3. தானியத்தின் கடினத்தன்மை & ஈரப்பத நிலை:",
+    q3_opt1: "🌾 மொறுமொறுப்பான / கடினமான (<15% FAQ)",
+    q3_opt2: "🌾 மிதமான (16–17%)",
+    q3_opt3: "🌾 மென்மையான / ஈரப்பதம் (>18%)",
+    q3_audio: "கேள்வி மூன்று: தானிய கடினத்தன்மை மற்றும் ஈரப்பதம் எப்படி உள்ளது? கடினமானது, மிதமானது, அல்லது ஈரப்பதம் கொண்டதா?",
 
-    q4_title: "4. தானியத்தின் கடினத்தன்மை & ஈரப்பத நிலை:",
-    q4_opt1: "🌾 மொறுமொறுப்பான / கடினமான (<15% FAQ)",
-    q4_opt2: "🌾 மிதமான (16–17%)",
-    q4_opt3: "🌾 மென்மையான / ஈரப்பதம் (>18%)",
-    q4_audio: "கேள்வி நான்கு: தானிய கடினத்தன்மை மற்றும் ஈரப்பதம் எப்படி உள்ளது? கடினமானது, மிதமானது, அல்லது ஈரப்பதம் கொண்டதா?",
+    q4_title: "4. நீங்கள் என்ன உரம் பயன்படுத்தினீர்கள்?",
+    q4_opt1: "🌱 இயற்கை உரம் / மண்புழு உரம்",
+    q4_opt2: "🧪 ரசாயன உரம் / NPK",
+    q4_opt3: "🌿 கலப்பு உயிர் உரங்கள்",
+    q4_audio: "கேள்வி நான்கு: நீங்கள் என்ன உரம் பயன்படுத்தினீர்கள்? இயற்கை உரம், ரசாயன உரம், அல்லது கலப்பு உயிர் உரங்கள்?",
 
     q5_title: "5. தானியம் கொண்டு வரும் வாகனம் எது?",
     q5_opt1: "🚜 டிராக்டர்-டிராலி",
@@ -271,10 +422,100 @@ const fullTranslations = {
     ejform_gov_title: "இந்திய அரசு • நுகர்வோர் விவகார அமைச்சகம்",
     ejform_sub_title: "உணவு மற்றும் பொது விநியோகத் துறை • டிஜிட்டல் e-J-Form",
     ejform_print: "🖨️ ரசீது அச்சிடு",
-    ejform_close: "மூடு"
+    ejform_close: "மூடு",
+
+    weather_widget_title: "⚡ வானிலை & மழை எச்சரிக்கை",
+    weather_risk_level: "மழை அபாயம்: 85% (அதிகம்)",
+    weather_risk_desc: "பிற்பகல் 2:30 மணிக்கு கனமழை வாய்ப்பு. தானிய வண்டிகளை தார்பாயால் மூடவும்!",
+    weather_squad_status: "மழை பாதுகாப்பு குழு தயார் ☔",
+    weather_details_btn: "விவரங்கள் →",
+
+    nav_dbt: "💳 நேரலை DBT பண நிலை",
+    dbt_tracker_badge: "PFMS நேரலை நேரடி பயன் பரிமாற்றம் (DBT)",
+    dbt_tracker_title: "💳 அமைச்சக செலுத்துதல் & வங்கி கணக்கு விவரம்",
+    dbt_aadhaar_seeded: "● 100% ஆதார் இணைக்கப்பட்டது",
+    dbt_bank_label: "ஆதார் இணைக்கப்பட்ட வங்கி கணக்கு",
+    dbt_bank_info: "ஸ்டேட் பேங்க் ஆஃப் இந்தியா • கணக்கு XXXXXX4512",
+    dbt_bank_ifsc: "IFSC: SBIN0001244 • ராய்ச்சூர் முதன்மை கிளை • NPCI நிலை: செயலில் 🟢",
+    dbt_total_received_label: "பெறப்பட்ட மொத்த DBT பணம்",
+    dbt_current_batch_title: "தற்போதைய பணக் குழு நிலை (#DBT-2026-9082)",
+    dbt_status_credited: "நிலை: பணம் வரவு வைக்கப்பட்டது 🟢",
+    dbt_step1_title: "1. தானியம் எடை போடப்பட்டது ✅",
+    dbt_step1_sub: "நிகர 40 குவிண்டால் எடை",
+    dbt_step2_title: "2. e-J-Form வழங்கப்பட்டது ✅",
+    dbt_step2_sub: "கிரேடு A MSP உறுதி செய்யப்பட்டது",
+    dbt_step3_title: "3. அமைச்சகம் ஒப்புதல் அளித்தது ✅",
+    dbt_step3_sub: "அரசு நேரடி அனுமதி",
+    dbt_step4_title: "4. வங்கியில் வரவு வைக்கப்பட்டது 🟢",
+    dbt_step4_sub: "₹92,800 வரவு வைக்கப்பட்டது",
+    dbt_audit_log_title: "அதிகாரப்பூர்வ அரசு DBT கணக்கு வரலாறு",
+    dbt_th_date: "தேதி",
+    dbt_th_crop: "பயிர் & அளவு",
+    dbt_th_amount: "DBT தொகை",
+    dbt_th_status: "PFMS நிலை",
+    dbt_th_utr: "UTR குறிப்பு எண்"
   },
 
   telugu: {
+    nav_landing: "🏠 హోమ్ / పరిచయం",
+    nav_farmer_portal: "👨‍🌾 రైతు పోర్టల్",
+    nav_mandi_portal: "🏢 కొనుగోలు కేంద్రం",
+    nav_admin_portal: "🏛️ మంత్రిత్వ శాఖ / అడ్మిన్",
+    landing_lang_label: "భాషను ఎంచుకోండి:",
+    landing_btn_audio_intro: "వాయిస్ పరిచయం వినండి",
+    landing_btn_sms_demo: "SMS / WhatsApp హెచ్చరికలు",
+    landing_badge: "స్మార్ట్ ఇండియా హ్యాకథాన్ 2026 • PS ID: 26032",
+    landing_hero_title: "కిసాన్ ద్వార్: స్మార్ట్ MSP ధాన్యం కొనుగోలు మరియు ఆటోమేటెడ్ క్యూ నిర్వహణ",
+    landing_hero_desc: "రైతులకు డిజిటల్ స్లాట్లు, కెమెరా QR గేట్ ప్రవేశం, భూమి ల్యాండ్ కోటా ధృవీకరణ, అకాల వర్ష రక్షణ మరియు ఆధార్ లింక్డ్ బ్యాంక్ ఖాతాకు ప్రత్యక్ష నగదు బదిలీ (DBT).",
+    landing_stat_mandis_label: "అనుసంధానించబడిన మండీలు",
+    landing_stat_mandis_sub: "కర్ణాటక, తమిళనాడు, ఆంధ్రప్రదేశ్, మధ్యప్రదేశ్",
+    landing_stat_farmers_label: "నమోదైన MSP రైతులు",
+    landing_stat_farmers_sub: "భూమి & ఆధార్ ధృవీకరించబడింది",
+    landing_stat_procured_label: "కొనుగోలు చేసిన ధాన్యం",
+    landing_stat_procured_sub: "వరి, గోధుమ, పత్తి, మొక్కజొన్న",
+    landing_stat_dbt_label: "ప్రత్యక్ష DBT చెల్లింపు",
+    landing_stat_dbt_sub: "దళారులు లేని పూర్తి మొత్తం",
+    landing_stat_spoilage_label: "వర్షం వల్ల నష్టం రేటు",
+    landing_stat_spoilage_sub: "టార్పాలిన్ కవచంతో రక్షణ",
+    landing_gateways_title: "ప్రారంభించడానికి పోర్టల్ గేట్‌వేను ఎంచుకోండి",
+    landing_gateways_sub: "1-క్లిక్ లైవ్ ఇంటరాక్టివ్ ప్రోటోటైప్స్",
+    card_farmer_title: "రైతు పోర్టల్",
+    card_farmer_tag: "స్లాట్ బుకింగ్ & లైవ్ క్యూ",
+    card_farmer_desc: "5 స్థానిక భాషల్లో స్లాట్ బుకింగ్, QR పాస్, లైవ్ క్యూ ట్రాకింగ్, భూమి కోటా మరియు ఈ-జె-ఫారమ్ పొందండి.",
+    card_farmer_btn: "రైతు పోర్టల్ తెరవండి ➔",
+    card_mandi_title: "కొనుగోలు కేంద్రం",
+    card_mandi_tag: "గేట్ కెమెరా & వేబ్రిడ్జ్",
+    card_mandi_desc: "కెమెరా ద్వారా QR పాస్ స్కాన్, లౌడ్‌స్పీకర్ క్యూ ప్రకటన, వేబ్రిడ్జ్ సింక్ మరియు వర్ష హెచ్చరికలు.",
+    card_mandi_btn: "కొనుగోలు కేంద్రం తెరవండి ➔",
+    card_admin_title: "మంత్రిత్వ శాఖ & అడ్మిన్",
+    card_admin_tag: "జాతీయ హీట్‌మ్యాప్ & DBT ఆడిట్",
+    card_admin_desc: "జిల్లా కొనుగోలు హీట్‌మ్యాప్, గిడ్డంగి నిల్వలు మరియు రైతు DBT చెల్లింపుల ఆమోదం.",
+    card_admin_btn: "మంత్రిత్వ శాఖ పోర్టల్ తెరవండి ➔",
+    workflow_badge: "ఎండ్-టు-ఎండ్ డిజిటల్ ప్రక్రియ",
+    workflow_title: "కిసాన్ ద్వార్ ఎలా పనిచేస్తుంది",
+    workflow_subtitle: "రైతు పొలం నుండి బ్యాంక్ ఖాతా వరకు పారదర్శక కొనుగోలు",
+    step1_title: "📅 స్లాట్ & భూమి కోటా",
+    step1_desc: "పంట మరియు సమయాన్ని ఎంచుకోండి. భూమి రికార్డులు నిజమైన రైతులను గుర్తించి దళారులను అడ్డుకుంటాయి.",
+    step2_title: "🎟️ డిజిటల్ QR & SMS పాస్",
+    step2_desc: "వెంటనే QR పాస్ మరియు SMS అందుతాయి. వేచి ఉండకుండా కెమెరా ద్వారా నేరుగా ప్రవేశించవచ్చు.",
+    step3_title: "⚖️ తూకం & వర్ష రక్షణ",
+    step3_desc: "డిజిటల్ వేబ్రిడ్జ్ మరియు తేమ పరీక్ష. వర్షం వచ్చే సూచన ఉన్నప్పుడు టార్పాలిన్ హెచ్చరిక అందుతుంది.",
+    step4_title: "💳 ప్రత్యక్ష DBT & ఈ-జె-ఫారమ్",
+    step4_desc: "డిజిటల్ ఈ-జె-ఫారమ్ జారీ. PFMS ద్వారా రైతు ఆధార్ లింక్డ్ బ్యాంక్ ఖాతాకు నేరుగా డబ్బు జమ అవుతుంది.",
+    inno1_title: "భూమి కోటా సెక్యూరిటీ",
+    inno1_desc: "దళారులు రైతుల పేర్లతో ధాన్యం అమ్మడాన్ని సమర్థవంతంగా నిరోధిస్తుంది.",
+    inno2_title: "అకాల వర్ష హెచ్చరిక",
+    inno2_desc: "వాతావరణ సమాచారం ఆధారంగా ధాన్యం తడవకుండా కాపాడుతుంది.",
+    inno3_title: "5 భాషల్లో లౌడ్‌స్పీకర్ అనౌన్స్‌మెంట్",
+    inno3_desc: "రైతుల సౌలభ్యం కోసం తెలుగు, కన్నడ, తమిళం, హిందీ, ఇంగ్లీషులో ప్రకటనలు.",
+    inno4_title: "ఇంటర్నెట్ లేకపోయినా ఆఫ్‌లైన్ PWA",
+    inno4_desc: "సిగ్నల్ లేని మారుమూల గ్రామాలలో కూడా అద్భుతంగా పనిచేస్తుంది.",
+    bhoomi_widget_title: "భూమి ల్యాండ్ కోటా కాలిక్యులేటర్",
+    btn_print_pass: "పాస్ ప్రింట్ చేయండి",
+    sms_modal_title: "రైతు మొబైల్ అలర్ట్స్",
+    sms_modal_sub: "డైరెక్ట్ SMS మరియు అధికారిక WhatsApp గేట్‌వే",
+    landing_audio_speech: "స్మార్ట్ ఇండియా హ్యాకథాన్ 2026 కిసాన్ ద్వార్ ప్లాట్‌ఫారమ్‌కు స్వాగతం. రైతులకు స్లాట్ బుకింగ్, QR గేట్ పాస్, భూమి కోటా మరియు నేరుగా బ్యాంక్ ఖాతాలో నగదు జమ చేసే వ్యవస్థ అందుబాటులో ఉంది.",
+
     voice_lang: "te-IN",
     welcome: "కిసాన్ ద్వార్ రైతు పోర్టల్‌కు స్వాగతం",
     nav_home: "🏠 హోమ్ / సారాంశం",
@@ -284,6 +525,7 @@ const fullTranslations = {
     nav_passbook: "📜 అమ్మకాల పాస్‌బుక్",
     nav_profile: "👤 ప్రొఫైల్ & భూమి కోటా",
     btn_voice_readout: "🔊 వాయిస్ రీడర్",
+    btn_voice_assistant: "🎙️ కిసాన్ సేతు వాయిస్",
     btn_book_slot: "➕ కొత్త స్లాట్ బుక్ చేయండి",
 
     summary_sold_title: "ప్రభుత్వానికి అమ్మిన మొత్తం ధాన్యం",
@@ -310,29 +552,29 @@ const fullTranslations = {
     listen_all_qs: "🔊 అన్ని 5 ప్రశ్నలను వినండి",
     listen_btn: "🔊 వినండి",
 
-    q1_title: "1. పంట ఎప్పుడు కోశారు?",
-    q1_opt1: "📅 గత 7 రోజుల్లో",
-    q1_opt2: "📅 1–2 వారాల క్రితం",
-    q1_opt3: "📅 1+ నెల క్రితం",
-    q1_audio: "మొదటి ప్రశ్న: పంట ఎప్పుడు కోశారు? గత ఏడు రోజుల్లో, ఒకటి లేదా రెండు వారాల క్రితం, లేదా ఒక నెల క్రితమా?",
+    q1_title: "1. మీ పొలం నేల రంగు ఏమిటి? (భూ రికార్డుల సరిపోలిక):",
+    q1_opt1: "🟫 నల్ల నేల",
+    q1_opt2: "🟥 ఎర్ర నేల",
+    q1_opt3: "🟨 ఇసుక / బంకమట్టి నేల",
+    q1_audio: "మొదటి ప్రశ్న: మీ పొలం నేల రంగు ఏమిటి? నల్ల నేల, ఎర్ర నేల, లేదా బంకమట్టి నేల?",
 
-    q2_title: "2. పంటను ఎన్ని రోజులు ఎండబెట్టారు?",
-    q2_opt1: "☀️ 0 రోజులు (పచ్చి పంట)",
-    q2_opt2: "☀️ 2–3 రోజులు (మంచిది)",
-    q2_opt3: "☀️ 5+ రోజులు",
-    q2_audio: "రెండవ ప్రశ్న: పంటను ఎన్ని రోజులు ఎండబెట్టారు? సున్నా రోజులు, రెండు నుండి మూడు రోజులు, లేదా ఐదు రోజుల కంటే ఎక్కువా?",
+    q2_title: "2. ఈ పంట పెరగడానికి ఎంత సమయం పట్టింది?",
+    q2_opt1: "⏱️ ఎ) 2–4 నెలలు",
+    q2_opt2: "⏱️ బి) 5–6 నెలలు",
+    q2_opt3: "⏱️ సి) 6 నెలలు – 1 సంవత్సరం",
+    q2_audio: "రెండవ ప్రశ్న: ఈ పంట పెరగడానికి ఎంత సమయం పట్టింది? రెండు నుండి నాలుగు నెలలు, ఐదు నుండి ఆరు నెలలు, లేదా ఆరు నెలల నుండి ఒక సంవత్సరమా?",
 
-    q3_title: "3. మీ పొలం నేల రంగు ఏమిటి? (భూ రికార్డుల సరిపోలిక):",
-    q3_opt1: "🟫 నల్ల నేల",
-    q3_opt2: "🟥 ఎర్ర నేల",
-    q3_opt3: "🟨 ఇసుక / బంకమట్టి నేల",
-    q3_audio: "మూడవ ప్రశ్న: మీ పొలం నేల రంగు ఏమిటి? నల్ల నేల, ఎర్ర నేల, లేదా బంకమట్టి నేల?",
+    q3_title: "3. ధాన్యం గట్టిదనం & తేమ స్థాయి:",
+    q3_opt1: "🌾 గట్టిగా / కరకరలాడే (<15% FAQ)",
+    q3_opt2: "🌾 మధ్యస్థం (16–17%)",
+    q3_opt3: "🌾 మెత్తగా / పచ్చిది (>18%)",
+    q3_audio: "మూడవ ప్రశ్న: ధాన్యం గట్టిదనం మరియు తేమ ఎలా ఉంది? గట్టిగా కరకరలాడేదా, మధ్యస్థమా, లేదా పచ్చిదా?",
 
-    q4_title: "4. ధాన్యం గట్టిదనం & తేమ స్థాయి:",
-    q4_opt1: "🌾 గట్టిగా / కరకరలాడే (<15% FAQ)",
-    q4_opt2: "🌾 మధ్యస్థం (16–17%)",
-    q4_opt3: "🌾 మెత్తగా / పచ్చిది (>18%)",
-    q4_audio: "నాల్గవ ప్రశ్న: ధాన్యం గట్టిదనం మరియు తేమ ఎలా ఉంది? గట్టిగా కరకరలాడేదా, మధ్యస్థమా, లేదా పచ్చిదా?",
+    q4_title: "4. మీరు ఏ ఎరువులు ఉపయోగించారు?",
+    q4_opt1: "🌱 సేంద్రీయ / కంపోస్ట్",
+    q4_opt2: "🧪 రసాయన ఎరువులు / NPK",
+    q4_opt3: "🌿 మిశ్రమ బయో పోషకాలు",
+    q4_audio: "నాల్గవ ప్రశ్న: మీరు ఏ ఎరువులు ఉపయోగించారు? సేంద్రీయ కంపోస్ట్, రసాయన ఎరువులు, లేదా బయో పోషకాలా?",
 
     q5_title: "5. ధాన్యం తీసుకువచ్చే వాహనం ఏది?",
     q5_opt1: "🚜 ట్రాక్టర్-ట్రాలీ",
@@ -400,10 +642,100 @@ const fullTranslations = {
     ejform_gov_title: "భారత ప్రభుత్వం • వినియోగదారుల వ్యవహారాల మంత్రిత్వ శాఖ",
     ejform_sub_title: "ఆహార & ప్రజా పంపిణీ శాఖ • డిజిటల్ e-J-Form",
     ejform_print: "🖨️ రసీదు ప్రింట్ చేయండి",
-    ejform_close: "మూసివేయండి"
+    ejform_close: "మూసివేయండి",
+
+    weather_widget_title: "⚡ వాతావరణం & వర్షం హెచ్చరిక",
+    weather_risk_level: "వర్షం ప్రమాదం: 85% (ఎక్కువ)",
+    weather_risk_desc: "మధ్యాహ్నం 2:30 గంటలకు భారీ వర్ష సూచన. ధాన్యం ట్రాక్టర్లకు టార్పాలిన్ కప్పండి!",
+    weather_squad_status: "వర్ష రక్షణ స్క్వాడ్ సిద్ధం ☔",
+    weather_details_btn: "వివరాలు →",
+
+    nav_dbt: "💳 లైవ్ డీబీటీ చెల్లింపుల స్థితి",
+    dbt_tracker_badge: "PFMS లైవ్ ప్రత్యక్ష ప్రయోజన బదిలీ (DBT)",
+    dbt_tracker_title: "💳 మంత్రిత్వ శాఖ చెల్లింపులు & బ్యాంక్ వివరాలు",
+    dbt_aadhaar_seeded: "● 100% ఆధార్ లింక్ చేయబడింది",
+    dbt_bank_label: "ఆధార్ లింక్ చేసిన బ్యాంక్ ఖాతా",
+    dbt_bank_info: "స్టేట్ బ్యాంక్ ఆఫ్ ఇండియా • ఖాతా XXXXXX4512",
+    dbt_bank_ifsc: "IFSC: SBIN0001244 • రాయచూర్ ప్రధాన శాఖ • NPCI స్థితి: యాక్టివ్ 🟢",
+    dbt_total_received_label: "అందుకున్న మొత్తం డీబీటీ నగదు",
+    dbt_current_batch_title: "ప్రస్తుత చెల్లింపు బ్యాచ్ స్థితి (#DBT-2026-9082)",
+    dbt_status_credited: "స్థితి: ఖాతాలో జమ అయింది 🟢",
+    dbt_step1_title: "1. ధాన్యం తూకం వేయబడింది ✅",
+    dbt_step1_sub: "నికర 40 క్వింటాళ్లు",
+    dbt_step2_title: "2. e-J-Form జారీ చేయబడింది ✅",
+    dbt_step2_sub: "గ్రేడ్ A ఎంబీపీ ఖరారు",
+    dbt_step3_title: "3. మంత్రిత్వ శాఖ ఆమోదం ✅",
+    dbt_step3_sub: "ప్రభుత్వ ప్రత్యక్ష ఆమోదం",
+    dbt_step4_title: "4. బ్యాంక్ ఖాతాలో జమ 🟢",
+    dbt_step4_sub: "₹92,800 జమ చేయబడింది",
+    dbt_audit_log_title: "అధికారిక ప్రభుత్వ డీబీటీ ఆడిట్ రికార్డు",
+    dbt_th_date: "తేదీ",
+    dbt_th_crop: "పంట & పరిమాణం",
+    dbt_th_amount: "డీబీటీ సొమ్ము",
+    dbt_th_status: "PFMS స్థితి",
+    dbt_th_utr: "UTR నంబర్"
   },
 
   hindi: {
+    nav_landing: "🏠 होम / परिचय",
+    nav_farmer_portal: "👨‍🌾 किसान पोर्टल",
+    nav_mandi_portal: "🏢 खरीद केंद्र (मंडी)",
+    nav_admin_portal: "🏛️ मंत्रालय / एडमिन",
+    landing_lang_label: "भाषा चुनें:",
+    landing_btn_audio_intro: "ऑडियो परिचय सुनें",
+    landing_btn_sms_demo: "एसएमएस / व्हाट्सएप अलर्ट",
+    landing_badge: "स्मार्ट इंडिया हैकाथॉन 2026 • पीएस आईडी: 26032",
+    landing_hero_title: "किसानद्वार: एकीकृत स्मार्ट एमएसपी अनाज खरीद और स्वचालित कतार प्रबंधन",
+    landing_hero_desc: "किसानों को पूर्व-निर्धारित डिजिटल स्लॉट, कैमरा-सत्यापित क्यूआर गेट एंट्री, भूलेख भूमि कोटा सत्यापन, असामयिक वर्षा सुरक्षा और आधार लिंक बैंक खाते में प्रत्यक्ष लाभ अंतरण (DBT)।",
+    landing_stat_mandis_label: "संबद्ध मंडियां / डीपीसी",
+    landing_stat_mandis_sub: "कर्नाटक, तमिलनाडु, आंध्र, म.प्र.",
+    landing_stat_farmers_label: "पंजीकृत एमएसपी किसान",
+    landing_stat_farmers_sub: "भूलेख एवं आधार सत्यापित",
+    landing_stat_procured_label: "खरीदा गया अनाज",
+    landing_stat_procured_sub: "धान, गेहूं, कपास, मक्का",
+    landing_stat_dbt_label: "प्रत्यक्ष डीबीटी भुगतान",
+    landing_stat_dbt_sub: "शून्य बिचौलिया कटौती",
+    landing_stat_spoilage_label: "वर्षा से अनाज खराबी",
+    landing_stat_spoilage_sub: "तिरपाल प्रहरी द्वारा सुरक्षित",
+    landing_gateways_title: "शुरू करने के लिए पोर्टल चुनें",
+    landing_gateways_sub: "1-क्लिक लाइव इंटरएक्टिव प्रोटोटाइप",
+    card_farmer_title: "किसान पोर्टल",
+    card_farmer_tag: "स्लॉट बुकिंग एवं लाइव कतार",
+    card_farmer_desc: "5 भाषाओं में स्लॉट बुक करें, क्यूआर गेट पास पाएं, लाइव कतार टोकन ट्रैक करें और सीधे खाते में डीबीटी भुगतान देखें।",
+    card_farmer_btn: "किसान पोर्टल खोलें ➔",
+    card_mandi_title: "खरीद केंद्र (मंडी)",
+    card_mandi_tag: "गेट कैमरा एवं वेईब्रिज",
+    card_mandi_desc: "कैमरे से क्यूआर स्कैन, लाउडस्पीकर कतार घोषणा, डिजिटल तौल कांटा और मौसम वर्षा जोखिम चेतावनी।",
+    card_mandi_btn: "खरीद केंद्र खोलें ➔",
+    card_admin_title: "मंत्रालय एवं प्रशासन",
+    card_admin_tag: "राष्ट्रीय हीटमैप एवं डीबीटी ऑडिट",
+    card_admin_desc: "जिला खरीद हीटमैप, गोदाम स्टॉक स्तर और 1-क्लिक में किसान डीबीटी भुगतान स्वीकृति।",
+    card_admin_btn: "मंत्रालय पोर्टल खोलें ➔",
+    workflow_badge: "पूर्ण डिजिटल जीवनचक्र",
+    workflow_title: "किसानद्वार कैसे काम करता है",
+    workflow_subtitle: "खेत से सीधे बैंक खाते तक पारदर्शी खरीद प्रक्रिया",
+    step1_title: "📅 स्लॉट एवं भूमि कोटा",
+    step1_desc: "फसल और समय चुनें। भूलेख रिकॉर्ड वास्तविक कोटा (25 क्विंटल/एकड़) सत्यापित कर बिचौलियों को रोकता है।",
+    step2_title: "🎟️ डिजिटल क्यूआर एवं एसएमएस पास",
+    step2_desc: "तुरंत क्यूआर पास और एसएमएस प्राप्त करें। गेट कैमरा क्यूआर स्कैन कर बिना लाइन लगाए टोकन देता है।",
+    step3_title: "⚖️ तौल एवं वर्षा सुरक्षा",
+    step3_desc: "डिजिटल कांटे और नमी संवेदक द्वारा तौल। बारिश का पूर्वानुमान होने पर तुरंत तिरपाल ढकने का अलर्ट।",
+    step4_title: "💳 प्रत्यक्ष डीबीटी एवं ई-जे-फॉर्म",
+    step4_desc: "डिजिटल हस्ताक्षरित ई-जे-फॉर्म जारी। पीएफएमएस डीबीटी द्वारा राशि सीधे किसान के आधार बैंक खाते में।",
+    inno1_title: "भूलेख जमाखोरी-रोधी कोटा",
+    inno1_desc: "व्यापारियों द्वारा किसानों के नाम पर फर्जी अनाज बेचने से रोकता है।",
+    inno2_title: "असामयिक वर्षा चेतावनी",
+    inno2_desc: "मौसम विभाग के रडार से मंडी यार्ड में अनाज को भीगने से बचाता है।",
+    inno3_title: "5 भाषाओं में ऑडियो एवं लाउडस्पीकर",
+    inno3_desc: "हिंदी, कन्नड़, तमिल, तेलुगु और अंग्रेजी में लाउडस्पीकर घोषणाएं।",
+    inno4_title: "बिना इंटरनेट ऑफलाइन PWA",
+    inno4_desc: "बिना मोबाइल नेटवर्क वाले दूरदराज गांवों में भी पूरी तरह कार्यक्षम।",
+    bhoomi_widget_title: "भूलेख भूमि कोटा कैलकुलेटर",
+    btn_print_pass: "पास प्रिंट करें",
+    sms_modal_title: "किसान मोबाइल अलर्ट सिमुलेशन",
+    sms_modal_sub: "सीधा एसएमएस एवं आधिकारिक व्हाट्सएप गेटवे",
+    landing_audio_speech: "स्मार्ट इंडिया हैकाथॉन 2026 के किसानद्वार पोर्टल में आपका स्वागत है। किसानों के लिए डिजिटल स्लॉट बुकिंग, क्यूआर गेट पास, भूमि कोटा सत्यापन, वर्षा सुरक्षा और सीधे बैंक खाते में भुगतान की आधुनिक व्यवस्था।",
+
     voice_lang: "hi-IN",
     welcome: "किसान द्वार कृषक पोर्टल में आपका स्वागत है",
     nav_home: "🏠 मुख्य पृष्ठ / सारांश",
@@ -413,6 +745,7 @@ const fullTranslations = {
     nav_passbook: "📜 खरीद पासबुक",
     nav_profile: "👤 प्रोफ़ाइल एवं भूमि कोटा",
     btn_voice_readout: "🔊 आवाज में सुनें",
+    btn_voice_assistant: "🎙️ किसान सेतु आवाज",
     btn_book_slot: "➕ नया स्लॉट बुक करें",
 
     summary_sold_title: "सरकार को कुल विक्रय",
@@ -439,29 +772,29 @@ const fullTranslations = {
     listen_all_qs: "🔊 सभी 5 प्रश्न आवाज में सुनें",
     listen_btn: "🔊 सुनें",
 
-    q1_title: "1. फसल की कटाई कब हुई थी?",
-    q1_opt1: "📅 पिछले 7 दिनों में",
-    q1_opt2: "📅 1–2 सप्ताह पहले",
-    q1_opt3: "📅 1+ महीने पहले",
-    q1_audio: "पहला प्रश्न: फसल की कटाई कब हुई थी? पिछले सात दिनों में, एक या दो सप्ताह पहले, या एक महीने पहले?",
+    q1_title: "1. आपके खेत की मिट्टी का रंग क्या है? (भूलेख राजस्व मिलान):",
+    q1_opt1: "🟫 काली मिट्टी",
+    q1_opt2: "🟥 लाल मिट्टी",
+    q1_opt3: "🟨 दोमट / चिकनी मिट्टी",
+    q1_audio: "पहला प्रश्न: आपके खेत की मिट्टी का रंग क्या है? काली मिट्टी, लाल मिट्टी, या दोमट चिकनी मिट्टी?",
 
-    q2_title: "2. फसल को कितने दिन धूप में सुखाया गया?",
-    q2_opt1: "☀️ 0 दिन (ताजा फसल)",
-    q2_opt2: "☀️ 2–3 दिन (उत्तम सूखा)",
-    q2_opt3: "☀️ 5+ दिन",
-    q2_audio: "दूसरा प्रश्न: फसल को कितने दिन धूप में सुखाया गया? शून्य दिन, दो से तीन दिन, या पांच दिन से अधिक?",
+    q2_title: "2. इस फसल को तैयार होने में कितना समय लगा?",
+    q2_opt1: "⏱️ क) 2–4 महीने",
+    q2_opt2: "⏱️ ख) 5–6 महीने",
+    q2_opt3: "⏱️ ग) 6 महीने – 1 वर्ष",
+    q2_audio: "दूसरा प्रश्न: इस फसल को तैयार होने में कितना समय लगा? दो से चार महीने, पांच से छह महीने, या छह महीने से एक वर्ष?",
 
-    q3_title: "3. आपके खेत की मिट्टी का रंग क्या है? (भूलेख राजस्व मिलान):",
-    q3_opt1: "🟫 काली मिट्टी",
-    q3_opt2: "🟥 लाल मिट्टी",
-    q3_opt3: "🟨 दोमट / चिकनी मिट्टी",
-    q3_audio: "तीसरा प्रश्न: आपके खेत की मिट्टी का रंग क्या है? काली मिट्टी, लाल मिट्टी, या दोमट चिकनी मिट्टी?",
+    q3_title: "3. दाने का सूखापन एवं नमी स्तर:",
+    q3_opt1: "🌾 कुरकुरा / कड़ा (<15% FAQ पास)",
+    q3_opt2: "🌾 मध्यम सूखा (16–17%)",
+    q3_opt3: "🌾 नरम / गीला (>18%)",
+    q3_audio: "तीसरा प्रश्न: दाने का सूखापन कैसा है? कुरकुरा कड़ा, मध्यम सूखा, या नरम गीला?",
 
-    q4_title: "4. दाने का सूखापन एवं नमी स्तर:",
-    q4_opt1: "🌾 कुरकुरा / कड़ा (<15% FAQ पास)",
-    q4_opt2: "🌾 मध्यम सूखा (16–17%)",
-    q4_opt3: "🌾 नरम / गीला (>18%)",
-    q4_audio: "चौथा प्रश्न: दाने का सूखापन कैसा है? कुरकुरा कड़ा, मध्यम सूखा, या नरम गीला?",
+    q4_title: "4. आपने किस खाद/उर्वरक का प्रयोग किया?",
+    q4_opt1: "🌱 जैविक / कम्पोस्ट",
+    q4_opt2: "🧪 रासायनिक / एनपीके (NPK)",
+    q4_opt3: "🌿 मिश्रित बायो-पोषक तत्व",
+    q4_audio: "चौथा प्रश्न: आपने किस खाद का प्रयोग किया? जैविक कम्पोस्ट, रासायनिक एनपीके, या बायो पोषक तत्व?",
 
     q5_title: "5. अनाज परिवहन के लिए वाहन का प्रकार:",
     q5_opt1: "🚜 ट्रैक्टर-ट्रॉली",
@@ -529,10 +862,100 @@ const fullTranslations = {
     ejform_gov_title: "भारत सरकार • उपभोक्ता मामले मंत्रालय",
     ejform_sub_title: "खाद्य एवं सार्वजनिक वितरण विभाग • डिजिटल e-J-Form",
     ejform_print: "🖨️ रसीद प्रिंट करें",
-    ejform_close: "बंद करें"
+    ejform_close: "बंद करें",
+
+    weather_widget_title: "⚡ मौसम एवं वर्षा चेतावनी",
+    weather_risk_level: "वर्षा जोखिम: 85% (उच्च)",
+    weather_risk_desc: "दोपहर 2:30 बजे भारी बारिश की संभावना। अनाज ट्रॉली को तिरपाल से ढकें!",
+    weather_squad_status: "रेन स्क्वाड सक्रिय ☔",
+    weather_details_btn: "विवरण →",
+
+    nav_dbt: "💳 लाइव डीबीटी भुगतान स्थिति",
+    dbt_tracker_badge: "PFMS लाइव प्रत्यक्ष लाभ अंतरण (DBT)",
+    dbt_tracker_title: "💳 मंत्रालय भुगतान एवं बैंक खाता स्वीकृति",
+    dbt_aadhaar_seeded: "● 100% आधार लिंक सत्यापित",
+    dbt_bank_label: "आधार लिंक बैंक खाता",
+    dbt_bank_info: "स्टेट बैंक ऑफ इंडिया • खाता XXXXXX4512",
+    dbt_bank_ifsc: "IFSC: SBIN0001244 • रायचूर मुख्य शाखा • NPCI स्थिति: सक्रिय 🟢",
+    dbt_total_received_label: "प्राप्त कुल डीबीटी आय",
+    dbt_current_batch_title: "वर्तमान भुगतान बैच स्थिति (#DBT-2026-9082)",
+    dbt_status_credited: "स्थिति: बैंक खाते में जमा 🟢",
+    dbt_step1_title: "1. अनाज तौल पूर्ण ✅",
+    dbt_step1_sub: "शुद्ध 40 क्विंटल तौल",
+    dbt_step2_title: "2. e-J-Form जारी ✅",
+    dbt_step2_sub: "ग्रेड A एमएसपी सत्यापित",
+    dbt_step3_title: "3. मंत्रालय स्वीकृति ✅",
+    dbt_step3_sub: "सरकारी सीधा अनुमोदन",
+    dbt_step4_title: "4. बैंक में जमा 🟢",
+    dbt_step4_sub: "₹92,800 क्रेडिट हुआ",
+    dbt_audit_log_title: "विवरण सरकारी डीबीटी बहीखाता इतिहास",
+    dbt_th_date: "दिनांक",
+    dbt_th_crop: "फसल एवं मात्रा",
+    dbt_th_amount: "डीबीटी राशि",
+    dbt_th_status: "PFMS स्थिति",
+    dbt_th_utr: "UTR संदर्भ संख्या"
   },
 
   english: {
+    nav_landing: "🏠 Home / Introduction",
+    nav_farmer_portal: "👨‍🌾 Farmer Portal",
+    nav_mandi_portal: "🏢 Procurement Centre",
+    nav_admin_portal: "🏛️ Minister / Admin",
+    landing_lang_label: "Select System Language:",
+    landing_btn_audio_intro: "Listen Audio Overview",
+    landing_btn_sms_demo: "View SMS / WhatsApp Alerts",
+    landing_badge: "Smart India Hackathon 2026 • PS ID: 26032",
+    landing_hero_title: "KisanDwar: Unified Smart MSP Grain Procurement & Automated Queue Management",
+    landing_hero_desc: "Empowering Indian farmers with pre-allocated digital slots, camera-verified QR gate entry, Bhoomi land quota anti-hoarding verification, unseasonal rain weather sentinels, and guaranteed Direct Benefit Transfer (DBT) directly into Aadhaar-linked bank accounts.",
+    landing_stat_mandis_label: "Connected Mandis / DPCs",
+    landing_stat_mandis_sub: "Karnataka, TN, AP, MP",
+    landing_stat_farmers_label: "Registered MSP Farmers",
+    landing_stat_farmers_sub: "Bhoomi Aadhaar-Verified",
+    landing_stat_procured_label: "Grain Procured",
+    landing_stat_procured_sub: "Paddy, Wheat, Cotton, Maize",
+    landing_stat_dbt_label: "Direct DBT Disbursed",
+    landing_stat_dbt_sub: "Zero Middlemen Cut",
+    landing_stat_spoilage_label: "Rain Spoilage Rate",
+    landing_stat_spoilage_sub: "Tarpaulin Sentinel Shield",
+    landing_gateways_title: "Select Portal Gateway to Launch",
+    landing_gateways_sub: "1-Click Live Interactive Prototypes",
+    card_farmer_title: "Farmer Portal",
+    card_farmer_tag: "Slot Booking & Live Queue",
+    card_farmer_desc: "Book procurement slots in 5 local languages, get QR entry passes, track real-time queue tokens, inspect Bhoomi land quota, and review DBT e-J-Forms.",
+    card_farmer_btn: "Open Farmer Portal ➔",
+    card_mandi_title: "Procurement Centre",
+    card_mandi_tag: "Gate Camera & Weighbridge",
+    card_mandi_desc: "Scan farmer QR entry passes with live camera, orchestrate token queues with audio loudspeaker PA chime, sync IoT weighbridge, and monitor monsoon rain risks.",
+    card_mandi_btn: "Open Procurement Centre ➔",
+    card_admin_title: "Ministry & Executive",
+    card_admin_tag: "National Heatmaps & DBT Audits",
+    card_admin_desc: "Review state-level procurement heatmaps, warehouse stock levels, mandi throughput velocity, and approve batched farmer DBT payments with 1 click.",
+    card_admin_btn: "Open Ministry Portal ➔",
+    workflow_badge: "End-to-End Digital Lifecycle",
+    workflow_title: "How KisanDwar Works",
+    workflow_subtitle: "Seamless transparent procurement from farmer field to direct bank account",
+    step1_title: "📅 Slot & Bhoomi Quota",
+    step1_desc: "Farmer selects commodity and time slot. Bhoomi Land Records verify genuine cultivation quota (25 Qtl/acre) and capture live grain photos to block middlemen.",
+    step2_title: "🎟️ Digital QR & SMS Pass",
+    step2_desc: "Farmer receives instant encrypted QR Entry Pass and bilingual SMS. On arrival, gate camera scans QR and triggers token sequence without physical queueing.",
+    step3_title: "⚖️ Weighment & Weather Shield",
+    step3_desc: "Trolley is weighed at digital scale with live moisture sensor. Weather Sentinel checks rain radar and triggers automated tarpaulin covering alerts.",
+    step4_title: "💳 Direct DBT & e-J-Form",
+    step4_desc: "Digitally signed e-J-Form is issued instantly. Payment is automatically pushed to the farmer's Aadhaar-seeded bank account via PFMS DBT with zero delay.",
+    inno1_title: "Bhoomi Anti-Hoarding Quota",
+    inno1_desc: "Cross-validates acreage and prevents hoarders or traders from dumping black-market grains under farmer identities.",
+    inno2_title: "Unseasonal Rain Sentinel",
+    inno2_desc: "Monitors IMD rainfall forecasts and manages tarpaulin covers at procurement yards to guarantee zero grain rotting.",
+    inno3_title: "5-Language Audio & PA",
+    inno3_desc: "Voice Assistant and Yard Loudspeaker announcements in Kannada, Tamil, Telugu, Hindi, and English for total rural literacy.",
+    inno4_title: "Offline PWA Village Ready",
+    inno4_desc: "Local cache and offline-first queue tokens enable full functionality in remote villages even with zero cellular signal.",
+    bhoomi_widget_title: "Bhoomi Land Quota Sentinel (Anti-Hoarding Validation)",
+    btn_print_pass: "Print Pass",
+    sms_modal_title: "Farmer Mobile Alerts Simulation",
+    sms_modal_sub: "Direct Carrier SMS & Official WhatsApp Gateway",
+    landing_audio_speech: "Welcome to KisanDwar, the Unified Smart MSP Grain Procurement and Automated Queue Management platform for Smart India Hackathon 2026. Empowering farmers with pre-allocated slots, camera-verified QR gate entry, Bhoomi land quota verification, unseasonal rain sentinels, and zero-delay direct bank transfers.",
+
     voice_lang: "en-IN",
     welcome: "Welcome to KisanDwar Farmer Portal",
     nav_home: "🏠 Summary & Overview",
@@ -542,6 +965,7 @@ const fullTranslations = {
     nav_passbook: "📜 Procurement Passbook",
     nav_profile: "👤 Profile & Land Quota",
     btn_voice_readout: "🔊 Voice Readout",
+    btn_voice_assistant: "🎙️ Kisan Setu Voice",
     btn_book_slot: "➕ Book Procurement Slot",
 
     summary_sold_title: "Total Sold to Govt",
@@ -568,29 +992,29 @@ const fullTranslations = {
     listen_all_qs: "🔊 Listen All 5 Questions",
     listen_btn: "🔊 Listen",
 
-    q1_title: "1. When was the crop harvested?",
-    q1_opt1: "📅 Last 7 Days",
-    q1_opt2: "📅 1–2 Weeks Ago",
-    q1_opt3: "📅 1+ Month Ago",
-    q1_audio: "Question one: When was the crop harvested? Last seven days, one to two weeks ago, or over a month ago?",
+    q1_title: "1. Field Soil Color (Land Record Match):",
+    q1_opt1: "🟫 Black Soil",
+    q1_opt2: "🟥 Red Soil",
+    q1_opt3: "🟨 Alluvial / Clay",
+    q1_audio: "Question one: What is your field soil color? Black soil, red soil, or alluvial clay?",
 
-    q2_title: "2. How many days was it sun-dried?",
-    q2_opt1: "☀️ 0 Days (Fresh)",
-    q2_opt2: "☀️ 2–3 Days (Good)",
-    q2_opt3: "☀️ 5+ Days",
-    q2_audio: "Question two: How many days was it sun-dried? Zero days, two to three days, or more than five days?",
+    q2_title: "2. How much time was taken to grow this crop?",
+    q2_opt1: "⏱️ a) 2–4 Months",
+    q2_opt2: "⏱️ b) 5–6 Months",
+    q2_opt3: "⏱️ c) 6 Months – 1 Year",
+    q2_audio: "Question two: How much time was taken to grow this crop? Two to four months, five to six months, or six months to one year?",
 
-    q3_title: "3. Field Soil Color (Land Record Match):",
-    q3_opt1: "🟫 Black Soil",
-    q3_opt2: "🟥 Red Soil",
-    q3_opt3: "🟨 Alluvial / Clay",
-    q3_audio: "Question three: What is your field soil color? Black soil, red soil, or alluvial clay?",
+    q3_title: "3. Grain Hardness & Moisture Level:",
+    q3_opt1: "🌾 Crisp & Hard (<15% FAQ)",
+    q3_opt2: "🌾 Moderate (16–17%)",
+    q3_opt3: "🌾 Soft / Moisture (>18%)",
+    q3_audio: "Question three: What is the grain hardness and moisture level? Crisp and hard, moderate, or soft with moisture?",
 
-    q4_title: "4. Grain Hardness & Moisture Level:",
-    q4_opt1: "🌾 Crisp & Hard (<15% FAQ)",
-    q4_opt2: "🌾 Moderate (16–17%)",
-    q4_opt3: "🌾 Soft / Moisture (>18%)",
-    q4_audio: "Question four: What is the grain hardness and moisture level? Crisp and hard, moderate, or soft with moisture?",
+    q4_title: "4. What fertilizer did you use?",
+    q4_opt1: "🌱 Organic / Compost",
+    q4_opt2: "🧪 Chemical / NPK",
+    q4_opt3: "🌿 Mixed Bio-Nutrients",
+    q4_audio: "Question four: What fertilizer did you use? Organic compost, chemical NPK, or mixed bio-nutrients?",
 
     q5_title: "5. Transport Vehicle Type:",
     q5_opt1: "🚜 Tractor-Trolley",
@@ -658,25 +1082,270 @@ const fullTranslations = {
     ejform_gov_title: "Government of India • Ministry of Consumer Affairs",
     ejform_sub_title: "Department of Food & Public Distribution • Digital e-J-Form",
     ejform_print: "🖨️ Print Receipt",
-    ejform_close: "Close"
+    ejform_close: "Close",
+
+    weather_widget_title: "⚡ Weather & Rain Alert",
+    weather_risk_level: "Rain Risk: 85% (High)",
+    weather_risk_desc: "Heavy monsoon forecast at 2:30 PM. Cover grain with tarpaulin!",
+    weather_squad_status: "Rain Squad Active ☔",
+    weather_details_btn: "Alert Info →",
+
+    nav_dbt: "💳 Live DBT Payout Status",
+    dbt_tracker_badge: "PFMS Live Direct Benefit Transfer (DBT)",
+    dbt_tracker_title: "💳 Ministry Payout & DBT Bank Clearance",
+    dbt_aadhaar_seeded: "● 100% Aadhaar Seeded",
+    dbt_bank_label: "Aadhaar Linked Bank Account",
+    dbt_bank_info: "State Bank of India • A/C XXXXXX4512",
+    dbt_bank_ifsc: "IFSC: SBIN0001244 • Raichur Main Branch • NPCI Status: Active 🟢",
+    dbt_total_received_label: "Total DBT Received",
+    dbt_current_batch_title: "Current Payout Batch Status (#DBT-2026-9082)",
+    dbt_status_credited: "Status: FUNDS CREDITED 🟢",
+    dbt_step1_title: "1. Grain Weighed ✅",
+    dbt_step1_sub: "Net 40 Qtl Weighed",
+    dbt_step2_title: "2. e-J-Form Issued ✅",
+    dbt_step2_sub: "Grade A MSP Validated",
+    dbt_step3_title: "3. Ministry Approved ✅",
+    dbt_step3_sub: "1-Click GOI Clearance",
+    dbt_step4_title: "4. Bank Disbursed 🟢",
+    dbt_step4_sub: "₹92,800 Credited",
+    dbt_audit_log_title: "Detailed Government DBT Audit Log",
+    dbt_th_date: "Date",
+    dbt_th_crop: "Crop & Quantity",
+    dbt_th_amount: "DBT Amount",
+    dbt_th_status: "PFMS Status",
+    dbt_th_utr: "UTR Reference"
   }
 };
 
-// Web Speech API: Text-to-Speech Engine
+// Web Speech API: Text-to-Speech Engine with Voice Preloading & Robust Regional Fallback
+let availableVoices = [];
+
+function loadVoices() {
+  if ('speechSynthesis' in window) {
+    availableVoices = window.speechSynthesis.getVoices();
+  }
+}
+
+if ('speechSynthesis' in window) {
+  loadVoices();
+  if (window.speechSynthesis.onvoiceschanged !== undefined) {
+    window.speechSynthesis.onvoiceschanged = loadVoices;
+  }
+}
+
 function speakText(text, specificLang = null) {
   if (!('speechSynthesis' in window)) {
     showToast("Voice playback not supported on this browser.", "info");
     return;
   }
-  window.speechSynthesis.cancel();
-  const langKey = specificLang || currentLanguage;
-  const voiceCode = fullTranslations[langKey]?.voice_lang || "en-IN";
-  
+
+  if (!text || text.trim() === '') return;
+
+  try {
+    if (window.speechSynthesis.paused) {
+      window.speechSynthesis.resume();
+    }
+    window.speechSynthesis.cancel();
+  } catch (e) {
+    console.warn("speechSynthesis resume/cancel error:", e);
+  }
+
+  // Resolve target language code (e.g. kn-IN, ta-IN, te-IN, hi-IN, en-IN)
+  let preferredLang = "en-IN";
+  if (specificLang) {
+    if (fullTranslations[specificLang] && fullTranslations[specificLang].voice_lang) {
+      preferredLang = fullTranslations[specificLang].voice_lang;
+    } else if (specificLang.includes('-')) {
+      preferredLang = specificLang;
+    }
+  } else if (fullTranslations[currentLanguage] && fullTranslations[currentLanguage].voice_lang) {
+    preferredLang = fullTranslations[currentLanguage].voice_lang;
+  }
+
+  const langPrefix = preferredLang.split('-')[0].toLowerCase();
+
   const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = voiceCode;
-  utterance.rate = 0.85;
+  // Restored optimal audio settings (100% Volume, Natural Pitch, Clear Cadence)
+  utterance.rate = 0.95;
   utterance.pitch = 1.0;
-  window.speechSynthesis.speak(utterance);
+  utterance.volume = 1.0;
+
+  if (!availableVoices || availableVoices.length === 0) {
+    availableVoices = window.speechSynthesis.getVoices();
+  }
+
+  let selectedVoice = null;
+  if (availableVoices && availableVoices.length > 0) {
+    // 1. Exact match e.g. kn-IN, ta-IN, te-IN, hi-IN, en-IN
+    selectedVoice = availableVoices.find(v => v.lang && v.lang.toLowerCase() === preferredLang.toLowerCase());
+
+    // 2. Prefix match e.g. kn, ta, te, hi, en
+    if (!selectedVoice) {
+      selectedVoice = availableVoices.find(v => v.lang && v.lang.toLowerCase().startsWith(langPrefix));
+    }
+
+    // 3. Indian English or India-localized voice
+    if (!selectedVoice) {
+      selectedVoice = availableVoices.find(v => v.lang && (v.lang.toLowerCase() === 'en-in' || (v.name && v.name.toLowerCase().includes('india'))));
+    }
+
+    // 4. Any English voice
+    if (!selectedVoice) {
+      selectedVoice = availableVoices.find(v => v.lang && v.lang.toLowerCase().startsWith('en'));
+    }
+
+    // 5. System default voice
+    if (!selectedVoice) {
+      selectedVoice = availableVoices[0];
+    }
+  }
+
+  if (selectedVoice) {
+    utterance.voice = selectedVoice;
+    utterance.lang = selectedVoice.lang;
+  } else {
+    utterance.lang = preferredLang;
+  }
+
+  utterance.onerror = (e) => {
+    if (e.error !== 'canceled' && e.error !== 'interrupted') {
+      console.warn("Speech synthesis notice:", e.error);
+    }
+  };
+
+  // Chromium fix: A slight 50ms delay after cancel() prevents Chrome from dropping the utterance
+  setTimeout(() => {
+    try {
+      if (window.speechSynthesis.paused) {
+        window.speechSynthesis.resume();
+      }
+      window.speechSynthesis.speak(utterance);
+    } catch (err) {
+      console.error("speechSynthesis.speak error:", err);
+    }
+  }, 50);
+}
+
+// Universal Radio Option Selection for Dynamic Green Border & Highlight
+function selectRadioOption(labelEl) {
+  if (!labelEl) return;
+  const container = labelEl.closest('.grid') || labelEl.parentElement;
+  if (container) {
+    container.querySelectorAll('.wizard-radio-label').forEach(lbl => {
+      lbl.classList.remove('border-emerald-500', 'bg-emerald-50/50', 'is-selected', 'shadow-sm');
+      lbl.classList.add('border-gray-200', 'bg-white');
+      const txtSpan = lbl.querySelector('span[id^="wizard-q"]');
+      if (txtSpan) {
+        txtSpan.classList.remove('text-emerald-900');
+      }
+    });
+  }
+
+  labelEl.classList.remove('border-gray-200', 'bg-white');
+  labelEl.classList.add('border-emerald-500', 'bg-emerald-50/50', 'is-selected', 'shadow-sm');
+  const activeTxt = labelEl.querySelector('span[id^="wizard-q"]');
+  if (activeTxt) activeTxt.classList.add('text-emerald-900');
+
+  const radio = labelEl.querySelector('input[type="radio"]');
+  if (radio) {
+    radio.checked = true;
+  }
+}
+
+// Live Camera Grain Photo Engine
+let activeCropCameraStream = null;
+let capturedCropImageData = null;
+
+async function openLiveCropCamera() {
+  const video = document.getElementById('crop-camera-stream');
+  const placeholder = document.getElementById('crop-camera-placeholder');
+  const snapBtn = document.getElementById('btn-snap-crop-photo');
+  const openBtn = document.getElementById('btn-open-crop-camera');
+  const previewImg = document.getElementById('crop-photo-preview');
+  const statusEl = document.getElementById('crop-photo-status');
+
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: { ideal: "environment" }, width: { ideal: 640 }, height: { ideal: 480 } }
+    });
+    activeCropCameraStream = stream;
+    video.srcObject = stream;
+    video.classList.remove('hidden');
+    if (placeholder) placeholder.classList.add('hidden');
+    if (previewImg) previewImg.classList.add('hidden');
+    if (snapBtn) snapBtn.classList.remove('hidden');
+    if (openBtn) openBtn.innerText = "🔄 Switch Camera View";
+    if (statusEl) {
+      statusEl.innerText = "Status: 📷 Live camera active. Point directly at grain and snap.";
+      statusEl.className = "text-[11px] text-emerald-800 block font-bold";
+    }
+  } catch (err) {
+    console.warn("In-browser camera access error:", err);
+    showToast("Camera access unavailable in this environment. Tap 'Phone Rear Camera'.", "info");
+    const fallbackInput = document.getElementById('crop-device-camera');
+    if (fallbackInput) fallbackInput.click();
+  }
+}
+
+function captureLiveCropPhoto() {
+  const video = document.getElementById('crop-camera-stream');
+  const canvas = document.getElementById('crop-camera-canvas');
+  const previewImg = document.getElementById('crop-photo-preview');
+  const snapBtn = document.getElementById('btn-snap-crop-photo');
+  const statusEl = document.getElementById('crop-photo-status');
+
+  if (!video || !canvas) return;
+
+  canvas.width = video.videoWidth || 320;
+  canvas.height = video.videoHeight || 240;
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+  capturedCropImageData = canvas.toDataURL('image/jpeg', 0.85);
+
+  if (activeCropCameraStream) {
+    activeCropCameraStream.getTracks().forEach(track => track.stop());
+    activeCropCameraStream = null;
+  }
+
+  video.classList.add('hidden');
+  if (snapBtn) snapBtn.classList.add('hidden');
+  if (previewImg) {
+    previewImg.src = capturedCropImageData;
+    previewImg.classList.remove('hidden');
+  }
+
+  if (statusEl) {
+    statusEl.innerText = "Status: ✅ Live photo captured & verified: Paddy Grain (Grade A FAQ). Ready for booking.";
+    statusEl.className = "text-[11px] text-emerald-700 block font-bold";
+  }
+  showToast("📸 Live Grain Photo Captured Successfully!", "success");
+}
+
+function handleDeviceCameraFile(input) {
+  if (!input.files || !input.files[0]) return;
+  const file = input.files[0];
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    capturedCropImageData = e.target.result;
+    const previewImg = document.getElementById('crop-photo-preview');
+    const placeholder = document.getElementById('crop-camera-placeholder');
+    const video = document.getElementById('crop-camera-stream');
+    const statusEl = document.getElementById('crop-photo-status');
+
+    if (video) video.classList.add('hidden');
+    if (placeholder) placeholder.classList.add('hidden');
+    if (previewImg) {
+      previewImg.src = capturedCropImageData;
+      previewImg.classList.remove('hidden');
+    }
+    if (statusEl) {
+      statusEl.innerText = "Status: ✅ Live camera snapshot captured: Grain Sample (Grade A FAQ).";
+      statusEl.className = "text-[11px] text-emerald-700 block font-bold";
+    }
+    showToast("📸 Live Camera Image Loaded!", "success");
+  };
+  reader.readAsDataURL(file);
 }
 
 // Speak Individual Question with Options
@@ -743,6 +1412,16 @@ function setFarmerLanguage(lang) {
     renderPassbook(farmerProfileData.passbook);
   }
   loadFarmerSingleChart(currentFarmerId);
+
+  // Sync Voice Assistant Language
+  if (typeof updateVoiceAssistantLanguage === 'function') {
+    updateVoiceAssistantLanguage(lang);
+  }
+
+  // Multilingual Mandi Dropdown Re-population (translates Thanjavur, Raichur, Guntur, Karnal)
+  if (typeof populateMandiDropdown === 'function') {
+    populateMandiDropdown(lang);
+  }
 
   showToast(`Language switched to: ${lang.toUpperCase()}`, "info");
   speakText(t.welcome);
@@ -889,6 +1568,85 @@ function loadFarmerAnalyticsCharts(farmerId) {
   loadFarmerSingleChart(farmerId);
 }
 
+// ================= MASTER MULTILINGUAL PROCUREMENT CENTRES (MANDIS) =================
+const mandiDictionary = {
+  thanjavur: {
+    kannada: { name: "ತಂಜಾವೂರು ನೇರ ಖರೀದಿ ಕೇಂದ್ರ (DPC)", district: "ತಂಜಾವೂರು", state: "ತಮಿಳುನಾಡು", rain_warn: "ಮಳೆ ಮುನ್ಸೂಚನೆ", open_status: "🟢 ತೆರೆದಿದೆ", rain_status: "☔ ಮಳೆ ಅಪಾಯ" },
+    tamil: { name: "தஞ்சாவூர் நேரடி நெல் கொள்முதல் நிலையம் (DPC)", district: "தஞ்சாவூர்", state: "தமிழ்நாடு", rain_warn: "மழை முன்னறிவிப்பு", open_status: "🟢 திறந்துள்ளது", rain_status: "☔ மழை அபாயம்" },
+    telugu: { name: "తంజావూరు ప్రత్యక్ష కొనుగోలు కేంద్రం (DPC)", district: "తంజావూరు", state: "తమిళనాడు", rain_warn: "వర్ష సూచన", open_status: "🟢 తెరిచి ఉంది", rain_status: "☔ వర్షం ముప్పు" },
+    hindi: { name: "तंजावुर प्रत्यक्ष खरीद केंद्र (DPC)", district: "तंजावुर", state: "तमिलनाडु", rain_warn: "बारिश का पूर्वानुमान", open_status: "🟢 खुला है", rain_status: "☔ बारिश का जोखिम" },
+    english: { name: "Thanjavur Direct Purchase Centre (DPC)", district: "Thanjavur", state: "Tamil Nadu", rain_warn: "Rain Forecast", open_status: "🟢 Open", rain_status: "☔ Rain Risk" }
+  },
+  raichur: {
+    kannada: { name: "ಎಪಿಎಂಸಿ ಯಾರ್ಡ್, ರಾಯಚೂರು (ಮುಖ್ಯ ಗೇಟ್ 1)", district: "ರಾಯಚೂರು", state: "ಕರ್ನಾಟಕ", rain_warn: "ಮಳೆ ಮುನ್ಸೂಚನೆ", open_status: "🟢 ತೆರೆದಿದೆ", rain_status: "☔ ಮಳೆ ಅಪಾಯ" },
+    tamil: { name: "ஏபிஎம்சி யார்டு, ராய்ச்சூர் (முதன்மை கேட் 1)", district: "ராய்ச்சூர்", state: "கர்நாடகா", rain_warn: "மழை முன்னறிவிப்பு", open_status: "🟢 திறந்துள்ளது", rain_status: "☔ மழை அபாயம்" },
+    telugu: { name: "APMC యార్డ్, రాయచూర్ (మెయిన్ గేట్ 1)", district: "రాయచూర్", state: "కర్ణాటక", rain_warn: "వర్ష సూచన", open_status: "🟢 తెరిచి ఉంది", rain_status: "☔ వర్షం ముప్పు" },
+    hindi: { name: "एपीएमसी यार्ड, रायचूर (मुख्य गेट 1)", district: "रायचूर", state: "कर्नाटक", rain_warn: "बारिश का पूर्वानुमान", open_status: "🟢 खुला है", rain_status: "☔ बारिश का जोखिम" },
+    english: { name: "APMC Yard, Raichur (Main Gate 1)", district: "Raichur", state: "Karnataka", rain_warn: "Rain Forecast", open_status: "🟢 Open", rain_status: "☔ Rain Risk" }
+  },
+  guntur: {
+    kannada: { name: "ಗುಂಟೂರು ಎಪಿಎಂಸಿ ಧಾನ್ಯ ಯಾರ್ಡ್", district: "ಗುಂಟೂರು", state: "ಆಂಧ್ರಪ್ರದೇಶ", rain_warn: "ಮಳೆ ಮುನ್ಸೂಚನೆ", open_status: "🟢 ತೆರೆದಿದೆ", rain_status: "☔ ಮಳೆ ಅಪಾಯ" },
+    tamil: { name: "குண்டூர் ஏபிஎம்சி தானிய யார்டு", district: "குண்டூர்", state: "ஆந்திரப் பிரதேசம்", rain_warn: "மழை முன்னறிவிப்பு", open_status: "🟢 திறந்துள்ளது", rain_status: "☔ மழை அபாயம்" },
+    telugu: { name: "గుంటూరు APMC ధాన్యపు యార్డ్", district: "గుంటూరు", state: "ఆంధ్రప్రదేశ్", rain_warn: "వర్ష సూచన", open_status: "🟢 తెరిచి ఉంది", rain_status: "☔ వర్షం ముప్పు" },
+    hindi: { name: "गुंटूर एपीएमसी अनाज यार्ड", district: "गुंटूर", state: "आंध्र प्रदेश", rain_warn: "बारिश का पूर्वानुमान", open_status: "🟢 खुला है", rain_status: "☔ बारिश का जोखिम" },
+    english: { name: "Guntur APMC Grain Yard", district: "Guntur", state: "Andhra Pradesh", rain_warn: "Rain Forecast", open_status: "🟢 Open", rain_status: "☔ Rain Risk" }
+  },
+  karnal: {
+    kannada: { name: "ಕರ್ನಾಲ್ ಹೊಸ ಧಾನ್ಯ ಮಾರುಕಟ್ಟೆ", district: "ಕರ್ನಾಲ್", state: "ಹರಿಯಾಣ", rain_warn: "ಮಳೆ ಮುನ್ಸೂಚನೆ", open_status: "🟢 ತೆರೆದಿದೆ", rain_status: "☔ ಮಳೆ ಅಪಾಯ" },
+    tamil: { name: "கர்னால் புதிய தானிய சந்தை", district: "கர்னால்", state: "ஹரியானா", rain_warn: "மழை முன்னறிவிப்பு", open_status: "🟢 திறந்துள்ளது", rain_status: "☔ மழை அபாயம்" },
+    telugu: { name: "కర్నాల్ కొత్త ధాన్య మార్కెట్", district: "కర్నాల్", state: "హర్యానా", rain_warn: "వర్ష సూచన", open_status: "🟢 తెరిచి ఉంది", rain_status: "☔ వర్షం ముప్పు" },
+    hindi: { name: "करनाल नई अनाज मंडी", district: "करनाल", state: "हरियाणा", rain_warn: "बारिश का पूर्वानुमान", open_status: "🟢 खुला है", rain_status: "☔ बारिश का जोखिम" },
+    english: { name: "Karnal New Grain Market", district: "Karnal", state: "Haryana", rain_warn: "Rain Forecast", open_status: "🟢 Open", rain_status: "☔ Rain Risk" }
+  }
+};
+
+function getLocalizedMandiInfo(mandiItemOrName, lang = currentLanguage) {
+  const l = (lang || currentLanguage || 'kannada').toLowerCase();
+  const str = (typeof mandiItemOrName === 'string' ? mandiItemOrName : ((mandiItemOrName && mandiItemOrName.name) || (mandiItemOrName && mandiItemOrName.mandi_code) || '')).toLowerCase();
+  const mandiId = (typeof mandiItemOrName === 'object' && mandiItemOrName) ? mandiItemOrName.id : null;
+
+  let entry = mandiDictionary.raichur;
+  if (str.includes('thanjavur') || str.includes('dpc') || str.includes('tn-02') || (mandiId === 2)) {
+    entry = mandiDictionary.thanjavur;
+  } else if (str.includes('guntur') || str.includes('ap-03') || (mandiId === 3)) {
+    entry = mandiDictionary.guntur;
+  } else if (str.includes('karnal') || str.includes('hr-04') || (mandiId === 4)) {
+    entry = mandiDictionary.karnal;
+  }
+  return entry[l] || entry.english;
+}
+
+function populateMandiDropdown(lang = currentLanguage) {
+  const sel = document.getElementById('wizard-mandi-select');
+  if (!sel || !window.cachedMandis) return;
+  const currentVal = sel.value;
+
+  sel.innerHTML = window.cachedMandis.map(m => {
+    const loc = getLocalizedMandiInfo(m, lang);
+    const rainStatus = m.rain_risk_percent > 70 
+      ? `${loc.rain_status} ${m.rain_risk_percent}%` 
+      : loc.open_status;
+    return `<option value="${m.id}" data-rain="${m.rain_risk_percent}">${loc.name} (${loc.district}) - ${rainStatus}</option>`;
+  }).join('');
+
+  if (currentVal) {
+    sel.value = currentVal;
+  }
+
+  const selectedMandi = window.cachedMandis.find(m => m.id == sel.value) || window.cachedMandis[0];
+  if (selectedMandi) {
+    updateMandiWeatherWarning(selectedMandi, lang);
+  }
+}
+
+function updateMandiWeatherWarning(mandi, lang = currentLanguage) {
+  const loc = getLocalizedMandiInfo(mandi, lang);
+  const riskLevelEl = document.querySelector('[data-i18n="weather_risk_level"]');
+  if (riskLevelEl) {
+    riskLevelEl.innerText = `${loc.name} ${loc.rain_warn}: ${mandi.rain_risk_percent}%`;
+  }
+}
+
 function renderActiveBooking(booking) {
   const container = document.getElementById('farmer-active-booking-container');
   const t = fullTranslations[currentLanguage];
@@ -910,6 +1668,8 @@ function renderActiveBooking(booking) {
     return;
   }
 
+  const mandiLoc = getLocalizedMandiInfo(booking.mandi_name || 'raichur', currentLanguage);
+
   container.innerHTML = `
     <div class="bg-gradient-to-br from-emerald-950 via-emerald-900 to-emerald-800 text-white rounded-2xl p-6 shadow-md relative overflow-hidden border border-emerald-700">
       <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-emerald-700/60 pb-4">
@@ -917,8 +1677,8 @@ function renderActiveBooking(booking) {
           <span class="bg-emerald-500/20 text-emerald-200 border border-emerald-400/30 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
             ● ${t.active_booking_title} (${booking.status})
           </span>
-          <h3 class="text-lg font-bold mt-2">${booking.mandi_name}</h3>
-          <p class="text-xs text-emerald-200">Ref: ${booking.booking_ref} • ${booking.crop_type} (${booking.quantity_quintals} Qtl)</p>
+          <h3 class="text-lg font-bold mt-2">${mandiLoc.name}</h3>
+          <p class="text-xs text-emerald-200">Ref: ${booking.booking_ref} • ${booking.crop_type} (${booking.quantity_quintals} Qtl) • ${mandiLoc.district}, ${mandiLoc.state}</p>
         </div>
         <div class="bg-emerald-950/80 border border-emerald-600/50 rounded-xl p-3 text-center min-w-[140px]">
           <span class="text-[10px] uppercase text-emerald-300 font-bold block">${t.your_token}</span>
@@ -1003,17 +1763,24 @@ function renderPassbook(passbook) {
 
 // Booking Wizard Submission (5 Questions Checked)
 async function submitBooking() {
-  const mandiId = document.getElementById('wizard-mandi-select').value;
+  const mandiId = parseInt(document.getElementById('wizard-mandi-select').value) || 1;
   const quantity = parseFloat(document.getElementById('wizard-quantity-input').value);
-  const vehicleType = document.querySelector('input[name="wizard-vehicle"]:checked')?.value || "Tractor-Trolley";
-  const soilColor = document.querySelector('input[name="wizard-soil"]:checked')?.value || "Black Soil";
-  const dryingDays = parseInt(document.querySelector('input[name="wizard-drying"]:checked')?.value || 3);
-  const harvestDays = parseInt(document.querySelector('input[name="wizard-harvest"]:checked')?.value || 7);
-  const hardness = document.querySelector('input[name="wizard-hardness"]:checked')?.value || "Crisp & Hard";
+  const bookingDate = document.getElementById('wizard-booking-date')?.value || "Tomorrow";
   const timeSlot = document.getElementById('wizard-time-slot').value;
+
+  const soilColor = document.querySelector('input[name="wizard-soil"]:checked')?.value || "Black Soil";
+  const growthDuration = document.querySelector('input[name="wizard-growth"]:checked')?.value || "5-6 Months";
+  const hardness = document.querySelector('input[name="wizard-hardness"]:checked')?.value || "Crisp & Hard";
+  const fertilizer = document.querySelector('input[name="wizard-fertilizer"]:checked')?.value || "Organic / Compost";
+  const vehicleType = document.querySelector('input[name="wizard-vehicle"]:checked')?.value || "Tractor-Trolley";
 
   if (!quantity || quantity <= 0) {
     showToast("Please enter a valid crop quantity in Quintals.", "error");
+    return;
+  }
+
+  if (quantity > 60) {
+    showToast("Daily Selling Limit is 40 – 60 Quintals. Please adjust quantity.", "error");
     return;
   }
 
@@ -1026,14 +1793,15 @@ async function submitBooking() {
         mandi_id: mandiId,
         crop_type: "Paddy (Grade A)",
         quantity_quintals: quantity,
-        booking_date: "Tomorrow",
+        booking_date: bookingDate,
         time_slot: timeSlot,
         vehicle_type: vehicleType,
         vehicle_number: "KA-36-TR-4021",
         soil_color_answered: soilColor,
-        drying_days_answered: dryingDays,
-        harvest_days_answered: harvestDays,
-        hardness_answered: hardness
+        growth_duration_answered: growthDuration,
+        grain_hardness_answered: hardness,
+        fertilizer_used_answered: fertilizer,
+        crop_photo: capturedCropImageData || "live_camera_paddy_sample.jpg"
       })
     });
 
@@ -1103,3 +1871,425 @@ function closeEJFormModal() {
   if (modal) modal.classList.add('hidden');
 }
 
+// Auto-initialize calendar date & pre-load speech voices on DOM ready
+document.addEventListener('DOMContentLoaded', () => {
+  const datePicker = document.getElementById('wizard-booking-date');
+  if (datePicker && !datePicker.value) {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    datePicker.value = tomorrow.toISOString().split('T')[0];
+    datePicker.min = new Date().toISOString().split('T')[0];
+  }
+
+  if (typeof loadVoices === 'function') {
+    loadVoices();
+  }
+});
+
+// ================= KISAN SETU MULTILINGUAL VOICE ASSISTANT (AI SAATHI) =================
+let vaRecognition = null;
+let vaIsRecording = false;
+let vaSelectedLang = 'kannada';
+let vaCurrentAnswer = "";
+
+const vaKnowledgeBase = {
+  kannada: {
+    lang_name: "ಕನ್ನಡ",
+    voice_code: "kn-IN",
+    chips: {
+      q1: "ನನ್ನ ಟೋಕನ್ ಎಲ್ಲಿದೆ?",
+      q2: "ನನ್ನ ಕ್ಯೂ ಸ್ಥಾನ ಎಷ್ಟು?",
+      q3: "ನನ್ನ ಸ್ಲಾಟ್ ಯಾವಾಗ?",
+      q4: "ನನ್ನ ಪಾವತಿ ಸ್ಥಿತಿ ಏನು?",
+      q5: "ಉತ್ತಮ ಕೇಂದ್ರ ಶಿಫಾರಸು ಮಾಡಿ"
+    },
+    answers: {
+      token: "ನಿಮ್ಮ ಸಕ್ರಿಯ ಟೋಕನ್ ಸಂಖ್ಯೆ #42 ಆಗಿದೆ. ಖರೀದಿ ಕೇಂದ್ರ: ಎಪಿಎಂಸಿ ರಾಯಚೂರು ಗೇಟ್ 1. ನಿಮ್ಮ ನೋಂದಾಯಿತ ವಾಹನ ಕೆಎ-36-ಟಿಆರ್-4021 ಮಂಡಿ ಪ್ರವೇಶಕ್ಕೆ ಸಿದ್ಧವಾಗಿದೆ.",
+      queue: "ಪ್ರಸ್ತುತ ತೂಕ ನಡೆಯುತ್ತಿರುವ ಟೋಕನ್ #40 ಆಗಿದೆ. ನಿಮ್ಮ ಮುಂದೆ ಕೇವಲ 2 ವಾಹನಗಳಿವೆ. ಅಂದಾಜು ಕಾಯುವ ಸಮಯ ಸುಮಾರು 15 ನಿಮಿಷಗಳು.",
+      slot: "ನಿಮ್ಮ ಧಾನ್ಯ ತೂಕದ ಸ್ಲಾಟ್ ನಾಳೆ ಬೆಳಿಗ್ಗೆ 09:00 ರಿಂದ 11:00 ಗಂಟೆಗೆ ದೃಢೀಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು 15 ನಿಮಿಷ ಮುಂಚಿತವಾಗಿ ತಲುಪಿ.",
+      payment: "ನಿಮ್ಮ ₹1,27,600 ಮೊತ್ತವು ನೇರ ನಗದು ವರ್ಗಾವಣೆ (DBT) ಮೂಲಕ ನಿಮ್ಮ SBI ಖಾತೆ ಸಂಖ್ಯೆ XXXXXX4512 ಗೆ ಯಶಸ್ವಿಯಾಗಿ ಜಮೆಯಾಗಿದೆ. ಯುಟಿಆರ್: SBIN0029381029.",
+      recommend: "ನಾವು ಎಪಿಎಂಸಿ ರಾಯಚೂರು ಗೇಟ್ 1 ಕೇಂದ್ರವನ್ನು ಶಿಫಾರಸು ಮಾಡುತ್ತೇವೆ. ಅಲ್ಲಿ ಕನಿಷ್ಠ ಕಾಯುವಿಕೆ ಸಮಯವಿದೆ (~15 ನಿಮಿಷಗಳು) ಮತ್ತು ಮಳೆ ರಕ್ಷಣೆಗಾಗಿ ಸಂಪೂರ್ಣ ಟಾರ್ಪಾಲಿನ್ ವ್ಯವಸ್ಥೆ ಸಿದ್ಧವಾಗಿದೆ.",
+      weather: "ಇಂದಿನ ಹವಾಮಾನ ಮುನ್ಸೂಚನೆಯಲ್ಲಿ 85% ಮಳೆಯ ಸಂಭವನೀಯತೆಯಿದೆ. ಮಂಡಿಯಲ್ಲಿರುವ ಎಲ್ಲಾ ವಾಹನಗಳು ಮತ್ತು ಧಾನ್ಯಗಳಿಗೆ 100% ವಾಟರ್‌ಪ್ರೂಫ್ ಟಾರ್ಪಾಲಿನ್ ಹೊದಿಕೆಯನ್ನು ಒದಗಿಸಲಾಗಿದೆ.",
+      price: "ಸರ್ಕಾರದ ಪ್ರಸ್ತುತ ಬೆಂಬಲ ಬೆಲೆ (MSP) ಭತ್ತ ಗ್ರೇಡ್-ಎ ಗೆ ಪ್ರತಿ ಕ್ವಿಂಟಾಲ್‌ಗೆ ₹2,320 ಆಗಿದೆ. 48 ಗಂಟೆಗಳ ಒಳಗೆ ನೇರ ಡಿಬಿಟಿ ಹಣ ಪಾವತಿ ಖಾತರಿ.",
+      quota: "ಭೂಲೇಖ್ ದಾಖಲೆಯಂತೆ ನಿಮ್ಮ ಜಮೀನು 4.2 ಎಕರೆ. ಉಳಿದಿರುವ ಮಾರಾಟ ಕೋಟಾ 7.5 ಕ್ವಿಂಟಾಲ್ ಆಗಿದೆ."
+    },
+    default_response: "ನಮಸ್ಕಾರ ರೈತ ಬಾಂಧವರೇ! ನಾನು ನಿಮ್ಮ ಕಿಸಾನ್ ಸೇತು ಧ್ವನಿ ಸಹಾಯಕ. ನಿಮ್ಮ ಟೋಕನ್, ಕ್ಯೂ ಸ್ಥಾನ, ಸ್ಲಾಟ್ ಸಮಯ ಅಥವಾ ಡಿಬಿಟಿ ಪಾವತಿಯ ಬಗ್ಗೆ ನೀವು ಯಾವುದೇ ಪ್ರಶ್ನೆಗಳನ್ನು ಕೇಳಬಹುದು."
+  },
+  hindi: {
+    lang_name: "हिन्दी",
+    voice_code: "hi-IN",
+    chips: {
+      q1: "मेरा टोकन कहाँ है?",
+      q2: "मेरी कतार स्थिति क्या है?",
+      q3: "मेरा स्लॉट कब है?",
+      q4: "मेरे भुगतान की स्थिति क्या है?",
+      q5: "मंडी केंद्र की सिफारिश करें"
+    },
+    answers: {
+      token: "आपका सक्रिय टोकन नंबर #42 है। खरीद केंद्र: एपीएमसी रायचूर गेट 1। आपका पंजीकृत वाहन KA-36-TR-4021 मंडी प्रवेश के लिए तैयार है।",
+      queue: "वर्तमान में वेईब्रिज पर टोकन #40 का वजन चल रहा है। आपके आगे केवल 2 वाहन हैं। अनुमानित प्रतीक्षा समय लगभग 15 मिनट है।",
+      slot: "आपका खरीद स्लॉट कल सुबह 09:00 से 11:00 बजे के बीच तय किया गया है। कृपया केंद्र पर 15 मिनट पहले पहुंचें।",
+      payment: "आपकी ₹1,27,600 की राशि प्रत्यक्ष लाभ अंतरण (DBT) द्वारा आपके एसबीआई खाते XXXXXX4512 में सफलतापूर्वक जमा हो चुकी है। यूटीआर: SBIN0029381029.",
+      recommend: "हम एपीएमसी रायचूर गेट 1 की सिफारिश करते हैं। वहां कतार न्यूनतम है (~15 मिनट) और बारिश से सुरक्षा के लिए 100% वाटरप्रूफ तिरपाल सुरक्षा उपलब्ध है।",
+      weather: "आज 85% बारिश की संभावना है। सरकारी मंडी में सभी ट्रॉलियों और शेड पर 100% वाटरप्रूफ तिरपाल सुरक्षा कवर तैनात है।",
+      price: "सरकार का आधिकारिक एमएसपी धान (ग्रेड-ए) के लिए ₹2,320 प्रति क्विंटल है। सीधे आपके बैंक खाते में 48 घंटे में भुगतान होता है।",
+      quota: "भूलेख रिकॉर्ड के अनुसार आपकी कुल भूमि 4.2 एकड़ है। आपका शेष खरीद कोटा 7.5 क्विंटल बचा है।"
+    },
+    default_response: "नमस्ते किसान साथी! मैं आपका किसान सेतु वॉइस असिस्टेंट हूँ। आप टोकन, कतार स्थिति, स्लॉट समय या डीबीटी भुगतान के बारे में प्रश्न पूछ सकते हैं।"
+  },
+  tamil: {
+    lang_name: "தமிழ்",
+    voice_code: "ta-IN",
+    chips: {
+      q1: "எனது டோக்கன் எங்கே?",
+      q2: "எனது வரிசை நிலை என்ன?",
+      q3: "எனது நேரம் எப்போது?",
+      q4: "எனது பணம் நிலை என்ன?",
+      q5: "மையத்தை பரிந்துரைக்கவும்"
+    },
+    answers: {
+      token: "உங்கள் நேரடி டோக்கன் எண் #42 ஆகும். கொள்முதல் மையம்: ஏபிஎம்சி ராய்ச்சூர் கேட் 1. உங்கள் வாகனம் KA-36-TR-4021 சரிபார்க்கப்பட்டது.",
+      queue: "தற்போது டோக்கன் #40 எடை போடப்படுகிறது. உங்களுக்கு முன்னால் 2 வாகனங்கள் மட்டுமே உள்ளன. தோராய காத்திருப்பு நேரம் ~15 நிமிடங்கள்.",
+      slot: "உங்கள் கொள்முதல் நேரம் நாளை காலை 09:00 முதல் 11:00 மணி வரை ஒதுக்கப்பட்டுள்ளது. 15 நிமிடங்கள் முன்னதாக வரவும்.",
+      payment: "உங்கள் ₹1,27,600 தொகை டிபிடி மூலம் எஸ்பிஐ கணக்கு XXXXXX4512 இல் வெற்றிகரமாக வரவு வைக்கப்பட்டுள்ளது. UTR: SBIN0029381029.",
+      recommend: "ஏபிஎம்சி ராய்ச்சூர் கேட் 1 மையம் பரிந்துரைக்கப்படுகிறது. குறைந்த கூட்டம் மற்றும் முழுமையான மழை தார்பாலின் பாதுகாப்பு உள்ளது.",
+      weather: "இன்று 85% மழை பெய்ய வாய்ப்புள்ளது. தானியங்களைப் பாதுகாக்க 100% நீர்ப்புகா தார்பாலின் பாதுகாப்பு ஏற்பாடு செய்யப்பட்டுள்ளது.",
+      price: "நெல் கிரேடு-ஏக்கான அரசு எம்எஸ்பி விலை குவிண்டாலுக்கு ₹2,320 ஆகும். 48 மணி நேரத்தில் வங்கி கணக்கில் நேரடி பணம்.",
+      quota: "நில ஆவணங்களின்படி உங்கள் நிலம் 4.2 ஏக்கர். மீதமுள்ள அரசு ஒதுக்கீடு 7.5 குவிண்டால் ஆகும்."
+    },
+    default_response: "வணக்கம் விவசாய நண்பரே! நான் உங்கள் கிசான் சேது குரல் உதவியாளர். டோக்கன், வரிசை, நேரம் அல்லது பணம் குறித்து நீங்கள் கேட்கலாம்."
+  },
+  telugu: {
+    lang_name: "తెలుగు",
+    voice_code: "te-IN",
+    chips: {
+      q1: "నా టోకెన్ ఎక్కడ ఉంది?",
+      q2: "నా క్యూ స్థానం ఏమిటి?",
+      q3: "నా స్లాట్ ఎప్పుడు?",
+      q4: "నా చెల్లింపు స్థితి ఏమిటి?",
+      q5: "కేంద్రాన్ని సిఫార్సు చేయండి"
+    },
+    answers: {
+      token: "మీ యాక్టివ్ టోకెన్ సంఖ్య #42. కొనుగోలు కేంద్రం: APMC రాయచూర్ గేట్ 1. మీ వాహనం KA-36-TR-4021 ధృవీకరించబడింది.",
+      queue: "ప్రస్తుతం టోకెన్ #40 వద్ద తూకం జరుగుతోంది. మీ ముందు కేవలం 2 వాహనాలు మాత్రమే ఉన్నాయి. వేచి ఉండే సమయం సుమారు 15 నిమిషాలు.",
+      slot: "మీ కొనుగోలు స్లాట్ రేపు ఉదయం 09:00 నుండి 11:00 గంటల వరకు కేటాయించబడింది. 15 నిమిషాల ముందుగా రండి.",
+      payment: "మీ ₹1,27,600 మొత్తం నేరుగా DBT ద్వారా మీ SBI ఖాతా XXXXXX4512 లో జమ చేయబడింది. UTR: SBIN0029381029.",
+      recommend: "APMC రాయచూర్ గేట్ 1 కేంద్రం సిఫార్సు చేయబడింది. ఇక్కడ రద్దీ తక్కువగా ఉంది మరియు వర్ష రక్షణ టార్పాలిన్ సిద్ధంగా ఉంది.",
+      weather: "ఈరోజు 85% వర్ష సూచన ఉంది. మార్కెట్ యార్డ్‌లో అన్ని వాహనాలకు 100% వాటర్‌ప్రూఫ్ టార్పాలిన్ కవర్లు సిద్ధం చేయబడ్డాయి.",
+      price: "వరి గ్రేడ్-ఎ కు ప్రభుత్వం ప్రకటించిన MSP ధర క్వింటాలుకు ₹2,320. 48 గంటల్లో నేరుగా బ్యాంకు ఖాతాలో జమ.",
+      quota: "భూమి రికార్డుల ప్రకారం మీ భూమి 4.2 ఎకరాలు. మిగిలిన విక్రయ కోటా 7.5 క్వింటాళ్లు."
+    },
+    default_response: "నమస్కారం రైతు సోదరులారా! నేను మీ కిసాన్ సేతు వాయిస్ అసిస్టెంట్. టోకెన్, క్యూ స్థానం, స్లాట్ లేదా DBT చెల్లింపు గురించి అడగవచ్చు."
+  },
+  english: {
+    lang_name: "English",
+    voice_code: "en-IN",
+    chips: {
+      q1: "Where is my token?",
+      q2: "What is my queue position?",
+      q3: "When is my slot?",
+      q4: "What is my payment status?",
+      q5: "Recommend a centre"
+    },
+    answers: {
+      token: "Your active token number is #42 for APMC Raichur Gate 1. Your registered vehicle KA-36-TR-4021 is verified for gate entry.",
+      queue: "Currently serving Token #40 at the weighbridge. Only 2 vehicles ahead of you. Estimated waiting time is approximately 15 minutes.",
+      slot: "Your procurement slot is scheduled for Tomorrow between 09:00 AM and 11:00 AM. Please arrive 15 minutes prior.",
+      payment: "Your payment of ₹1,27,600 has been successfully credited to SBI A/C XXXXXX4512 via Direct Benefit Transfer (DBT). PFMS UTR: SBIN0029381029.",
+      recommend: "We recommend APMC Raichur Gate 1. It currently has lowest congestion (~15 mins queue) and active waterproof tarpaulin rain shield.",
+      weather: "Rain risk today is 85%. 100% waterproof heavy-duty tarpaulins are actively deployed across all transit trolleys and storage sheds.",
+      price: "Official Government MSP for Paddy (Grade A) is ₹2,320 per quintal with zero middleman commission and direct bank transfer.",
+      quota: "Bhoomi land records show 4.2 acres. Your remaining seasonal procurement quota is 7.5 Quintals."
+    },
+    default_response: "Hello farmer! I am your Kisan Setu Voice Assistant. Ask me anything about your token, queue wait time, slot schedule, MSP rates, or DBT payment status."
+  }
+};
+
+function openVoiceAssistantModal(initialQuery = null) {
+  const modal = document.getElementById('voice-assistant-modal');
+  if (modal) modal.classList.remove('hidden');
+
+  vaSelectedLang = currentLanguage || 'kannada';
+  const langSelect = document.getElementById('va-language-select');
+  if (langSelect) langSelect.value = vaSelectedLang;
+
+  updateVoiceAssistantChips(vaSelectedLang);
+
+  if (initialQuery) {
+    handleVoiceAssistantSampleQuery(initialQuery);
+  } else {
+    const transcriptEl = document.getElementById('va-user-transcript');
+    if (transcriptEl) {
+      transcriptEl.innerText = `"Tap the green microphone or choose a quick question below:"`;
+    }
+    const answerContainer = document.getElementById('va-answer-container');
+    if (answerContainer) answerContainer.classList.add('hidden');
+  }
+}
+
+function closeVoiceAssistantModal() {
+  const modal = document.getElementById('voice-assistant-modal');
+  if (modal) modal.classList.add('hidden');
+
+  if (vaIsRecording && vaRecognition) {
+    try { vaRecognition.stop(); } catch (e) {}
+    vaIsRecording = false;
+  }
+  resetVoiceAssistantMicUI();
+
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+  }
+}
+
+function changeVoiceAssistantLang(langKey) {
+  if (!vaKnowledgeBase[langKey]) langKey = 'kannada';
+  vaSelectedLang = langKey;
+  updateVoiceAssistantChips(langKey);
+
+  const greeting = vaKnowledgeBase[langKey].default_response;
+  const transcriptEl = document.getElementById('va-user-transcript');
+  if (transcriptEl) {
+    transcriptEl.innerText = `"${greeting}"`;
+  }
+  const answerContainer = document.getElementById('va-answer-container');
+  if (answerContainer) answerContainer.classList.add('hidden');
+
+  showToast(`Voice Assistant Language: ${vaKnowledgeBase[langKey].lang_name}`, "info");
+  speakText(greeting, langKey);
+}
+
+function updateVoiceAssistantLanguage(langKey) {
+  if (vaKnowledgeBase[langKey]) {
+    vaSelectedLang = langKey;
+    const langSelect = document.getElementById('va-language-select');
+    if (langSelect) langSelect.value = langKey;
+    updateVoiceAssistantChips(langKey);
+  }
+}
+
+function updateVoiceAssistantChips(langKey) {
+  const kb = vaKnowledgeBase[langKey] || vaKnowledgeBase['kannada'];
+  const chips = kb.chips;
+
+  const q1 = document.getElementById('va-chip-q1');
+  if (q1) q1.innerText = chips.q1;
+  const q2 = document.getElementById('va-chip-q2');
+  if (q2) q2.innerText = chips.q2;
+  const q3 = document.getElementById('va-chip-q3');
+  if (q3) q3.innerText = chips.q3;
+  const q4 = document.getElementById('va-chip-q4');
+  if (q4) q4.innerText = chips.q4;
+  const q5 = document.getElementById('va-chip-q5');
+  if (q5) q5.innerText = chips.q5;
+}
+
+function handleVoiceAssistantSampleQuery(queryText) {
+  const transcriptEl = document.getElementById('va-user-transcript');
+  if (transcriptEl) {
+    transcriptEl.innerText = `"${queryText}"`;
+  }
+  processVoiceAssistantQuery(queryText, vaSelectedLang);
+}
+
+function handleVoiceAssistantTextInput() {
+  const inputEl = document.getElementById('va-text-input');
+  if (!inputEl) return;
+  const text = inputEl.value.trim();
+  if (!text) return;
+
+  const transcriptEl = document.getElementById('va-user-transcript');
+  if (transcriptEl) {
+    transcriptEl.innerText = `"${text}"`;
+  }
+  inputEl.value = '';
+  processVoiceAssistantQuery(text, vaSelectedLang);
+}
+
+function processVoiceAssistantQuery(userText, lang = null) {
+  const currentKb = vaKnowledgeBase[lang || vaSelectedLang] || vaKnowledgeBase['kannada'];
+  const lower = userText.toLowerCase();
+
+  let matchedAnswer = null;
+
+  // 1. Intent Detection across 5 languages & keywords
+  if (lower.includes('token') || lower.includes('ಟೋಕನ್') || lower.includes('टोकन') || lower.includes('டோக்கன்') || lower.includes('టోకెన్')) {
+    matchedAnswer = currentKb.answers.token;
+  } else if (lower.includes('queue') || lower.includes('position') || lower.includes('ಸ್ಥಾನ') || lower.includes('ಕ್ಯೂ') || lower.includes('कतार') || lower.includes('வரிசை') || lower.includes('క్యూ') || lower.includes('wait') || lower.includes('ಕಾಯುವ')) {
+    matchedAnswer = currentKb.answers.queue;
+  } else if (lower.includes('slot') || lower.includes('time') || lower.includes('ಸ್ಲಾಟ್') || lower.includes('ಸಮಯ') || lower.includes('स्लॉट') || lower.includes('நேரம்') || lower.includes('సమయం') || lower.includes('when')) {
+    matchedAnswer = currentKb.answers.slot;
+  } else if (lower.includes('payment') || lower.includes('dbt') || lower.includes('money') || lower.includes('ಹಣ') || lower.includes('ಪಾವತಿ') || lower.includes('पैसा') || lower.includes('भुगतान') || lower.includes('பணம்') || lower.includes('డబ్బు')) {
+    matchedAnswer = currentKb.answers.payment;
+  } else if (lower.includes('recommend') || lower.includes('centre') || lower.includes('mandi') || lower.includes('ಮಂಡಿ') || lower.includes('ಕೇಂದ್ರ') || lower.includes('मंडी') || lower.includes('மையம்') || lower.includes('కేంద్రం')) {
+    matchedAnswer = currentKb.answers.recommend;
+  } else if (lower.includes('weather') || lower.includes('rain') || lower.includes('ಮಳೆ') || lower.includes('बारिश') || lower.includes('हवामान') || lower.includes('மழை') || lower.includes('వర్షం')) {
+    matchedAnswer = currentKb.answers.weather;
+  } else if (lower.includes('rate') || lower.includes('price') || lower.includes('msp') || lower.includes('ಬೆಲೆ') || lower.includes('ದರ') || lower.includes('भाव') || lower.includes('விலை') || lower.includes('ధర')) {
+    matchedAnswer = currentKb.answers.price;
+  } else if (lower.includes('quota') || lower.includes('land') || lower.includes('ಭೂಮಿ') || lower.includes('ಜಮೀನು') || lower.includes('जमीन') || lower.includes('நிலம்')) {
+    matchedAnswer = currentKb.answers.quota;
+  } else {
+    matchedAnswer = currentKb.default_response;
+  }
+
+  vaCurrentAnswer = matchedAnswer;
+
+  // Render Answer Box
+  const answerContainer = document.getElementById('va-answer-container');
+  const answerTextEl = document.getElementById('va-answer-text');
+  if (answerContainer && answerTextEl) {
+    answerTextEl.innerText = matchedAnswer;
+    answerContainer.classList.remove('hidden');
+  }
+
+  const statusLabel = document.getElementById('va-mic-status-label');
+  if (statusLabel) {
+    statusLabel.innerText = "✅ Answer ready! Replay anytime.";
+  }
+
+  // Audio Readout in selected language
+  speakText(matchedAnswer, lang || vaSelectedLang);
+}
+
+function speakVoiceAssistantCurrentAnswer() {
+  if (vaCurrentAnswer) {
+    speakText(vaCurrentAnswer, vaSelectedLang);
+  }
+}
+
+function resetVoiceAssistantMicUI() {
+  vaIsRecording = false;
+  const micBtn = document.getElementById('va-mic-button');
+  if (micBtn) {
+    micBtn.className = "w-18 h-18 w-[72px] h-[72px] rounded-full bg-emerald-500 hover:bg-emerald-600 text-white flex items-center justify-center text-3xl shadow-xl transition transform active:scale-95 z-10";
+  }
+  const r1 = document.getElementById('va-pulse-ring-1');
+  const r2 = document.getElementById('va-pulse-ring-2');
+  if (r1) r1.classList.add('hidden');
+  if (r2) r2.classList.add('hidden');
+  const statusLabel = document.getElementById('va-mic-status-label');
+  if (statusLabel) {
+    statusLabel.innerText = "Tap to speak your question";
+  }
+}
+
+function toggleVoiceAssistantRecording() {
+  if (vaIsRecording) {
+    if (vaRecognition) {
+      try { vaRecognition.stop(); } catch (e) {}
+    }
+    resetVoiceAssistantMicUI();
+    return;
+  }
+
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) {
+    showToast("Speech Recognition not supported in this browser. Please type or tap quick chips.", "info");
+    const statusLabel = document.getElementById('va-mic-status-label');
+    if (statusLabel) {
+      statusLabel.innerText = "Microphone unavailable. Use quick sample chips below.";
+    }
+    return;
+  }
+
+  try {
+    vaRecognition = new SpeechRecognition();
+    vaRecognition.continuous = false;
+    vaRecognition.interimResults = false;
+
+    const currentKb = vaKnowledgeBase[vaSelectedLang] || vaKnowledgeBase['kannada'];
+    vaRecognition.lang = currentKb.voice_code || 'kn-IN';
+
+    vaRecognition.onstart = function() {
+      vaIsRecording = true;
+      const micBtn = document.getElementById('va-mic-button');
+      if (micBtn) {
+        micBtn.className = "w-18 h-18 w-[72px] h-[72px] rounded-full bg-red-600 hover:bg-red-700 text-white flex items-center justify-center text-3xl shadow-xl transition transform active:scale-95 z-10 animate-pulse";
+      }
+      const r1 = document.getElementById('va-pulse-ring-1');
+      const r2 = document.getElementById('va-pulse-ring-2');
+      if (r1) r1.classList.remove('hidden');
+      if (r2) r2.classList.remove('hidden');
+
+      const statusLabel = document.getElementById('va-mic-status-label');
+      if (statusLabel) {
+        statusLabel.innerText = `🎙️ Listening (${currentKb.lang_name})... Speak now!`;
+      }
+    };
+
+    vaRecognition.onresult = function(event) {
+      const transcript = event.results[0][0].transcript;
+      const transcriptEl = document.getElementById('va-user-transcript');
+      if (transcriptEl) {
+        transcriptEl.innerText = `"${transcript}"`;
+      }
+      processVoiceAssistantQuery(transcript, vaSelectedLang);
+    };
+
+    vaRecognition.onerror = function(event) {
+      console.warn("Speech recognition error:", event.error);
+      const statusLabel = document.getElementById('va-mic-status-label');
+      if (statusLabel) {
+        statusLabel.innerText = `Mic event: ${event.error}. You can also type below.`;
+      }
+      resetVoiceAssistantMicUI();
+    };
+
+    vaRecognition.onend = function() {
+      resetVoiceAssistantMicUI();
+    };
+
+    vaRecognition.start();
+  } catch (err) {
+    console.error("Failed to start speech recognition:", err);
+    resetVoiceAssistantMicUI();
+  }
+}
+
+
+
+
+// ================= LANDING PAGE AUDIO NARRATION & RECEIPT PRINTING =================
+function speakLandingIntroduction() {
+  const t = fullTranslations[currentLanguage] || fullTranslations.english;
+  const speechText = t.landing_audio_speech || t.welcome;
+  speakText(speechText, currentLanguage);
+}
+
+function printOfficialReceipt(type) {
+  // Ensure printable elements are visible and print
+  if (type === 'qr') {
+    const qrModal = document.getElementById('qr-modal');
+    if (qrModal) qrModal.classList.remove('hidden');
+  } else if (type === 'jform') {
+    const jformModal = document.getElementById('ejform-modal');
+    if (jformModal) jformModal.classList.remove('hidden');
+  }
+  window.print();
+}
+
+// Bind Bhoomi Land Quota live validation on booking input
+document.addEventListener('DOMContentLoaded', () => {
+  const qtyInput = document.getElementById('wizard-quantity-input');
+  const warningEl = document.getElementById('bhoomi-quota-warning');
+  const warningText = document.getElementById('bhoomi-warning-text');
+  const availableQuotaEl = document.getElementById('bhoomi-available-quota');
+
+  if (qtyInput) {
+    qtyInput.addEventListener('input', () => {
+      const val = parseFloat(qtyInput.value) || 0;
+      const maxRemaining = 47.5; // Basavaraj Gowda's remaining quota
+      if (val > maxRemaining) {
+        if (warningEl) warningEl.classList.remove('hidden');
+        if (warningText) {
+          warningText.innerText = "⚠️ Anti-Hoarding Alert: Entered quantity (" + val + " Qtl) exceeds your remaining Bhoomi quota (" + maxRemaining + " Qtl)!";
+        }
+        qtyInput.classList.add('border-red-500', 'bg-red-50');
+      } else {
+        if (warningEl) warningEl.classList.add('hidden');
+        qtyInput.classList.remove('border-red-500', 'bg-red-50');
+      }
+    });
+  }
+});
