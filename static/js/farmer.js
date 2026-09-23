@@ -9,7 +9,7 @@ let farmerVisitsChartInstance = null;
 // Complete 100% Native Translations Dictionary
 const fullTranslations = {
   kannada: {
-    nav_landing: "🏠 ಮುಖಪುಟ / ಪರಿಚಯ",
+    nav_landing: "🏠 ಮುಖಪುಟ",
     nav_farmer_portal: "👨‍🌾 ರೈತ ಪೋರ್ಟಲ್",
     nav_mandi_portal: "🏢 ಖರೀದಿ ಕೇಂದ್ರ",
     nav_admin_portal: "🏛️ ಸಚಿವಾಲಯ / ಆಡಳಿತ",
@@ -237,7 +237,7 @@ const fullTranslations = {
   },
 
   tamil: {
-    nav_landing: "🏠 முகப்பு / அறிமுகம்",
+    nav_landing: "🏠 முகப்பு",
     nav_farmer_portal: "👨‍🌾 உழவர் தளம்",
     nav_mandi_portal: "🏢 கொள்முதல் மையம்",
     nav_admin_portal: "🏛️ அமைச்சகம் / நிர்வாகம்",
@@ -457,7 +457,7 @@ const fullTranslations = {
   },
 
   telugu: {
-    nav_landing: "🏠 హోమ్ / పరిచయం",
+    nav_landing: "🏠 హోమ్",
     nav_farmer_portal: "👨‍🌾 రైతు పోర్టల్",
     nav_mandi_portal: "🏢 కొనుగోలు కేంద్రం",
     nav_admin_portal: "🏛️ మంత్రిత్వ శాఖ / అడ్మిన్",
@@ -677,7 +677,7 @@ const fullTranslations = {
   },
 
   hindi: {
-    nav_landing: "🏠 होम / परिचय",
+    nav_landing: "🏠 होम",
     nav_farmer_portal: "👨‍🌾 किसान पोर्टल",
     nav_mandi_portal: "🏢 खरीद केंद्र (मंडी)",
     nav_admin_portal: "🏛️ मंत्रालय / एडमिन",
@@ -897,7 +897,7 @@ const fullTranslations = {
   },
 
   english: {
-    nav_landing: "🏠 Home / Introduction",
+    nav_landing: "🏠 Home",
     nav_farmer_portal: "👨‍🌾 Farmer Portal",
     nav_mandi_portal: "🏢 Procurement Centre",
     nav_admin_portal: "🏛️ Minister / Admin",

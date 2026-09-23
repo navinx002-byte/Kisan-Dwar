@@ -56,13 +56,6 @@
         <!-- Right: Actions, Role Switcher, SMS Bell & PWA Status -->
         <div class="flex items-center gap-2.5 flex-wrap justify-center">
           
-          <!-- Kisan Setu Multilingual Voice Assistant Button -->
-          <button onclick="openVoiceAssistantModal()" title="Open Kisan Setu Multilingual Voice Assistant (5 Languages)" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white border border-emerald-400/50 text-xs font-bold px-3.5 py-1.5 rounded-xl transition shadow-md">
-            <span class="text-base animate-pulse">🎙️</span>
-            <span>Voice Assistant</span>
-            <span class="text-[10px] bg-emerald-950 text-emerald-200 px-1.5 py-0.5 rounded font-mono font-bold">5 Lang</span>
-          </button>
-          
           <!-- Offline Mode / Remote Village PWA Status Badge -->
           <div class="hidden lg:flex items-center gap-1.5 bg-emerald-900/60 border border-emerald-600/40 text-emerald-300 text-[11px] font-semibold px-3 py-1.5 rounded-xl shadow-inner">
             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -78,7 +71,7 @@
           <!-- 1-Click Role Switcher (Home / Farmer / Mandi / Minister) -->
           <div class="flex items-center bg-emerald-900/80 p-1 rounded-xl border border-emerald-700/60 shadow-inner flex-wrap">
             <button onclick="switchRole('landing')" data-role="landing" class="role-tab-btn px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-emerald-700 text-white shadow">
-              <span data-i18n="nav_landing">🏠 Home / Introduction</span>
+              <span data-i18n="nav_landing">🏠 Home</span>
             </button>
             <button onclick="switchRole('farmer')" data-role="farmer" class="role-tab-btn px-3.5 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-gray-100 text-gray-700">
               <span data-i18n="nav_farmer_portal">👨‍🌾 Farmer Portal</span>
@@ -2278,13 +2271,6 @@
   <script src="/static/js/mandi.js"></script>
   <script src="/static/js/admin.js"></script>
   <script src="/static/js/app.js"></script>
-
-  <!-- ================= FLOATING MULTILINGUAL VOICE ASSISTANT LAUNCHER ================= -->
-  <button onclick="openVoiceAssistantModal()" title="Open Kisan Setu Multilingual Voice Assistant (5 Languages)" class="fixed bottom-6 right-6 z-40 bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-500 hover:to-teal-600 text-white shadow-2xl px-4 py-3 rounded-full flex items-center gap-2.5 border-2 border-white/50 transform hover:scale-105 active:scale-95 transition-all">
-    <span class="text-xl animate-pulse">🎙️</span>
-    <span class="text-xs font-black tracking-wide">Kisan Setu Voice</span>
-    <span class="text-[10px] bg-emerald-950/80 text-emerald-200 px-2 py-0.5 rounded-full font-mono font-bold">5 Lang</span>
-  </button>
 
 </body>
 </html>
