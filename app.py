@@ -22,6 +22,10 @@ seed()
 def index():
     return render_template("index.html")
 
+@app.route("/docs")
+def docs():
+    return render_template("docs.html")
+
 # ----------------- FARMER APIS ----------------- #
 @app.route("/api/farmers", methods=["GET"])
 def get_farmers():
