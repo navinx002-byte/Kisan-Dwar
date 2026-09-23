@@ -4,6 +4,7 @@ let currentRole = 'landing';
 let isAdminLoggedIn = false;
 
 document.addEventListener('DOMContentLoaded', () => {
+  removeStrayVoiceButtons();
   // Initialize default view (National Home & Introduction Landing Page)
   switchRole('landing');
 
@@ -42,8 +43,25 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Master Role Switcher (Landing / Farmer / Mandi / Admin)
+
+// Global safeguard: strictly enforce Voice Assistant ONLY in Home and Farmer screens
+function removeStrayVoiceButtons() {
+  document.querySelectorAll('button').forEach(btn => {
+    const oc = btn.getAttribute('onclick') || '';
+    if (oc.includes('openVoiceAssistantModal')) {
+      const inLanding = btn.closest('#screen-landing');
+      const inFarmer = btn.closest('#screen-farmer');
+      const inModal = btn.closest('#voice-assistant-modal');
+      if (!inLanding && !inFarmer && !inModal) {
+        btn.remove();
+      }
+    }
+  });
+}
+
 function switchRole(role) {
   currentRole = role;
+  removeStrayVoiceButtons();
 
   // Update Top Bar Tabs
   document.querySelectorAll('.role-tab-btn').forEach(btn => {
