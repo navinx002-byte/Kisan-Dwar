@@ -1,4 +1,4 @@
-const CACHE_NAME = 'kisandwar-v3';
+const CACHE_NAME = 'kisandwar-v4';
 
 self.addEventListener('install', event => {
   self.skipWaiting();

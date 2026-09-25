@@ -98,8 +98,10 @@ function switchRole(role) {
 
   if (role === 'farmer') {
     if (badge) badge.innerText = "👨‍🌾 Farmer Navigation";
-    if (userName) userName.innerText = "Basavaraj Gowda";
-    if (userRole) userRole.innerText = "ID: FARM-KA-8941";
+    if (typeof farmerProfileData !== 'undefined' && farmerProfileData && farmerProfileData.farmer) {
+      if (userName) userName.innerText = farmerProfileData.farmer.name;
+      if (userRole) userRole.innerText = `ID: ${farmerProfileData.farmer.farmer_id}`;
+    }
   } else if (role === 'mandi') {
     if (badge) badge.innerText = "🏢 Procurement Operations";
     if (userName) userName.innerText = "Mandi In-Charge";

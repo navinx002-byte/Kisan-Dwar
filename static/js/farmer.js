@@ -1447,6 +1447,16 @@ async function loadFarmerProfile(farmerId = 1) {
     const bkEl = document.getElementById('farmer-bank-display');
     if (bkEl) bkEl.innerText = `${data.farmer.bank_account} (${data.farmer.bank_ifsc})`;
 
+    // Update sidebar user card with active farmer name and ID
+    const sideName = document.getElementById('sidebar-user-name');
+    if (sideName) sideName.innerText = data.farmer.name;
+    const sideRole = document.getElementById('sidebar-user-role');
+    if (sideRole) sideRole.innerText = `ID: ${data.farmer.farmer_id}`;
+
+    // Sync switcher dropdown
+    const sideSelect = document.getElementById('sidebar-farmer-switcher');
+    if (sideSelect && sideSelect.value != farmerId) sideSelect.value = farmerId;
+
     if (data.land_records && data.land_records.length > 0) {
       const lr = data.land_records[0];
       const survEl = document.getElementById('farmer-survey-display');
