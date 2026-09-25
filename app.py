@@ -31,11 +31,87 @@ def docs():
 def get_farmers():
     conn = get_db()
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM farmers")
+    cursor.execute("SELECT * FROM farmers ORDER BY id DESC")
     rows = cursor.fetchall()
     res = [dict(row) for row in rows]
     conn.close()
     return jsonify(res)
+
+@app.route("/api/farmers/register", methods=["POST"])
+def register_farmer():
+    data = request.json or {}
+    name = data.get("name", "").strip()
+    phone = data.get("phone", "").strip()
+    aadhaar_last4 = data.get("aadhaar_last4", "5544").strip()
+    village = data.get("village", "").strip() or "Gram Panchayat"
+    district = data.get("district", "Raichur").strip()
+    preferred_lang = data.get("preferred_lang", "kannada").lower()
+    survey_number = data.get("survey_number", "").strip() or f"SY-{uuid.uuid4().hex[:4].upper()}"
+    try:
+        acreage = float(data.get("land_acreage", 2.5))
+        if acreage <= 0:
+            acreage = 2.5
+    except (ValueError, TypeError):
+        acreage = 2.5
+
+    crop_type = data.get("crop_type", "Paddy (Grade A)")
+    bank_account = data.get("bank_account", "").strip() or f"XXXXXX{aadhaar_last4}"
+    bank_ifsc = data.get("bank_ifsc", "SBIN0001244").strip()
+
+    if not name or not phone:
+        return jsonify({"error": "Farmer Name and Phone Number are required!"}), 400
+
+    conn = get_db()
+    cursor = conn.cursor()
+
+    state_prefix = "KA"
+    if "tamil" in preferred_lang or "thanjavur" in district.lower():
+        state_prefix = "TN"
+    elif "telugu" in preferred_lang or "guntur" in district.lower():
+        state_prefix = "AP"
+    elif "hindi" in preferred_lang or "karnal" in district.lower():
+        state_prefix = "HR"
+
+    rand_num = str(uuid.uuid4().int)[:4]
+    farmer_code = f"FARM-{state_prefix}-{rand_num}"
+
+    cursor.execute('''
+    INSERT INTO farmers (farmer_id, name, phone, aadhaar_last4, village, district, preferred_lang, bank_account, bank_ifsc)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ''', (farmer_code, name, phone, aadhaar_last4, village, district, preferred_lang, bank_account, bank_ifsc))
+    new_farmer_id = cursor.lastrowid
+
+    yield_rate = 25.0
+    total_quota = round(acreage * yield_rate, 2)
+
+    cursor.execute('''
+    INSERT INTO land_records (farmer_id, survey_number, land_acreage, soil_type, crop_type, district_yield_rate, total_quota, quota_used)
+    VALUES (?, ?, ?, ?, ?, ?, ?, 0.0)
+    ''', (new_farmer_id, survey_number, acreage, "Black Soil", crop_type, yield_rate, total_quota))
+
+    cert_code = f"PAN-{state_prefix}-2026-{rand_num}"
+    now_str = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
+    cursor.execute('''
+    INSERT INTO panchayat_prechecks (farmer_id, survey_number, crop_type, probe_test_date, moisture_percent, foreign_matter_percent, status, certificate_code, officer_name)
+    VALUES (?, ?, ?, ?, 14.0, 0.9, 'PASSED', ?, 'Gram Panchayat Agri Officer')
+    ''', (new_farmer_id, survey_number, crop_type, now_str, cert_code))
+
+    conn.commit()
+    conn.close()
+
+    return jsonify({
+        "success": True,
+        "message": f"Farmer registered successfully! Quota allocated: {total_quota} Qtl",
+        "farmer_id": new_farmer_id,
+        "farmer_code": farmer_code,
+        "name": name,
+        "phone": phone,
+        "village": village,
+        "district": district,
+        "total_quota": total_quota,
+        "land_acreage": acreage,
+        "survey_number": survey_number
+    })
 
 @app.route("/api/farmers/<int:farmer_id>/profile", methods=["GET"])
 def get_farmer_profile(farmer_id):

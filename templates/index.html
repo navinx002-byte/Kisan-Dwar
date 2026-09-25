@@ -205,16 +205,24 @@
         </nav>
       </div>
 
-      <!-- User Card at bottom of sidebar -->
-      <div class="mt-6 pt-4 border-t border-gray-100 bg-gray-50/70 p-3 rounded-xl flex items-center justify-between">
-        <div class="flex items-center gap-2.5">
-          <div class="w-8 h-8 rounded-full bg-emerald-700 text-white flex items-center justify-center font-bold text-xs shadow">
-            👨‍🌾
+      <!-- User Card at bottom of sidebar with Multi-Farmer Switcher -->
+      <div class="mt-6 pt-4 border-t border-gray-100 bg-gray-50/70 p-3 rounded-xl space-y-2">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-full bg-emerald-700 text-white flex items-center justify-center font-bold text-xs shadow">
+              👨‍🌾
+            </div>
+            <div>
+              <strong id="sidebar-user-name" class="text-xs text-gray-900 block font-bold">Basavaraj Gowda</strong>
+              <span id="sidebar-user-role" class="text-[10px] text-gray-500 font-mono">ID: FARM-KA-8941</span>
+            </div>
           </div>
-          <div>
-            <strong id="sidebar-user-name" class="text-xs text-gray-900 block font-bold">Basavaraj Gowda</strong>
-            <span id="sidebar-user-role" class="text-[10px] text-gray-500 font-mono">ID: FARM-KA-8941</span>
-          </div>
+        </div>
+        <div class="pt-1">
+          <label class="block text-[9.5px] font-bold text-gray-500 uppercase tracking-wider mb-1">Switch Active Farmer:</label>
+          <select id="sidebar-farmer-switcher" onchange="loadFarmerProfile(this.value)" class="w-full bg-white border border-gray-200 rounded-lg p-1.5 text-[11px] font-semibold text-gray-800 shadow-xs focus:ring-1 focus:ring-emerald-500">
+            <!-- Populated from DB -->
+          </select>
         </div>
       </div>
 
@@ -252,8 +260,11 @@
           </div>
 
           <div class="flex items-center gap-2 flex-wrap">
+            <button onclick="openFarmerRegisterModal()" class="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-emerald-950 font-black text-xs px-4 py-2 rounded-xl shadow transition">
+              <span>🌾</span> <span>Register New Farmer & Book Slot</span>
+            </button>
             <button onclick="openVoiceAssistantModal()" class="inline-flex items-center gap-2 bg-emerald-800 hover:bg-emerald-700 text-white font-bold text-xs px-3.5 py-2 rounded-xl shadow transition border border-emerald-600">
-              <span class="text-base animate-pulse">🎙️</span> <span>Kisan Setu Voice Assistant (5 Languages)</span>
+              <span class="text-base animate-pulse">🎙️</span> <span>Kisan Setu Voice Assistant</span>
             </button>
             <button onclick="speakLandingIntroduction()" class="inline-flex items-center gap-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs px-4 py-2 rounded-xl shadow transition">
               <span>🔊</span> <span data-i18n="landing_btn_audio_intro">Listen Audio Overview</span>
@@ -518,7 +529,10 @@
             </div>
           </div>
 
-          <div class="flex items-center gap-2">
+          <div class="flex items-center gap-2 flex-wrap">
+            <button onclick="openFarmerRegisterModal()" class="inline-flex items-center gap-1.5 bg-amber-500 hover:bg-amber-400 text-emerald-950 font-black text-xs px-3.5 py-1.5 rounded-lg shadow-sm transition">
+              <span>🌾</span> <span>New Farmer Register</span>
+            </button>
             <button onclick="speakText(fullTranslations[currentLanguage].welcome)" class="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-800 border border-emerald-300 font-semibold text-xs px-3 py-1.5 rounded-lg hover:bg-emerald-100 transition">
               <span data-i18n="btn_voice_readout">🔊 Voice Readout</span>
             </button>
@@ -2065,6 +2079,125 @@
           ✅ Finalize Weight & Submit DBT Batch
         </button>
       </div>
+
+    </div>
+  </div>
+
+    <!-- ================= MODAL: NEW FARMER REGISTRATION & ONBOARDING ================= -->
+  <div id="farmer-register-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-7 shadow-2xl border border-gray-100 relative max-h-[90vh] overflow-y-auto">
+      
+      <div class="flex items-center justify-between border-b border-gray-100 pb-3 mb-4">
+        <div class="flex items-center gap-2.5">
+          <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-2xl shadow-xs">
+            🌾
+          </div>
+          <div>
+            <h3 class="text-base font-black text-gray-900">New Farmer Registration</h3>
+            <p class="text-[11px] text-emerald-700 font-semibold">Bhoomi Land Quota & DBT Direct Linkage</p>
+          </div>
+        </div>
+        <button onclick="closeFarmerRegisterModal()" class="text-gray-400 hover:text-gray-700 p-1.5 rounded-lg hover:bg-gray-100 text-lg font-bold">✕</button>
+      </div>
+
+      <form onsubmit="submitFarmerRegistration(event)" class="space-y-4">
+        
+        <!-- Farmer Personal Details -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+          <div>
+            <label class="block font-bold text-gray-700 mb-1">Farmer Full Name *</label>
+            <input type="text" id="reg-name" required placeholder="e.g. Anand Patil" class="w-full border border-gray-300 rounded-xl p-2.5 text-xs font-semibold focus:ring-2 focus:ring-emerald-500">
+          </div>
+          <div>
+            <label class="block font-bold text-gray-700 mb-1">Mobile Number (10 Digits) *</label>
+            <input type="tel" id="reg-phone" required pattern="[0-9]{10}" placeholder="98XXXXXXXX" class="w-full border border-gray-300 rounded-xl p-2.5 text-xs font-semibold focus:ring-2 focus:ring-emerald-500">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+          <div>
+            <label class="block font-bold text-gray-700 mb-1">Village / Gram</label>
+            <input type="text" id="reg-village" placeholder="e.g. Manvi" value="Manvi" class="w-full border border-gray-300 rounded-xl p-2.5 text-xs font-semibold">
+          </div>
+          <div>
+            <label class="block font-bold text-gray-700 mb-1">District</label>
+            <select id="reg-district" class="w-full border border-gray-300 rounded-xl p-2.5 text-xs font-semibold">
+              <option value="Raichur">Raichur (Karnataka)</option>
+              <option value="Thanjavur">Thanjavur (Tamil Nadu)</option>
+              <option value="Guntur">Guntur (Andhra Pradesh)</option>
+              <option value="Karnal">Karnal (Haryana)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-bold text-gray-700 mb-1">Language</label>
+            <select id="reg-lang" class="w-full border border-gray-300 rounded-xl p-2.5 text-xs font-semibold">
+              <option value="kannada">ಕನ್ನಡ (Kannada)</option>
+              <option value="tamil">தமிழ் (Tamil)</option>
+              <option value="telugu">తెలుగు (Telugu)</option>
+              <option value="hindi">हिंदी (Hindi)</option>
+              <option value="english">English</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Land Records & Quota Calculator Section -->
+        <div class="bg-emerald-50/70 border border-emerald-200 p-3.5 rounded-2xl space-y-2.5 text-xs">
+          <div class="flex items-center justify-between">
+            <span class="font-extrabold text-emerald-950 uppercase tracking-wide text-[11px] flex items-center gap-1.5">
+              <span>📋</span> Bhoomi Land Registry Verification
+            </span>
+            <span class="text-[10px] bg-emerald-200 text-emerald-900 font-bold px-2 py-0.5 rounded-full">Yield Norm: 25 Qtl/Acre</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div>
+              <label class="block font-bold text-gray-700 mb-1">Survey Number</label>
+              <input type="text" id="reg-survey" placeholder="SY-204/1A" value="SY-204/1A" class="w-full border border-emerald-300 rounded-xl p-2 text-xs font-semibold bg-white">
+            </div>
+            <div>
+              <label class="block font-bold text-gray-700 mb-1">Total Acreage (Acres)</label>
+              <input type="number" id="reg-acreage" step="0.1" min="0.5" max="50" value="3.0" oninput="updateModalQuotaCalculation()" class="w-full border border-emerald-300 rounded-xl p-2 text-xs font-bold text-emerald-900 bg-white">
+            </div>
+            <div>
+              <label class="block font-bold text-gray-700 mb-1">Crop Type</label>
+              <select id="reg-crop" class="w-full border border-emerald-300 rounded-xl p-2 text-xs font-semibold bg-white">
+                <option value="Paddy (Grade A)">Paddy (Grade A)</option>
+                <option value="Wheat (FAQ)">Wheat (FAQ)</option>
+                <option value="Paddy (Common)">Paddy (Common)</option>
+                <option value="Cotton / Maize">Cotton / Maize</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="bg-white p-2.5 rounded-xl border border-emerald-200 flex items-center justify-between">
+            <span class="text-[11px] text-gray-600 font-medium">Computed MSP Quota Balance:</span>
+            <strong id="reg-calc-quota" class="text-xs font-black text-emerald-800">75.0 Qtl (3.0 Acres × 25 Qtl/Acre)</strong>
+          </div>
+        </div>
+
+        <!-- Aadhaar & Bank Details for DBT -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+          <div>
+            <label class="block font-bold text-gray-700 mb-1">Aadhaar Card (Last 4 Digits)</label>
+            <input type="text" id="reg-aadhaar" maxlength="4" pattern="[0-9]{4}" value="9142" placeholder="e.g. 9142" class="w-full border border-gray-300 rounded-xl p-2.5 text-xs font-semibold">
+          </div>
+          <div>
+            <label class="block font-bold text-gray-700 mb-1">PFMS Direct Benefit Transfer</label>
+            <div class="p-2 bg-gray-50 border border-gray-200 rounded-xl text-[11px] text-emerald-700 font-bold flex items-center gap-1.5">
+              <span>✅</span> Aadhaar-Seeded Bank Verified
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="pt-3 border-t border-gray-100 flex items-center justify-end gap-2.5">
+          <button type="button" onclick="closeFarmerRegisterModal()" class="px-4 py-2 text-xs font-bold text-gray-500 hover:text-gray-700">Cancel</button>
+          <button type="submit" class="bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs px-5 py-2.5 rounded-xl shadow-md transition flex items-center gap-2">
+            <span>🌾</span> <span>Register & Start Slot Booking</span>
+          </button>
+        </div>
+
+      </form>
 
     </div>
   </div>

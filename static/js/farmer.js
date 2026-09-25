@@ -2293,3 +2293,110 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+// ================= MULTI-FARMER MANAGEMENT & REGISTRATION ENGINE =================
+async function populateFarmerSwitcher() {
+  try {
+    const res = await fetch('/api/farmers');
+    const farmers = await res.json();
+    const selects = [
+      document.getElementById('active-farmer-select'),
+      document.getElementById('sidebar-farmer-switcher')
+    ];
+    selects.forEach(sel => {
+      if (!sel) return;
+      sel.innerHTML = farmers.map(f => `
+        <option value="${f.id}" ${f.id === currentFarmerId ? 'selected' : ''}>
+          ${f.name} (${f.farmer_id} • ${f.village})
+        </option>
+      `).join('');
+    });
+  } catch (err) {
+    console.error("Error loading farmers list:", err);
+  }
+}
+
+function openFarmerRegisterModal() {
+  const modal = document.getElementById('farmer-register-modal');
+  if (modal) {
+    modal.classList.remove('hidden');
+    updateModalQuotaCalculation();
+  }
+}
+
+function closeFarmerRegisterModal() {
+  const modal = document.getElementById('farmer-register-modal');
+  if (modal) modal.classList.add('hidden');
+}
+
+function updateModalQuotaCalculation() {
+  const acreageInput = document.getElementById('reg-acreage');
+  const calcDisplay = document.getElementById('reg-calc-quota');
+  if (acreageInput && calcDisplay) {
+    const acres = parseFloat(acreageInput.value) || 0;
+    const quota = (acres * 25.0).toFixed(1);
+    calcDisplay.innerText = `${quota} Qtl (${acres} Acres × 25 Qtl/Acre)`;
+  }
+}
+
+async function submitFarmerRegistration(event) {
+  if (event) event.preventDefault();
+  const name = document.getElementById('reg-name')?.value.trim();
+  const phone = document.getElementById('reg-phone')?.value.trim();
+  const village = document.getElementById('reg-village')?.value.trim() || "Gram Panchayat";
+  const district = document.getElementById('reg-district')?.value.trim() || "Raichur";
+  const preferredLang = document.getElementById('reg-lang')?.value || currentLanguage;
+  const surveyNumber = document.getElementById('reg-survey')?.value.trim() || "SY-Auto";
+  const acreage = parseFloat(document.getElementById('reg-acreage')?.value) || 2.5;
+  const cropType = document.getElementById('reg-crop')?.value || "Paddy (Grade A)";
+  const aadhaarLast4 = document.getElementById('reg-aadhaar')?.value.trim() || "8899";
+
+  if (!name || !phone) {
+    showToast("Please enter Farmer Name and 10-digit Mobile Number!", "error");
+    return;
+  }
+
+  try {
+    const res = await fetch('/api/farmers/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: name,
+        phone: phone,
+        aadhaar_last4: aadhaarLast4,
+        village: village,
+        district: district,
+        preferred_lang: preferredLang,
+        survey_number: surveyNumber,
+        land_acreage: acreage,
+        crop_type: cropType
+      })
+    });
+    const result = await res.json();
+    if (!res.ok) {
+      showToast(result.error || "Failed to register farmer", "error");
+      return;
+    }
+
+    closeFarmerRegisterModal();
+    showToast(`🎉 Farmer ${result.name} Registered! Quota: ${result.total_quota} Qtl`, "success");
+
+    // Switch to new farmer
+    currentFarmerId = result.farmer_id;
+    await populateFarmerSwitcher();
+    await loadFarmerProfile(currentFarmerId);
+
+    // Switch to farmer role & navigate to book slot
+    if (typeof switchRole === 'function') switchRole('farmer');
+    if (typeof navigateTo === 'function') navigateTo('farmer-book');
+
+  } catch (err) {
+    console.error("Farmer registration error:", err);
+    showToast("Error connecting to server. Please try again.", "error");
+  }
+}
+
+// Automatically populate switcher on page load
+document.addEventListener('DOMContentLoaded', () => {
+  populateFarmerSwitcher();
+});
